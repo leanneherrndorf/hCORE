@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import Login from './pages/Login.jsx';
 import Nav from './Nav.jsx';
 import Postform from './Postform.jsx';
 import Postlist from './Postlist.jsx';
-import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
 
 
 class App extends Component {
@@ -60,14 +58,12 @@ class App extends Component {
       </div>
     )}/>
   );
-
   render() {
     return (
       <div>
-      <Router history={browserHistory}>
-        {this.homeRoute}
-        <Route path='/login' component={Login} />
-      </Router>
+        <Nav/>
+        <Postform updateMessageOnClick={this.updateMessageOnClick}/>
+        <Postlist posts={this.state.posts}/>
       </div>
     );
   }
