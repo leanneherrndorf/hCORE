@@ -1,4 +1,4 @@
-exports.seed = function(knex, Promise) {
+cd exports.seed = function(knex, Promise) {
   return knex('topics').del()
   .then(function () {
     return Promise.all([

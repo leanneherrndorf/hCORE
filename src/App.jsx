@@ -30,13 +30,13 @@ componentDidMount = () => {
       this.socket.onmessage = (event) => {
         console.log('event.data:', event.data);
         const data = JSON.parse(event.data);
-        const messages = this.state.posts.concat(data);
+        const posts = this.state.posts.concat(data);
 
         switch(data.type) {
       case 'incomingMessage':
-        const messages = this.state.posts.concat(data);
-        console.log('messages:', messages);
-        this.setState({messages: messages});
+        const posts = this.state.posts.concat(data);
+        console.log('posts:', posts);
+        this.setState({posts: posts});
         break;
   
    

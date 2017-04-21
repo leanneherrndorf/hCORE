@@ -8,7 +8,7 @@ class Post extends React.Component {
     return (
     
       <div className="post">
-        <span className="post-content">{this.props.posts.content}</span>
+        <span className="post-content">{this.props.post.content}</span>
       </div>
     
     );
