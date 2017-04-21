@@ -1,4 +1,19 @@
 .navbar {
-  color: teal;
-  background: tomato;
+  color: black;
+  background: teal;
+  border: 1ex solid black;
+  height: 60px;
+  left: 0;
+  padding: 0 10ex;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.postform {
+  padding: 100px;
+}
+
+body {
+  font-family: 'Indie Flower', cursive;
 }

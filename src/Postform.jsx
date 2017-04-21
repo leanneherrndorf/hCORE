@@ -15,9 +15,11 @@ class Postform extends React.Component {
   
   render() {
     return (
+
       <footer className="postlist">
         <input type='text' ref={(thisInput) => {this.textInput = thisInput;}} className="postlist" placeholder="What do you have to say?" />
         <input type='submit' value='Submit to me' onClick={this.handleClick.bind(this)} />
+
       </footer>
     );
   }
