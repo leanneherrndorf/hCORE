@@ -1,18 +1,10 @@
 import React, {Component} from 'react';
+import Login from './pages/Login.jsx';
 import Nav from './Nav.jsx';
 import Postform from './Postform.jsx';
 import Postlist from './Postlist.jsx';
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
 
-const routes = (
-  <Route path="/" component={() => (
-    <div>
-      <Nav/>
-      <Postform updateMessageOnClick={this.updateMessageOnClick}/>
-      <Postlist posts={this.state.posts}/>
-    </div>
-  )}/>
-);
 
 class App extends Component {
   constructor(props){
@@ -53,7 +45,7 @@ class App extends Component {
     }
   }
 
-  routes = (
+  homeRoute = (
     <Route path="/" component={() => (
       <div>
         <Nav/>
@@ -66,8 +58,9 @@ class App extends Component {
   render() {
     return (
       <div>
-      <Router history={hashHistory}>
-        {this.routes}
+      <Router history={browserHistory}>
+        {this.homeRoute}
+        <Route path='/login' component={Login} />
       </Router>  
       </div>
     );
