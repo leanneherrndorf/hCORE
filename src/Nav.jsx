@@ -8,8 +8,6 @@ class Nav extends React.Component {
   render() {
     return (
       <nav className="navbar">
-        <Link to="/login" className="navbar-brand">Login</Link>
-        <Link to="/" className="navbar-home">Home</Link>
         <h1>hCORE</h1>
       </nav>
     );
