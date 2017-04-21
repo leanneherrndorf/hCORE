@@ -10,7 +10,8 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      posts: []
+      posts: [],
+      count: 0
     }
   }
 
@@ -38,6 +39,11 @@ class App extends Component {
           console.log('posts:', posts);
           this.setState({posts: posts});
           break;
+
+        case 'clientCount':
+          this.setState({count: data.count})
+        break;
+
         default:
         // show an error in the console if the message type is unknown
           throw new Error('Unknown event type ' + data.type);
@@ -48,7 +54,7 @@ class App extends Component {
   homeRoute = (
     <Route path="/" component={() => (
       <div>
-        <Nav/>
+        <Nav count = {this.state.count}/>
         <Postform updateMessageOnClick={this.updateMessageOnClick}/>
         <Postlist posts={this.state.posts}/>
       </div>
@@ -61,7 +67,7 @@ class App extends Component {
       <Router history={browserHistory}>
         {this.homeRoute}
         <Route path='/login' component={Login} />
-      </Router>  
+      </Router>
       </div>
     );
   }

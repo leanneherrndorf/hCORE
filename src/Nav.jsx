@@ -11,6 +11,7 @@ class Nav extends React.Component {
         <Link to="/login" className="navbar-brand">Login</Link>
         <Link to="/" className="navbar-home">Home</Link>
         <h1>hCORE</h1>
+        <p>{this.props.count} Users online</p>
       </nav>
     );
   }
