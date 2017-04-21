@@ -11,13 +11,11 @@ class App extends Component {
     }
   }
 
-updateMessageOnEnter = (event) => {
-      if(event.key === 'Enter'){
-        const newMessage = {type: 'postMessage', content: event.target.value};
-        this.socket.send(JSON.stringify(newMessage));
-        event.target.value = '';
-      }
-    }
+  updateMessageOnClick = (input) => {
+    console.log('value', input);
+    const newMessage = {type: 'postMessage', content: input};
+    this.socket.send(JSON.stringify(newMessage));
+  }
 
 componentDidMount = () => {
     console.log('componentDidMount <App />');
@@ -50,7 +48,7 @@ componentDidMount = () => {
     return (
       <div>
         <Nav/>
-        <Postform updateMessageOnEnter={this.updateMessageOnEnter}/>
+        <Postform updateMessageOnClick={this.updateMessageOnClick}/>
         <Postlist posts={this.state.posts}/>
       </div>
     );
