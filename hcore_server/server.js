@@ -28,8 +28,6 @@ wss.broadcast = function broadcast(data) {
 // When a client connects they are assigned a socket, represented by
 // the ws parameter in the callback.
 wss.on('connection', (ws) => {
- 
-
 
   ws.on('message', (data) => {
     post = JSON.parse(data);

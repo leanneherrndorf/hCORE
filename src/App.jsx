@@ -67,17 +67,8 @@ class App extends Component {
     return (
       <div>
       <Router history={hashHistory}>
-        {/*<Route path="/" component={() => (
-          <div>
-            <Nav/>
-            <Postform updateMessageOnClick={this.updateMessageOnClick}/>
-            <Postlist posts={this.state.posts}/>
-          </div>
-        )}/>*/}
         {this.routes}
       </Router>  
-      {/*<Postform updateMessageOnClick={this.updateMessageOnClick}/>
-      <Postlist posts={this.state.posts}/>*/}
       </div>
     );
   }
