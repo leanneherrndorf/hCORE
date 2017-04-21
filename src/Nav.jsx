@@ -9,6 +9,7 @@ class Nav extends React.Component {
     return (
       <nav className="navbar">
         <h1>hCORE</h1>
+        <p>{this.props.count} Users online</p>
       </nav>
     );
   }

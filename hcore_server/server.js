@@ -24,10 +24,16 @@ wss.broadcast = function broadcast(data) {
   });
 };
 
+let clientcount = {
+  count: wss.clients.size,
+  type: "clientCount"
+}
 // Set up a callback that will run when a client connects to the server
 // When a client connects they are assigned a socket, represented by
 // the ws parameter in the callback.
 wss.on('connection', (ws) => {
+  clientcount.count = wss.clients.size;
+  wss.broadcast(JSON.stringify(clientcount));
 
   ws.on('message', (data) => {
     post = JSON.parse(data);
@@ -39,6 +45,11 @@ wss.on('connection', (ws) => {
     }
     //console.log(clientSize);
     wss.broadcast(JSON.stringify(outputPost));
+  });
+
+    ws.on('close', () => {
+    clientcount.count = wss.clients.size;
+    wss.broadcast(JSON.stringify(clientcount));
   });
 
 });
