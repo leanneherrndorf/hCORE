@@ -49,19 +49,10 @@ class App extends Component {
     }
   }
 
-  homeRoute = (
-    <Route path="/" component={() => (
-      <div>
-        <Nav count = {this.state.count}/>
-        <Postform updateMessageOnClick={this.updateMessageOnClick}/>
-        <Postlist posts={this.state.posts}/>
-      </div>
-    )}/>
-  );
   render() {
     return (
       <div>
-        <Nav/>
+        <Nav count = {this.state.count}/>
         <Postform updateMessageOnClick={this.updateMessageOnClick}/>
         <Postlist posts={this.state.posts}/>
       </div>
