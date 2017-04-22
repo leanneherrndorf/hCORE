@@ -9,7 +9,8 @@ class App extends Component {
     super(props);
     this.state = {
       posts: [],
-      count: 0
+      count: 0,
+      topic: ''
     }
   }
 
@@ -48,7 +49,11 @@ class App extends Component {
           break;
 
         case 'clientCount':
-          this.setState({count: data.count})
+          this.setState({count: data.count});
+        break;
+
+        case 'incomingTopic':
+          this.setState({topic: data.topic});
         break;
 
         default:
@@ -62,7 +67,7 @@ class App extends Component {
     console.log(this.generateUserName());
     return (
       <div>
-        <Nav count = {this.state.count}/>
+        <Nav topic={this.state.topic} count={this.state.count}/>
         <Postform updateMessageOnClick={this.updateMessageOnClick}/>
         <Postlist posts={this.state.posts}/>
       </div>
