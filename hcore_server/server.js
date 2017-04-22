@@ -19,6 +19,14 @@ const server = express()
 // Create the WebSockets server
 const wss = new SocketServer({ server });
 
+function generateUserName() {
+  let first = ['Gli', 'Shla', 'Gla', 'Blo', 'La', 'Flo', 'Ju', 'Plu'];
+  let last = ['nkus', 'mbus', 'rbonzo', 'mbo', 'nkey', 'ngus', 'ster'];
+  let firstRandom = Math.floor(Math.random() * (7));
+  let lastRandom = Math.floor(Math.random() * (6));
+  return (first[firstRandom] + last[lastRandom]);
+}
+
 wss.broadcast = function broadcast(data) {
   wss.clients.forEach((client) => {
     if (client.readyState === WebSocket.OPEN) {
@@ -26,14 +34,11 @@ wss.broadcast = function broadcast(data) {
     }
   });
 };
+let clientName = generateUserName();
 
-let healthCount = {
-  health: wss.clients.size + 2,
-  type: "healthCount"
-}
 
-let clientcount = {
-  count: wss.clients.size,
+let clientCount = {
+  count: 0,
   type: "clientCount"
 }
 
@@ -45,20 +50,22 @@ let topicMessage = {
 // When a client connects they are assigned a socket, represented by
 // the ws parameter in the callback.
 wss.on('connection', (ws) => {
-  clientcount.count = wss.clients.size;
-  wss.broadcast(JSON.stringify(clientcount));
-  wss.broadcast(JSON.stringify(healthCount));
+  
+  let healthCount = wss.clients.size + 2
+  clientCount.count = wss.clients.size;
+  wss.broadcast(JSON.stringify(clientCount));
+  // wss.broadcast(JSON.stringify(healthCount));
   wss.broadcast(JSON.stringify(topicMessage));
   ws.on('message', (data) => {
     let post = JSON.parse(data);
     let id = uuidV1();
+    
     switch(post.type) {
     
     case 'postMessage':
       let outputPost = {
         type: 'incomingMessage',
-        id: id,
-        content: post.content,
+        content: {id: id, post: post.content , health: healthCount, maxHealth: healthCount, name: clientName },
       }
       wss.broadcast(JSON.stringify(outputPost));
     break;
@@ -66,7 +73,8 @@ wss.on('connection', (ws) => {
     case 'postHealth':
       let outputHealth = {
         type: 'incomingHealth',
-        health: post.health
+        health: post.health,
+        id: post.id
       }
       wss.broadcast(JSON.stringify(outputHealth));
     break;
@@ -74,12 +82,11 @@ wss.on('connection', (ws) => {
     default:
       throw new Error("Unknown event type" + post.type);
     }
-    
   });
 
     ws.on('close', () => {
-    clientcount.count = wss.clients.size;
-    wss.broadcast(JSON.stringify(clientcount));
+    clientCount.count = wss.clients.size;
+    wss.broadcast(JSON.stringify(clientCount));
   });
 
 });

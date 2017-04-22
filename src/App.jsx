@@ -3,14 +3,6 @@ import Nav from './Nav.jsx';
 import Postform from './Postform.jsx';
 import Postlist from './Postlist.jsx';
 
-function generateUserName() {
-  let first = ['Gli', 'Shla', 'Gla', 'Blo', 'La', 'Flo', 'Ju', 'Plu'];
-  let last = ['nkus', 'mbus', 'rbonzo', 'mbo', 'nkey', 'ngus', 'ster'];
-  let firstRandom = Math.floor(Math.random() * (7));
-  let lastRandom = Math.floor(Math.random() * (6));
-  return (first[firstRandom] + last[lastRandom]);
-}
-
 
 class App extends Component {
   constructor(props){
@@ -18,21 +10,16 @@ class App extends Component {
     this.state = {
       posts: [],
       count: 0,
-      topic: '',
-      user: {
-        name: generateUserName(),
-        health: 0
-      }
+      topic: ''
     }
   }
 
 
-  updateHealthOnClick = (health) => {
+  updateHealthOnClick = (health, id) => {
     console.log('health', health);
-    const newHealth = {type: 'postHealth', health: health}
+    const newHealth = {type: 'postHealth', health: health, id: id}
     this.socket.send(JSON.stringify(newHealth));
   }
-
 
   updateMessageOnClick = (input) => {
     console.log('value', input);
@@ -50,29 +37,42 @@ class App extends Component {
     this.socket.onmessage = (event) => {
       console.log('event.data:', event.data);
       const data = JSON.parse(event.data);
-      const posts = this.state.posts.concat(data);
+      // const posts = this.state.posts.concat(data);
 
       switch(data.type) {
         case 'incomingMessage':
-          const posts = this.state.posts.concat(data);
-          console.log('posts:', posts);
+          const postObj = {
+            id: data.content.id,
+            post: data.content.post, 
+            health: data.content.health,
+            name: data.content.name,
+            maxHealth: data.content.maxHealth
+          }
+          const posts = this.state.posts.concat(postObj);
           this.setState({posts: posts});
-          break;
+        break;
 
         case 'clientCount':
           this.setState({count: data.count});
         break;
 
-        case 'healthCount':
-          this.setState({user: {health: data.health}})
-        break;
+        // case 'healthCount':
+        //   console.log(data)
+        //   console.log(this.state.posts)
+        // break;
 
         case 'incomingTopic':
           this.setState({topic: data.topic});
         break;
 
         case 'incomingHealth':
-          this.setState({user: {health: data.health}});
+          const arrayOfNewObjects = this.state.posts.map((post) => {
+            if (post.id === data.id) {
+              post.health = data.health;
+            }
+            return post;
+          })
+          this.setState({posts: arrayOfNewObjects});
         break;
 
         default:
@@ -87,8 +87,7 @@ class App extends Component {
       <div>
         <Nav topic={this.state.topic} count={this.state.count}/>
         <Postform updateMessageOnClick={this.updateMessageOnClick}/>
-        <Postlist posts={this.state.posts} 
-          health={this.state.user.health} 
+        <Postlist posts={this.state.posts}
           updateHealthOnClick={this.updateHealthOnClick} 
         />
       </div>
