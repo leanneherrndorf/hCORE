@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Button} from 'react-bootstrap';
 
 class Postform extends React.Component {
   constructor(props) {
@@ -12,13 +13,12 @@ class Postform extends React.Component {
     this.props.updateMessageOnClick(input);
     this.textInput.value = null;
   }
-  
+
   render() {
     return (
-
       <footer className="postlist">
         <input type='text' ref={(thisInput) => {this.textInput = thisInput;}} className="postlist" placeholder="What do you have to say?" />
-        <input type='submit' value='Submit to me' onClick={this.handleClick.bind(this)} />
+        <Button type='submit' bsStyle="success" onClick={this.handleClick.bind(this)}>Submit to me</Button>
 
       </footer>
     );
