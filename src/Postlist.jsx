@@ -9,7 +9,7 @@ class Postlist extends React.Component {
     return (
       <main className="postlist">
       {this.props.posts.map((post) =>
-        <Post post={post} key={post.id}/>
+        <Post post={post} key={post.id} updateHealthOnClick={this.props.updateHealthOnClick} health={this.props.health}/>
       )}
       </main>
     );
