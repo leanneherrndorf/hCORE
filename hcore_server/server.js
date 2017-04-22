@@ -82,7 +82,6 @@ wss.on('connection', (ws) => {
     default:
       throw new Error("Unknown event type" + post.type);
     }
-    
   });
 
     ws.on('close', () => {

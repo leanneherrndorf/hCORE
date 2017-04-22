@@ -10,7 +10,7 @@ class App extends Component {
     this.state = {
       posts: [],
       count: 0,
-      topic: '',
+      topic: ''
     }
   }
 
@@ -49,7 +49,6 @@ class App extends Component {
             maxHealth: data.content.maxHealth
           }
           const posts = this.state.posts.concat(postObj);
-          console.log('posts:', posts);
           this.setState({posts: posts});
         break;
 
@@ -57,11 +56,10 @@ class App extends Component {
           this.setState({count: data.count});
         break;
 
-        case 'healthCount':
-          console.log(data)
-          console.log(this.state.posts)
-          // this.setState({posts: {health: data.health}})
-        break;
+        // case 'healthCount':
+        //   console.log(data)
+        //   console.log(this.state.posts)
+        // break;
 
         case 'incomingTopic':
           this.setState({topic: data.topic});
