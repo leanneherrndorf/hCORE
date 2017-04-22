@@ -18,10 +18,10 @@ class Postform extends React.Component {
 
 
   showAlert(){
-    msg.show('Post must be less than 200 characters.', {
-      time: 2000,
+    msg.show(<h3>Post must be less than 200 characters.</h3>, {
+      time: 3000,
       type: 'error',
-      icon: <img src="../images/patgar.jpg" style={{width: 60, height: 60, borderRadius: 6 }} />
+      icon: <img src="../images/patgar.jpg" style={{width: 60, height: 60, borderRadius: 6}} />
     });
   }
 
