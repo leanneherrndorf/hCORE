@@ -15,9 +15,9 @@ class App extends Component {
   }
 
   generateUserName = () => {
-    let first = ['Gli', 'Shla', 'Gla', 'Blo', 'La', 'Flo', 'Ga', 'Ju', 'Plu'];
+    let first = ['Gli', 'Shla', 'Gla', 'Blo', 'La', 'Flo', 'Ju', 'Plu'];
     let last = ['nkus', 'mbus', 'rbonzo', 'mbo', 'nkey', 'ngus', 'ster'];
-    let firstRandom = Math.floor(Math.random() * (6 - 0));
+    let firstRandom = Math.floor(Math.random() * (7 - 0));
     let lastRandom = Math.floor(Math.random() * (6 - 0));
     return (first[firstRandom] + last[lastRandom]);
   }
