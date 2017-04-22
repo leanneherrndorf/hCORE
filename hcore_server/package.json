@@ -11,6 +11,7 @@
   "dependencies": {
     "express": "^4.15.2",
     "node-uuid": "1.4.8",
+    "sentencer": "^0.1.5",
     "ws": "2.2.3"
   }
 }
