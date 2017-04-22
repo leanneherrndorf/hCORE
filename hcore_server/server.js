@@ -27,6 +27,11 @@ wss.broadcast = function broadcast(data) {
   });
 };
 
+let healthCount = {
+  health: wss.clients.size + 2,
+  type: "healthCount"
+}
+
 let clientcount = {
   count: wss.clients.size,
   type: "clientCount"
@@ -42,18 +47,34 @@ let topicMessage = {
 wss.on('connection', (ws) => {
   clientcount.count = wss.clients.size;
   wss.broadcast(JSON.stringify(clientcount));
-
+  wss.broadcast(JSON.stringify(healthCount));
   wss.broadcast(JSON.stringify(topicMessage));
   ws.on('message', (data) => {
-    post = JSON.parse(data);
+    let post = JSON.parse(data);
     let id = uuidV1();
-    let outputPost = {
-      type: 'incomingMessage',
-      id: id,
-      content: post.content
+    switch(post.type) {
+    
+    case 'postMessage':
+      let outputPost = {
+        type: 'incomingMessage',
+        id: id,
+        content: post.content,
+      }
+      wss.broadcast(JSON.stringify(outputPost));
+    break;
+
+    case 'postHealth':
+      let outputHealth = {
+        type: 'incomingHealth',
+        health: post.health
+      }
+      wss.broadcast(JSON.stringify(outputHealth));
+    break;
+
+    default:
+      throw new Error("Unknown event type" + post.type);
     }
-    //console.log(clientSize);
-    wss.broadcast(JSON.stringify(outputPost));
+    
   });
 
     ws.on('close', () => {

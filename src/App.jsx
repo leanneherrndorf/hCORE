@@ -3,6 +3,14 @@ import Nav from './Nav.jsx';
 import Postform from './Postform.jsx';
 import Postlist from './Postlist.jsx';
 
+function generateUserName() {
+  let first = ['Gli', 'Shla', 'Gla', 'Blo', 'La', 'Flo', 'Ju', 'Plu'];
+  let last = ['nkus', 'mbus', 'rbonzo', 'mbo', 'nkey', 'ngus', 'ster'];
+  let firstRandom = Math.floor(Math.random() * (7));
+  let lastRandom = Math.floor(Math.random() * (6));
+  return (first[firstRandom] + last[lastRandom]);
+}
+
 
 class App extends Component {
   constructor(props){
@@ -10,16 +18,19 @@ class App extends Component {
     this.state = {
       posts: [],
       count: 0,
-      topic: ''
+      topic: '',
+      user: {
+        name: generateUserName(),
+        health: 0
+      }
     }
   }
 
-  generateUserName = () => {
-    let first = ['Gli', 'Shla', 'Gla', 'Blo', 'La', 'Flo', 'Ju', 'Plu'];
-    let last = ['nkus', 'mbus', 'rbonzo', 'mbo', 'nkey', 'ngus', 'ster'];
-    let firstRandom = Math.floor(Math.random() * (7 - 0));
-    let lastRandom = Math.floor(Math.random() * (6 - 0));
-    return (first[firstRandom] + last[lastRandom]);
+
+  updateHealthOnClick = (health) => {
+    console.log('health', health);
+    const newHealth = {type: 'postHealth', health: health}
+    this.socket.send(JSON.stringify(newHealth));
   }
 
 
@@ -52,8 +63,16 @@ class App extends Component {
           this.setState({count: data.count});
         break;
 
+        case 'healthCount':
+          this.setState({user: {health: data.health}})
+        break;
+
         case 'incomingTopic':
           this.setState({topic: data.topic});
+        break;
+
+        case 'incomingHealth':
+          this.setState({user: {health: data.health}});
         break;
 
         default:
@@ -64,12 +83,14 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.generateUserName());
     return (
       <div>
         <Nav topic={this.state.topic} count={this.state.count}/>
         <Postform updateMessageOnClick={this.updateMessageOnClick}/>
-        <Postlist posts={this.state.posts}/>
+        <Postlist posts={this.state.posts} 
+          health={this.state.user.health} 
+          updateHealthOnClick={this.updateHealthOnClick} 
+        />
       </div>
     );
   }
