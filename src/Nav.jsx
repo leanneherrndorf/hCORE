@@ -8,10 +8,12 @@ class Nav extends React.Component {
   render() {
     return (
       <nav className="navbar">
-        <h1>hCORE</h1>
-        <p>{this.props.count} Users online</p>
-        <span>{this.props.topic}</span>
+
+        <h1 className="navbar-brand">hCORE</h1>
+        <p className="navbar-topic">Topic of the round: {this.props.topic}</p>
+        <p className="navbar-count">{this.props.count} Users online</p>
       </nav>
+
     );
   }
 }

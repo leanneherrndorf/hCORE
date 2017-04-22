@@ -1,0 +1,29 @@
+.navbar {
+  color: black;
+  background: teal;
+  border: 1ex solid black;
+  //height: 40px;
+  left: 0;
+  padding: 0 10ex;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.navbar-brand{
+  color: inherit;
+  float: left;
+}
+
+.navbar-topic{
+  float: left;
+}
+
+.navbar-count {
+  color: inherit;
+  display: block;
+  float: right;
+  font-size: 18px;
+  height: 50px;
+  padding: 0 10px;
+}
