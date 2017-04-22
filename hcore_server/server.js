@@ -50,7 +50,8 @@ wss.on('connection', (ws) => {
     let outputPost = {
       type: 'incomingMessage',
       id: id,
-      content: post.content
+      content: post.content,
+      health: wss.clients.size + 2
     }
     //console.log(clientSize);
     wss.broadcast(JSON.stringify(outputPost));

@@ -10,7 +10,7 @@ class App extends Component {
     this.state = {
       posts: [],
       count: 0,
-      topic: ''
+      topic: '',
     }
   }
 
@@ -24,9 +24,14 @@ class App extends Component {
 
 
   updateMessageOnClick = (input) => {
-    console.log('value', input);
+    
     const newMessage = {type: 'postMessage', content: input};
     this.socket.send(JSON.stringify(newMessage));
+  }
+
+   updateHealthOnClick = (health) => {
+    console.log('value', health);
+    const newHealth = {type: 'postMessage', health: health};
   }
 
   componentDidMount = () => {
@@ -69,7 +74,7 @@ class App extends Component {
       <div>
         <Nav topic={this.state.topic} count={this.state.count}/>
         <Postform updateMessageOnClick={this.updateMessageOnClick}/>
-        <Postlist posts={this.state.posts}/>
+        <Postlist updateHealthOnClick={this.updateHealthOnClick} posts={this.state.posts}/>
       </div>
     );
   }
