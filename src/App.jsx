@@ -9,9 +9,19 @@ class App extends Component {
     super(props);
     this.state = {
       posts: [],
-      count: 0
+      count: 0,
+      topic: ''
     }
   }
+
+  generateUserName = () => {
+    let first = ['Gli', 'Shla', 'Gla', 'Blo', 'La', 'Flo', 'Ga', 'Ju', 'Plu'];
+    let last = ['nkus', 'mbus', 'rbonzo', 'mbo', 'nkey', 'ngus', 'ster'];
+    let firstRandom = Math.floor(Math.random() * (6 - 0));
+    let lastRandom = Math.floor(Math.random() * (6 - 0));
+    return (first[firstRandom] + last[lastRandom]);
+  }
+
 
   updateMessageOnClick = (input) => {
     console.log('value', input);
@@ -39,7 +49,11 @@ class App extends Component {
           break;
 
         case 'clientCount':
-          this.setState({count: data.count})
+          this.setState({count: data.count});
+        break;
+
+        case 'incomingTopic':
+          this.setState({topic: data.topic});
         break;
 
         default:
@@ -50,9 +64,10 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.generateUserName());
     return (
       <div>
-        <Nav count = {this.state.count}/>
+        <Nav topic={this.state.topic} count={this.state.count}/>
         <Postform updateMessageOnClick={this.updateMessageOnClick}/>
         <Postlist posts={this.state.posts}/>
       </div>
