@@ -15,7 +15,6 @@ class App extends Component {
     }
   }
 
-
   updateHealthOnClick = (health, id) => {
     console.log('health', health);
     const newHealth = {type: 'postHealth', health: health, id: id}
