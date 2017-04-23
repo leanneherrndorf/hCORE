@@ -7,10 +7,10 @@ class Nav extends React.Component {
   }
   render() {
     return (
-      <nav className="navbar">
-        <h1 className="navbar-brand">hCORE</h1>
+      <nav className="the-nav">
+        <h1 className="nav-brand">hCORE</h1>
         <h4 className="topic">Topic of the round: {this.props.topic}</h4>
-        <p className="navbar-count">{this.props.count} User(s) online</p>
+        <p className="nav-count">{this.props.count} User(s) online</p>
       </nav>
 
     );

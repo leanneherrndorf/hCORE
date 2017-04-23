@@ -8,12 +8,10 @@ class Post extends React.Component {
 
   malaiseClick() {
     let health = this.props.post.health - 1;
-    console.log('this.props.health: ', this.props.health);
     this.props.updateHealthOnClick(health, this.props.post.id);
   }
 
   render() {
-    console.log("testing", this.props.post)
     const percentageLost = this.props.post.health/this.props.post.maxHealth
     return (
         <article className="post">
