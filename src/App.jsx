@@ -14,7 +14,6 @@ class App extends Component {
     }
   }
 
-
   updateHealthOnClick = (health, id) => {
     console.log('health', health);
     const newHealth = {type: 'postHealth', health: health, id: id}
@@ -37,7 +36,6 @@ class App extends Component {
     this.socket.onmessage = (event) => {
       console.log('event.data:', event.data);
       const data = JSON.parse(event.data);
-      // const posts = this.state.posts.concat(data);
 
       switch(data.type) {
         case 'incomingMessage':
@@ -55,11 +53,6 @@ class App extends Component {
         case 'clientCount':
           this.setState({count: data.count});
         break;
-
-        // case 'healthCount':
-        //   console.log(data)
-        //   console.log(this.state.posts)
-        // break;
 
         case 'incomingTopic':
           this.setState({topic: data.topic});

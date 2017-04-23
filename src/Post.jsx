@@ -6,13 +6,18 @@ class Post extends React.Component {
     super(props);
   }
 
+  
+
   malaiseClick() {
     let health = this.props.post.health - 1;
     this.props.updateHealthOnClick(health, this.props.post.id);
   }
 
+
+
   render() {
     const percentageLost = this.props.post.health/this.props.post.maxHealth
+    if (this.props.post.health > 0){
     return (
         <article className="post">
           <span className="health">{this.props.post.health}</span>
@@ -23,7 +28,17 @@ class Post extends React.Component {
           <Button bsStyle="danger" onClick={this.malaiseClick.bind(this)}>Malaise</Button>
         </article>
     );
+    } else {
+    return (
+        <article className="post"> 
+          <img src="../images/gravestone2.jpg" style={{width: 60, height: 60, borderRadius: 6}}/>
+          <p className="post-name">{this.props.post.name} has suffered final death by unpopularity</p>
+          
+        </article>
+    )
+    }
   }
 }
+
 
 export default Post;
