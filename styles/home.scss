@@ -1,7 +1,53 @@
-.postlist {
-  margin-top: 100px;
+body {
+  margin-bottom: 20px;
 }
 
-body {
-  font-family: 'Indie Flower', cursive;
+.postform {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  min-width: 400px;
+  // max-width: 800px;
+  background: #e3ecf9;
+  box-shadow:
+    1px 1px #9da7b7,
+    2px 2px #9da7b7,
+    3px 3px #9da7b7;
+  border-radius: 6px;
+  margin: 165px 50px 50px 50px;
+  textarea {
+    width: 70%;
+    min-width: 200px;
+    margin-right: 15px;
+    border-radius: 4px;
+  }
+}
+
+.postlist {
+  display: flex;
+  flex-wrap: wrap;
+  .post {
+    padding: 20px;
+    margin: 20px;
+    margin-bottom: 5px;
+    box-shadow:
+      1px 1px #9da7b7,
+      2px 2px #9da7b7,
+      3px 3px #9da7b7;
+    border-radius: 6px;
+    flex-grow: 1;
+    background: #e3ecf9;
+    width: 33%;
+    min-width: 350px;
+
+    &:hover{
+      transform: scale(0.99);
+    }
+    
+  }
+  .post-content {
+  word-wrap: break-word;
+  margin: 5px;
+  padding: 10px;
+  }
 }

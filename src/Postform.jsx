@@ -38,11 +38,11 @@ class Postform extends React.Component {
 
   render() {
     return (
-      <footer className="postlist">
+      <header className="postform">
         <AlertContainer ref={(a) => global.msg = a} {...this.alertOptions} />
-        <input type='text' ref={(thisInput) => {this.textInput = thisInput;}} className="postlist" placeholder="What do you have to say?" />
+        <textarea type='text' ref={(thisInput) => {this.textInput = thisInput;}} className="postlist" placeholder="What do you have to say?" />
         <Button type='submit' bsStyle="success" onClick={this.handleClick.bind(this)}>Submit to me</Button>
-      </footer>
+      </header>
     );
   }
 }
