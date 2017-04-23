@@ -4,7 +4,7 @@ const SocketServer = require('ws').Server;
 const uuidV1 = require('node-uuid');
 const Sentencer = require('sentencer');
 const randomStruc = require('./random-struc.js');
-
+let listOfUsers = []; // A list of all the users
 
 // Set the port to 3001
 const PORT = 3001;
@@ -35,7 +35,6 @@ wss.broadcast = function broadcast(data) {
     }
   });
 };
-let clientName = generateUserName();
 
 
 let clientCount = {
@@ -51,11 +50,11 @@ let topicMessage = {
 // When a client connects they are assigned a socket, represented by
 // the ws parameter in the callback.
 wss.on('connection', (ws) => {
-  
+  let clientName = generateUserName();
+  listOfUsers.push(clientName);
   let healthCount = wss.clients.size + 2
   clientCount.count = wss.clients.size;
   wss.broadcast(JSON.stringify(clientCount));
-  // wss.broadcast(JSON.stringify(healthCount));
   wss.broadcast(JSON.stringify(topicMessage));
   ws.on('message', (data) => {
     let post = JSON.parse(data);
@@ -66,7 +65,7 @@ wss.on('connection', (ws) => {
     case 'postMessage':
       let outputPost = {
         type: 'incomingMessage',
-        content: {id: id, post: post.content , health: healthCount, maxHealth: healthCount, name: clientName },
+        content: {id: id, post: post.content , health: healthCount, maxHealth: healthCount, name: clientName},
       }
       wss.broadcast(JSON.stringify(outputPost));
     break;

@@ -9,6 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       posts: [],
+      listOfUsers: [], // List for all active users for future feature
       count: 0,
       topic: ''
     }
@@ -37,7 +38,6 @@ class App extends Component {
     this.socket.onmessage = (event) => {
       console.log('event.data:', event.data);
       const data = JSON.parse(event.data);
-      // const posts = this.state.posts.concat(data);
 
       switch(data.type) {
         case 'incomingMessage':
