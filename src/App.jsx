@@ -56,11 +56,6 @@ class App extends Component {
           this.setState({count: data.count});
         break;
 
-        // case 'healthCount':
-        //   console.log(data)
-        //   console.log(this.state.posts)
-        // break;
-
         case 'incomingTopic':
           this.setState({topic: data.topic});
         break;
