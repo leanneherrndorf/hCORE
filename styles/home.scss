@@ -46,8 +46,19 @@ body {
     
   }
   .post-content {
-  word-wrap: break-word;
-  margin: 5px;
-  padding: 10px;
+    word-wrap: break-word;
+    margin: 5px;
+    padding: 10px;
   }
+
+  .grave-name {
+    position: relative;
+    left: 16px;
+    bottom: 100px;
+    word-wrap: break-word;
+    margin: 5px;
+    padding: 10px;
+  } 
 }
+
+

@@ -6,8 +6,6 @@ class Post extends React.Component {
     super(props);
   }
 
-  
-
   malaiseClick() {
     let health = this.props.post.health - 1;
     this.props.updateHealthOnClick(health, this.props.post.id);
@@ -18,24 +16,24 @@ class Post extends React.Component {
   render() {
     const percentageLost = this.props.post.health/this.props.post.maxHealth
     if (this.props.post.health > 0){
-    return (
-        <article className="post">
-          <span className="health">{this.props.post.health}</span>
-          <div style={{border: '1px solid black', width: 302}}>
-            <div style={{width: 300 * percentageLost, backgroundColor: 'tomato', height: 10}}></div>
-          </div>
-          <p className="post-content">{this.props.post.post}</p>
-          <Button bsStyle="danger" onClick={this.malaiseClick.bind(this)}>Malaise</Button>
-        </article>
-    );
+      return (
+          <article className="post">
+            <span className="health">{this.props.post.health}</span>
+            <div style={{border: '1px solid black', width: 302}}>
+              <div style={{width: 300 * percentageLost, backgroundColor: 'tomato', height: 10}}></div>
+            </div>
+            <p className="post-content">{this.props.post.post}</p>
+            <Button bsStyle="danger" onClick={this.malaiseClick.bind(this)}>Malaise</Button>
+          </article>
+      );
+      
     } else {
-    return (
-        <article className="post"> 
-          <img src="../images/gravestone2.jpg" style={{width: 60, height: 60, borderRadius: 6}}/>
-          <p className="post-name">{this.props.post.name} has suffered final death by unpopularity</p>
-          
-        </article>
-    )
+      return (
+          <article className="post"> 
+            <img src="../images/gravestone.png" className="grave-stone" style={{width: 120, height: 120}}/>
+            <p className="grave-name">{this.props.post.name}</p>  
+          </article>
+      )
     }
   }
 }
