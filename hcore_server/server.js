@@ -3,12 +3,13 @@ const express = require('express');
 const SocketServer = require('ws').Server;
 const uuidV1 = require('node-uuid');
 const Sentencer = require('sentencer');
+const randomStruc = require('./random-struc.js');
 
 
 // Set the port to 3001
 const PORT = 3001;
 
-const sentence = Sentencer.make("{{ an_adjective }} {{ noun }}");
+const sentence = Sentencer.make(randomStruc());
 
 // Create a new express server
 const server = express()
