@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Nav from './Nav.jsx';
 import Postform from './Postform.jsx';
 import Postlist from './Postlist.jsx';
-
+import Timer from './Timer.jsx';
 
 class App extends Component {
   constructor(props){
@@ -13,7 +13,6 @@ class App extends Component {
       topic: ''
     }
   }
-
 
   updateHealthOnClick = (health, id) => {
     console.log('health', health);
@@ -43,7 +42,7 @@ class App extends Component {
         case 'incomingMessage':
           const postObj = {
             id: data.content.id,
-            post: data.content.post, 
+            post: data.content.post,
             health: data.content.health,
             name: data.content.name,
             maxHealth: data.content.maxHealth
@@ -88,8 +87,9 @@ class App extends Component {
         <Nav topic={this.state.topic} count={this.state.count}/>
         <Postform updateMessageOnClick={this.updateMessageOnClick}/>
         <Postlist posts={this.state.posts}
-          updateHealthOnClick={this.updateHealthOnClick} 
+          updateHealthOnClick={this.updateHealthOnClick}
         />
+        <Timer/>
       </div>
     );
   }
