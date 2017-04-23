@@ -62,27 +62,35 @@ wss.on('connection', (ws) => {
     
     switch(post.type) {
     
-    case 'postMessage':
-      let outputPost = {
-        type: 'incomingMessage',
-        content: {id: id, post: post.content , health: healthCount, maxHealth: healthCount, name: clientName},
-      }
-      wss.broadcast(JSON.stringify(outputPost));
-    break;
+      case 'postMessage':
+        let outputPost = {
+          type: 'incomingMessage',
+          content: {
+            id: id, 
+            post: post.content, 
+            health: healthCount, 
+            maxHealth: healthCount, 
+            name: clientName,
+            malaiseID: id,
+            malaise: 1
+          }
+        }
+        wss.broadcast(JSON.stringify(outputPost));
+      break;
 
-    case 'postHealth':
-      let outputHealth = {
-        type: 'incomingHealth',
-        health: post.health,
-        id: post.id
-      }
-      wss.broadcast(JSON.stringify(outputHealth));
-    break;
+      case 'postHealth':
+        let outputHealth = {
+          type: 'incomingHealth',
+          health: post.health,
+          id: post.id
+        }
+        wss.broadcast(JSON.stringify(outputHealth));
+      break;
 
-    default:
-      throw new Error("Unknown event type" + post.type);
-    }
-  });
+      default:
+        throw new Error("Unknown event type" + post.type);
+      }
+    });
 
     ws.on('close', () => {
     clientCount.count = wss.clients.size;

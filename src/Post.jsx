@@ -13,7 +13,8 @@ class Post extends React.Component {
 
   render() {
     const percentageLost = this.props.post.health/this.props.post.maxHealth
-    return (
+    // if (this.props.currentUserMalaise.id !== this.props.post.id) {
+      return (
         <article className="post">
           <span className="health">{this.props.post.health}</span>
           <div style={{border: '1px solid black', width: 302}}>
@@ -22,7 +23,18 @@ class Post extends React.Component {
           <p className="post-content">{this.props.post.post}</p>
           <Button bsStyle="danger" onClick={this.malaiseClick.bind(this)}>Malaise</Button>
         </article>
-    );
+      );
+    /*} else {
+      return (
+      <article className="post">
+        <span className="health">{this.props.post.health}</span>
+        <div style={{border: '1px solid black', width: 302}}>
+          <div style={{width: 300 * percentageLost, backgroundColor: 'tomato', height: 10}}></div>
+        </div>
+        <p className="post-content">{this.props.post.post}</p>
+      </article>
+      );
+    }*/
   }
 }
 

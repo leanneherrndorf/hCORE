@@ -6,12 +6,12 @@ class Postlist extends React.Component {
     super(props);
   }
   render() {
-    console.log(this.props.posts)
     return (
       <main className="postlist">
       {this.props.posts.map((post) =>
         <Post post={post} key={post.id} 
           updateHealthOnClick={this.props.updateHealthOnClick} 
+          currentUserMalaise={this.props.currentUserMalaise}
         />
       )}
       </main>
