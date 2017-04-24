@@ -50,6 +50,11 @@ class App extends Component {
     this.setState({roundTimeUp: true});
   }
 
+  newRoundStart = () => {
+    this.setState({timeUp: false});
+    this.setState({roundTimeUp: false});
+  }
+
   componentDidMount = () => {
     console.log('componentDidMount <App />');
     this.socket = new WebSocket('ws://0.0.0.0:3001');
@@ -136,7 +141,7 @@ class App extends Component {
       return (
         <div>
           <Nav topic={this.state.topic} count={this.state.count} username= {this.state.currentUser} currentUserMalaise={this.state.currentUserMalaise}/>
-          <Results/>
+          <Results newRoundStart={this.newRoundStart}/>
         </div>
       );
     //Voting state: post entering time is up, all posts in view, users can vote on posts
