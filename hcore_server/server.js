@@ -35,6 +35,10 @@ wss.broadcast = function broadcast(data) {
   });
 };
 
+// let clientName = {
+//   name: "Anonymous",
+//   type: "clientName"
+// }
 
 let clientCount = {
   count: 0,
@@ -53,22 +57,24 @@ wss.on('connection', (ws) => {
   listOfUsers.push(clientName);
   let healthCount = wss.clients.size + 2
   clientCount.count = wss.clients.size;
+  //wss.broadcast(JSON.stringify(clientName));
   wss.broadcast(JSON.stringify(clientCount));
   wss.broadcast(JSON.stringify(topicMessage));
+
   ws.on('message', (data) => {
     let post = JSON.parse(data);
     let id = uuidV1();
-    
+
     switch(post.type) {
-    
+
       case 'postMessage':
         let outputPost = {
           type: 'incomingMessage',
           content: {
-            id: id, 
-            post: post.content, 
-            health: healthCount, 
-            maxHealth: healthCount, 
+            id: id,
+            post: post.content,
+            health: healthCount,
+            maxHealth: healthCount,
             name: clientName,
             malaiseID: id,
             malaise: 1

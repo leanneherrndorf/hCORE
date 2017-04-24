@@ -9,8 +9,8 @@ class Postlist extends React.Component {
     return (
       <main className="postlist">
       {this.props.posts.map((post) =>
-        <Post post={post} key={post.id} 
-          updateHealthOnClick={this.props.updateHealthOnClick} 
+        <Post post={post} key={post.id}
+          updateHealthOnClick={this.props.updateHealthOnClick}
           currentUserMalaise={this.props.currentUserMalaise}
         />
       )}

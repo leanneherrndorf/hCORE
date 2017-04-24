@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Button} from 'react-bootstrap';
 import AlertContainer from 'react-alert';
 
-
 class Postform extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +14,6 @@ class Postform extends React.Component {
       transition: 'scale'
     };
   }
-
 
   showAlert(){
     msg.show(<h3>Post must be less than 200 characters.</h3>, {

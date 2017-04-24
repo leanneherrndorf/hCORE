@@ -15,17 +15,16 @@ class App extends Component {
       currentUserMalaise: {
         id: 0,
         malaise: 0
-      }
+      },
+      currentUser: 'Anonymous'
     }
   }
-
 
   updateUserMalaiseOnClick = () => {
     const newMalaise = this.state.currentUserMalaise.malaise - 1;
     this.setState({currentUserMalaise: {malaise: newMalaise}});
     console.log('current user malaise:', this.state.currentUserMalaise.malaise);
   }
-
 
   updateHealthOnClick = (health, id) => {
     const newHealth = {type: 'postHealth', health: health, id: id}
@@ -59,7 +58,9 @@ class App extends Component {
             malaiseID: data.content.malaiseID,
             malaise: data.content.malaise
           }
+          console.log(this.state.currentUser);
 
+          this.setState({currentUser: data.content.name})
           this.setState({currentUserMalaise: {
             id: data.content.malaiseID,
             malaise: data.content.malaise
@@ -68,6 +69,10 @@ class App extends Component {
           console.log('posts: ', posts);
           this.setState({posts: posts});
         break;
+
+        // case 'clientName':
+        //   this.setState({currentUser: data.name});
+        // break;
 
         case 'clientCount':
           this.setState({count: data.count});
@@ -105,11 +110,12 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Nav topic={this.state.topic} count={this.state.count} currentUserMalaise={this.state.currentUserMalaise}/>
-        <Postform updateMessageOnClick={this.updateMessageOnClick}/>
+        <Nav topic={this.state.topic} count={this.state.count} username= {this.state.currentUser} currentUserMalaise={this.state.currentUserMalaise}/>
+        <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.currentUser}/>
         <Postlist posts={this.state.posts}
-          updateHealthOnClick={this.updateHealthOnClick} 
+          updateHealthOnClick={this.updateHealthOnClick}
           currentUserMalaise={this.state.currentUserMalaise}
+
         />
         <Timer/>
       </div>
