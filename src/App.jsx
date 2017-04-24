@@ -10,6 +10,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      firstTimeUser: true,
       posts: [],
       listOfUsers: [], // List for all active users for future feature
       count: 0,
@@ -20,7 +21,8 @@ class App extends Component {
       },
       currentUser: 'Anonymous',
       timeUp: false,
-      roundTimeUp: false
+      roundTimeUp: false,
+      userName: '',
     }
   }
 
@@ -54,9 +56,8 @@ class App extends Component {
     this.socket = new WebSocket('ws://0.0.0.0:3001');
     this.socket.onopen = () => {
       console.log('is connected');
+      this.socket.send(JSON.stringify({type: 'incomingUser'}))
     }
-
-  
 
     this.socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
@@ -83,11 +84,11 @@ class App extends Component {
           console.log('posts: ', posts);
           this.setState({posts: posts});
         break;
-
-        // case 'clientName':
-        //   this.setState({currentUser: data.name});
-        // break;
-
+        case 'outgoingUser':
+          if (this.state.firstTimeUser) {
+            this.setState({firstTimeUser: false, userName: data.content.userName});
+          }
+          break;
         case 'clientCount':
           this.setState({count: data.count});
         break;
@@ -122,13 +123,13 @@ class App extends Component {
   }
 
   render() {
-    
+    console.log("your username is: ", this.state.userName);
     if(this.state.count >= 3 && this.state.timeUp){
 
     return (
       <div>
-        <Nav topic={this.state.topic} count={this.state.count} username= {this.state.currentUser} currentUserMalaise={this.state.currentUserMalaise}/>
-       
+        <Nav topic={this.state.topic} count={this.state.count} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
+        
         <Postlist posts={this.state.posts}
           updateHealthOnClick={this.updateHealthOnClick}
           currentUserMalaise={this.state.currentUserMalaise}
@@ -141,8 +142,8 @@ class App extends Component {
 
       return (
       <div>
-        <Nav topic={this.state.topic} count={this.state.count} username= {this.state.currentUser} currentUserMalaise={this.state.currentUserMalaise}/>
-        <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.currentUser}/>
+        <Nav topic={this.state.topic} count={this.state.count} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
+        <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.userName}/>
         
         <Timer checkTimer={this.checkTimer}/>
       </div>
@@ -151,7 +152,7 @@ class App extends Component {
     
     return (
     <div>
-      <Welcome count={this.state.count} username= {this.state.currentUser}/>
+      <Welcome count={this.state.count} username= {this.state.userName}/>
       </div>
     );
   }
