@@ -5,6 +5,7 @@ import Postform from './Postform.jsx';
 import Postlist from './Postlist.jsx';
 import Timer from './Timer.jsx';
 import RoundTimer from './RoundTimer.jsx';
+import Results from './Results.jsx';
 
 class App extends Component {
   constructor(props){
@@ -55,8 +56,6 @@ class App extends Component {
     this.socket.onopen = () => {
       console.log('is connected');
     }
-
-
 
     this.socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
@@ -122,36 +121,45 @@ class App extends Component {
   }
 
   render() {
-
-    if(this.state.count >= 3 && this.state.timeUp){
-
-    return (
-      <div>
-        <Nav topic={this.state.topic} count={this.state.count} username= {this.state.currentUser} currentUserMalaise={this.state.currentUserMalaise}/>
-
-        <Postlist posts={this.state.posts}
-          updateHealthOnClick={this.updateHealthOnClick}
-          currentUserMalaise={this.state.currentUserMalaise}
-        />
-        <RoundTimer checkRoundTimer={this.checkRoundTimer}/>
-      </div>
-    );
-  } else if (this.state.count >= 3 && !this.state.timeUp){
-
+    //Start state: enough users online, stage for users to enter their post, and the time is not yet up
+    if(this.state.count >= 3 && !this.state.timeUp){
       return (
-      <div>
-        <Nav topic={this.state.topic} count={this.state.count} username= {this.state.currentUser} currentUserMalaise={this.state.currentUserMalaise}/>
-        <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.currentUser}/>
-        <Timer checkTimer={this.checkTimer}/>
-      </div>
-    );
-  } else {
+        <div>
+          <Nav topic={this.state.topic} count={this.state.count} username= {this.state.currentUser} currentUserMalaise={this.state.currentUserMalaise}/>
+          <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.currentUser}/>
+          <Timer checkTimer={this.checkTimer}/>
+        </div>
+      );
+
+    //Results state: results of the round
+    } else if (this.state.count >= 3 && this.state.timeUp && this.state.roundTimeUp) {
+      return (
+        <div>
+          <Nav topic={this.state.topic} count={this.state.count} username= {this.state.currentUser} currentUserMalaise={this.state.currentUserMalaise}/>
+          <Results/>
+        </div>
+      );
+    //Voting state: post entering time is up, all posts in view, users can vote on posts
+    } else if (this.state.count >= 3 && this.state.timeUp){
+      return (
+        <div>
+          <Nav topic={this.state.topic} count={this.state.count} username= {this.state.currentUser} currentUserMalaise={this.state.currentUserMalaise}/>
+
+          <Postlist posts={this.state.posts}
+            updateHealthOnClick={this.updateHealthOnClick}
+            currentUserMalaise={this.state.currentUserMalaise}
+          />
+          <RoundTimer checkRoundTimer={this.checkRoundTimer}/>
+        </div>
+      );
+    //Inqueue state: not enough users yet online
+    }else {
     return (
-    <div>
-      <Welcome count={this.state.count} username= {this.state.currentUser}/>
-      </div>
-    );
-  }
+      <div>
+        <Welcome count={this.state.count} username= {this.state.currentUser}/>
+        </div>
+      );
+    }
   }
 }
 
