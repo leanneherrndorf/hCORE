@@ -2,6 +2,13 @@ body {
   margin-bottom: 20px;
 }
 
+.welcome {
+  padding-top: 150px;
+}
+
+.jumbo-text {
+  text-align: center;
+}
 .postform {
   display: flex;
   justify-content: center;
@@ -26,6 +33,7 @@ body {
 .postlist {
   display: flex;
   flex-wrap: wrap;
+  padding-top: 150px;
   .post {
     padding: 20px;
     margin: 20px;
@@ -43,7 +51,7 @@ body {
     &:hover{
       transform: scale(0.99);
     }
-    
+
   }
   .post-content {
     word-wrap: break-word;
@@ -55,7 +63,7 @@ body {
     position: relative;
     left: 17px;
     bottom: 80px;
-  } 
+  }
 }
 
 

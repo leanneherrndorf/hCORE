@@ -123,17 +123,17 @@ class App extends Component {
   }
 
   render() {
+
     console.log("your username is: ", this.state.userName);
+
     if(this.state.count >= 3 && this.state.timeUp){
 
     return (
       <div>
         <Nav topic={this.state.topic} count={this.state.count} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
-        
         <Postlist posts={this.state.posts}
           updateHealthOnClick={this.updateHealthOnClick}
           currentUserMalaise={this.state.currentUserMalaise}
-
         />
         <RoundTimer checkRoundTimer={this.checkRoundTimer}/>
       </div>
@@ -144,12 +144,10 @@ class App extends Component {
       <div>
         <Nav topic={this.state.topic} count={this.state.count} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
         <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.userName}/>
-        
         <Timer checkTimer={this.checkTimer}/>
       </div>
     );
   } else {
-    
     return (
     <div>
       <Welcome count={this.state.count} username= {this.state.userName}/>
