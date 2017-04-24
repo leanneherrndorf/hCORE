@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Nav from './Nav.jsx';
+import Welcome from './Welcome.jsx';
 import Postform from './Postform.jsx';
 import Postlist from './Postlist.jsx';
 import Timer from './Timer.jsx';
@@ -16,7 +17,8 @@ class App extends Component {
         id: 0,
         malaise: 0
       },
-      currentUser: 'Anonymous'
+      currentUser: 'Anonymous',
+      timeUp: false
     }
   }
 
@@ -37,12 +39,18 @@ class App extends Component {
     this.socket.send(JSON.stringify(newMessage));
   }
 
+checkTimer = () => {
+    this.setState({timeUp: true});
+  }
+
   componentDidMount = () => {
     console.log('componentDidMount <App />');
     this.socket = new WebSocket('ws://0.0.0.0:3001');
     this.socket.onopen = () => {
       console.log('is connected');
     }
+
+  
 
     this.socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
@@ -108,18 +116,39 @@ class App extends Component {
   }
 
   render() {
+    
+    if(this.state.count >= 3 && this.state.timeUp){
+
     return (
       <div>
         <Nav topic={this.state.topic} count={this.state.count} username= {this.state.currentUser} currentUserMalaise={this.state.currentUserMalaise}/>
-        <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.currentUser}/>
+       
         <Postlist posts={this.state.posts}
           updateHealthOnClick={this.updateHealthOnClick}
           currentUserMalaise={this.state.currentUserMalaise}
 
         />
-        <Timer/>
+        <Timer checkTimer={this.checkTimer}/>
       </div>
     );
+  } else if (this.state.count >= 3 && !this.state.timeUp){
+
+      return (
+      <div>
+        <Nav topic={this.state.topic} count={this.state.count} username= {this.state.currentUser} currentUserMalaise={this.state.currentUserMalaise}/>
+        <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.currentUser}/>
+        
+        <Timer checkTimer={this.checkTimer}/>
+      </div>
+    );
+  } else {
+    
+    return (
+    <div>
+      <Welcome count={this.state.count} username= {this.state.currentUser}/>
+      </div>
+    );
+  }
   }
 }
 

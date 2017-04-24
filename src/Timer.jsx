@@ -10,6 +10,7 @@ class Timer extends Component {
       currentCount: this.state.currentCount - 1
     })
     if(this.state.currentCount < 1) {
+      this.props.checkTimer();
       clearInterval(this.intervalId);
     }
   }
