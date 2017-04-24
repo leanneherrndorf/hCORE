@@ -50,7 +50,7 @@ checkTimer = () => {
       console.log('is connected');
     }
 
-  
+
 
     this.socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
@@ -116,17 +116,16 @@ checkTimer = () => {
   }
 
   render() {
-    
+
     if(this.state.count >= 3 && this.state.timeUp){
 
     return (
       <div>
         <Nav topic={this.state.topic} count={this.state.count} username= {this.state.currentUser} currentUserMalaise={this.state.currentUserMalaise}/>
-       
+
         <Postlist posts={this.state.posts}
           updateHealthOnClick={this.updateHealthOnClick}
           currentUserMalaise={this.state.currentUserMalaise}
-
         />
         <Timer checkTimer={this.checkTimer}/>
       </div>
@@ -137,12 +136,10 @@ checkTimer = () => {
       <div>
         <Nav topic={this.state.topic} count={this.state.count} username= {this.state.currentUser} currentUserMalaise={this.state.currentUserMalaise}/>
         <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.currentUser}/>
-        
         <Timer checkTimer={this.checkTimer}/>
       </div>
     );
   } else {
-    
     return (
     <div>
       <Welcome count={this.state.count} username= {this.state.currentUser}/>
