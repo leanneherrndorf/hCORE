@@ -39,7 +39,7 @@ class Postform extends React.Component {
       <header className="postform">
         <AlertContainer ref={(a) => global.msg = a} {...this.alertOptions} />
         <textarea type='text' ref={(thisInput) => {this.textInput = thisInput;}} className="postlist" placeholder="What do you have to say?" />
-        <Button type='submit' bsStyle="success" onClick={this.handleClick.bind(this)}>Submit to me</Button>
+        <Button type='submit' bsStyle="success" onClick={this.handleClick.bind(this)}><i className="fa fa-envelope-o" aria-hidden="true"></i> Submit to me</Button>
       </header>
     );
   }
