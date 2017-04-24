@@ -24,7 +24,18 @@ function generateUserName() {
   let last = ['nkus', 'mbus', 'rbonzo', 'mbo', 'nkey', 'ngus', 'ster'];
   let firstRandom = Math.floor(Math.random() * (7));
   let lastRandom = Math.floor(Math.random() * (6));
-  return (first[firstRandom] + last[lastRandom]);
+  let newUser = first[firstRandom] + last[lastRandom];
+  return newUser;
+}
+
+function checkUniqueName(newName) {
+  for(let name of listOfUsers) {
+    if (name === newName) {
+      return generateUserName();
+    } else {
+      return newName;
+    }
+  }
 }
 
 wss.broadcast = function broadcast(data) {
@@ -49,9 +60,11 @@ let topicMessage = {
 // When a client connects they are assigned a socket, represented by
 // the ws parameter in the callback.
 wss.on('connection', (ws) => {
-  let clientName = generateUserName();
-  listOfUsers.push(clientName);
-  let healthCount = wss.clients.size + 2
+  let newName = generateUserName();
+  listOfUsers.push(newName);
+  console.log(listOfUsers);
+  let clientName = checkUniqueName(newName);
+  let healthCount = wss.clients.size + 2;
   clientCount.count = wss.clients.size;
   
   //wss.broadcast(JSON.stringify(clientName));
