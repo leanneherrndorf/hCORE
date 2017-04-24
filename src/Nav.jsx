@@ -12,6 +12,7 @@ class Nav extends React.Component {
         <h1 className="nav-brand">hCORE</h1>
         <h4 className="topic">Topic of the round: {this.props.topic}</h4>
         <p className="nav-count">{this.props.count} User(s) online</p>
+        <p className="nav-username">{this.props.username}</p>
         <span className="nav-malaise">{this.props.currentUserMalaise.malaise} Malaise Points</span>
       </nav>
 

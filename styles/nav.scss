@@ -11,7 +11,7 @@
   top: 0;
   box-shadow: 0 5px 15px gray;
   border-radius: 0;
-  
+
   .nav-brand{
     background: #adc5dd;
     border-radius: 6px;
@@ -44,11 +44,42 @@
     color: inherit;
     text-align: center;
     font-size: 18px;
-    padding: 30px 10px;
+    padding: 10px 10px;
     margin: 15px;
 
     &:hover {
       background: #a3b8ce;
     }
   }
+
+  .nav-username {
+    background: #adc5dd;
+    border-radius: 6px;
+    color: inherit;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px 10px;
+    margin: 15px;
+
+    &:hover {
+      background: #a3b8ce;
+    }
+  }
+
+  .nav-malaise {
+    background: #adc5dd;
+    border-radius: 6px;
+    color: inherit;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px 10px;
+    margin: 15px;
+
+    &:hover {
+      background: #a3b8ce;
+    }
+  }
+
+
+
 }
