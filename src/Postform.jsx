@@ -23,12 +23,22 @@ class Postform extends React.Component {
     });
   }
 
+  showAlert2(){
+    msg.show(<h3>Write something you big dumb goof</h3>, {
+      time: 3000,
+      type: 'error',
+      icon: <img src="../images/patgar.jpg" style={{width: 60, height: 60, borderRadius: 6}} />
+    });
+  }
+
   handleClick() {
     console.log(this.textInput.value);
     let input = this.textInput.value;
-    if (input.length <= 200) {
+    if (input.length <= 200 && input.length > 0) {
       this.props.updateMessageOnClick(input);
       this.textInput.value = null;
+    } else if (input.length === 0) {
+      this.showAlert2();
     } else {
       this.showAlert();
     }
