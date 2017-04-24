@@ -1,21 +1,26 @@
 module.exports = function randomPrompt() {
   let struc = [
-    "Would you rather have a(n) " + noun() + " or a(n)" + noun() + "and why?",
-    "What do " + noun() + " and " + noun() + " have in common?",
-    "What has nothing to do with " + noun() + "?",
-    "Name something better than " + noun() + ".",
-    "How many " + noun() + "s does it take to spoil the " + noun() + "?",
-    "Why did the " + noun() + " cross the road?",
-    "How many " + noun() + "s does it takes to screw in a lightbulb?",
-    "What's the difference between " + noun() + " and " + noun() + "?",
+    "Would you rather have " + a(noun()) + " or " + a(noun()) + " and why?",
+    "What does " + a(noun()) + " and " + a(noun()) + " have in common?",
+    "What has nothing to do with " + a(noun()) + "?",
+    "Name something better than " + a(noun()) + ".",
+    "Why did the " + noun() + " cross the road?", 
+    "What's the difference between " + a(noun()) + " and " + a(noun()) + "?",
     "There's only two things guaranteed in life, " + noun() + " and...",
-    "Name somthing more dangerous than a(n) " + noun(),
-    "How could " + noun() + " kill you?",
-    "How could a(n) " + noun() + " kill a(n) " + noun() + "?",
+    "Name somthing more dangerous than " + a(noun()),
+    "How who would win in a fight between " + a(noun()) + " and " + a(noun()) + "?",
     "Write a tagline for a movie called Beauty And The " + noun()];
 
   let strucRandom = Math.floor(Math.random() * (struc.length));
   return (struc[strucRandom]);
+}
+
+function a(noun){
+  if (noun.charAt(0) === "a" || noun.charAt(0) === "e" || noun.charAt(0) === "i" || noun.charAt(0) === "o" || noun.charAt(0) === "u"){
+    return ("an " + noun);
+  } else {
+    return ("a " + noun);
+  }
 }
 
 function noun(){
