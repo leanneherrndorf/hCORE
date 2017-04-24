@@ -4,6 +4,7 @@ import Welcome from './Welcome.jsx';
 import Postform from './Postform.jsx';
 import Postlist from './Postlist.jsx';
 import Timer from './Timer.jsx';
+import RoundTimer from './RoundTimer.jsx';
 
 class App extends Component {
   constructor(props){
@@ -18,7 +19,8 @@ class App extends Component {
         malaise: 0
       },
       currentUser: 'Anonymous',
-      timeUp: false
+      timeUp: false,
+      roundTimeUp: false
     }
   }
 
@@ -39,8 +41,12 @@ class App extends Component {
     this.socket.send(JSON.stringify(newMessage));
   }
 
-checkTimer = () => {
+  checkTimer = () => {
     this.setState({timeUp: true});
+  }
+
+  checkRoundTimer = () => {
+    this.setState({roundTimeUp: true});
   }
 
   componentDidMount = () => {
@@ -128,7 +134,7 @@ checkTimer = () => {
           currentUserMalaise={this.state.currentUserMalaise}
 
         />
-        <Timer checkTimer={this.checkTimer}/>
+        <RoundTimer checkRoundTimer={this.checkRoundTimer}/>
       </div>
     );
   } else if (this.state.count >= 3 && !this.state.timeUp){
