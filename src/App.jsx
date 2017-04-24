@@ -56,7 +56,7 @@ class App extends Component {
       console.log('is connected');
     }
 
-  
+
 
     this.socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
@@ -122,17 +122,16 @@ class App extends Component {
   }
 
   render() {
-    
+
     if(this.state.count >= 3 && this.state.timeUp){
 
     return (
       <div>
         <Nav topic={this.state.topic} count={this.state.count} username= {this.state.currentUser} currentUserMalaise={this.state.currentUserMalaise}/>
-       
+
         <Postlist posts={this.state.posts}
           updateHealthOnClick={this.updateHealthOnClick}
           currentUserMalaise={this.state.currentUserMalaise}
-
         />
         <RoundTimer checkRoundTimer={this.checkRoundTimer}/>
       </div>
@@ -143,12 +142,10 @@ class App extends Component {
       <div>
         <Nav topic={this.state.topic} count={this.state.count} username= {this.state.currentUser} currentUserMalaise={this.state.currentUserMalaise}/>
         <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.currentUser}/>
-        
         <Timer checkTimer={this.checkTimer}/>
       </div>
     );
   } else {
-    
     return (
     <div>
       <Welcome count={this.state.count} username= {this.state.currentUser}/>
