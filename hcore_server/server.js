@@ -2,14 +2,13 @@ const WebSocket = require('ws');
 const express = require('express');
 const SocketServer = require('ws').Server;
 const uuidV1 = require('node-uuid');
-const Sentencer = require('sentencer');
-const randomStruc = require('./random-struc.js');
+const randomPrompt = require('./random-prompt.js');
 let listOfUsers = []; // A list of all the users
 
 // Set the port to 3001
 const PORT = 3001;
 
-const sentence = Sentencer.make(randomStruc());
+const sentence = randomPrompt();
 
 // Create a new express server
 const server = express()
