@@ -11,18 +11,29 @@ class App extends Component {
       posts: [],
       listOfUsers: [], // List for all active users for future feature
       count: 0,
-      topic: ''
+      topic: '',
+      currentUserMalaise: {
+        id: 0,
+        malaise: 0
+      }
     }
   }
 
+
+  updateUserMalaiseOnClick = () => {
+    const newMalaise = this.state.currentUserMalaise.malaise - 1;
+    this.setState({currentUserMalaise: {malaise: newMalaise}});
+    console.log('current user malaise:', this.state.currentUserMalaise.malaise);
+  }
+
+
   updateHealthOnClick = (health, id) => {
-    console.log('health', health);
     const newHealth = {type: 'postHealth', health: health, id: id}
     this.socket.send(JSON.stringify(newHealth));
+    this.updateUserMalaiseOnClick();
   }
 
   updateMessageOnClick = (input) => {
-    console.log('value', input);
     const newMessage = {type: 'postMessage', content: input};
     this.socket.send(JSON.stringify(newMessage));
   }
@@ -35,7 +46,6 @@ class App extends Component {
     }
 
     this.socket.onmessage = (event) => {
-      console.log('event.data:', event.data);
       const data = JSON.parse(event.data);
 
       switch(data.type) {
@@ -45,9 +55,17 @@ class App extends Component {
             post: data.content.post,
             health: data.content.health,
             name: data.content.name,
-            maxHealth: data.content.maxHealth
+            maxHealth: data.content.maxHealth,
+            malaiseID: data.content.malaiseID,
+            malaise: data.content.malaise
           }
+
+          this.setState({currentUserMalaise: {
+            id: data.content.malaiseID,
+            malaise: data.content.malaise
+          }});
           const posts = this.state.posts.concat(postObj);
+          console.log('posts: ', posts);
           this.setState({posts: posts});
         break;
 
@@ -64,9 +82,17 @@ class App extends Component {
             if (post.id === data.id) {
               post.health = data.health;
             }
+            // if (post.id === data.id && post.id === this.state.currentUserMalaise.malaise) {
+            //   let newMalaise = this.state.currentUserMalaise.malaise + 1;
+            //   console.log('this.state.currentUserMalaise.id: ', this.state.currentUserMalaise.id);
+            //   this.setState({currentUserMalaise: {malaise: newMalaise}});
+            // }
             return post;
           })
+          // console.log('newMalaisePoints', newMalaisePoints);
           this.setState({posts: arrayOfNewObjects});
+          console.log('current posts', this.state.posts);
+          // this.setState({currentUserMalaise: newMalaisePoints});
         break;
 
         default:
@@ -79,10 +105,11 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Nav topic={this.state.topic} count={this.state.count}/>
+        <Nav topic={this.state.topic} count={this.state.count} currentUserMalaise={this.state.currentUserMalaise}/>
         <Postform updateMessageOnClick={this.updateMessageOnClick}/>
         <Postlist posts={this.state.posts}
-          updateHealthOnClick={this.updateHealthOnClick}
+          updateHealthOnClick={this.updateHealthOnClick} 
+          currentUserMalaise={this.state.currentUserMalaise}
         />
         <Timer/>
       </div>
