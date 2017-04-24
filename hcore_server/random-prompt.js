@@ -4,7 +4,7 @@ module.exports = function randomPrompt() {
     "What does " + a(noun()) + " and " + a(noun()) + " have in common?",
     "What has nothing to do with " + a(noun()) + "?",
     "Name something better than " + a(noun()) + ".",
-    "Why did the " + noun() + " cross the road?", 
+    "Why did the " + s(noun()) + " cross the road?",
     "What's the difference between " + a(noun()) + " and " + a(noun()) + "?",
     "There's only two things guaranteed in life, " + noun() + " and...",
     "Name somthing more dangerous than " + a(noun()),
@@ -23,27 +23,33 @@ function a(noun){
   }
 }
 
+
+String.prototype.replaceAt=function(index, replacement) {
+    return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
+}
+
+function s(noun){
+  if (noun.charAt(noun.length-1) === "s"){
+    return (noun + "es");
+  } else if (noun.charAt(noun.length-1) === "y"){
+    return noun.replaceAt((noun.length-1), "ies");
+  } else {
+    return (noun + "s");
+  }
+}
+
 function noun(){
   let noun = 
     ["aardvark", 
     "accordion",
     "accountant",
-    "actor",
-    "actress",
-    "adult",
-    "airbus",
-    "airplane",
-    "airship",
     "albatross",
     "alcohol",
     "alligator",
-    "ambulance",
-    "America",
     "anime",
     "ant",
     "anteater",
-    "antelope",
-    "appendix",
+    "antelope", 
     "apple",
     "aquarius",
     "archer",
