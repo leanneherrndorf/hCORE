@@ -26,11 +26,11 @@ class Post extends React.Component {
               <div style={{width: 300 * percentageLost, backgroundColor: 'tomato', height: 10}}></div>
             </div>
             <p className="post-content">{this.props.post.post}</p>
-            <Button bsStyle="danger" onClick={this.malaiseClick.bind(this)}>Malaise</Button>
+            <Button bsStyle="danger" onClick={this.malaiseClick.bind(this)}><i className="fa fa-bomb" aria-hidden="true"></i> Malaise</Button>
           </article>
       );
-      
-    } else if (this.props.post.health !== this.props.post.maxHealth && this.props.post.health > 0) {   
+
+    } else if (this.props.post.health !== this.props.post.maxHealth && this.props.post.health > 0) {
        return (
           <article className="post">
             <span className="health">{this.props.post.health}</span>
@@ -38,13 +38,13 @@ class Post extends React.Component {
               <div style={{width: 300 * percentageLost, backgroundColor: 'tomato', height: 10}}></div>
             </div>
             <p className="post-content">{this.props.post.post}</p>
-            <Button bsStyle="danger" onClick={this.malaiseClick.bind(this)}>Malaise</Button>
-            <Button bsStyle="danger" onClick={this.praiseClick.bind(this)}>Praise</Button>  
+            <Button bsStyle="danger" onClick={this.malaiseClick.bind(this)}><i className="fa fa-bomb" aria-hidden="true"></i> Malaise</Button>
+            <Button bsStyle="danger" onClick={this.praiseClick.bind(this)}><i className="fa fa-star" aria-hidden="true"></i> Praise</Button>
           </article>
        );
     } else {
       return (
-          <article className="post"> 
+          <article className="post">
             <img src="../images/gravestone.png" className="grave-stone" style={{width: 120, height: 120}}/>
             <p className="grave-name">{this.props.post.name}</p>
           </article>
