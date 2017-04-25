@@ -136,7 +136,7 @@ class App extends Component {
     if(this.state.count >= 3 && !this.state.timeUp){
       return (
         <div>
-          <Nav topic={this.state.topic} count={this.state.count} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
+          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
           <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.userName}/>
           <Timer checkTimer={this.checkTimer}/>
         </div>
