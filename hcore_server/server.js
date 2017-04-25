@@ -37,22 +37,13 @@ function setUserName(newUser) {
     return generateUserName();
   } else {
     return newUser;
+  }
+}
 
 function randPic() {
   let randNum = Math.floor(Math.random() * (10));
   return ("../images/user_icons/" + randNum + ".png");
 }
-
-function checkUniqueName(newName) {
-  for(let name of listOfUsers) {
-    if (name === newName) {
-      return generateUserName();
-    } else {
-      return newName;
-    }
-  }
-}
-
 
 wss.broadcast = function broadcast(data) {
   wss.clients.forEach((client) => {
