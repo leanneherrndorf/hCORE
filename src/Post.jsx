@@ -6,6 +6,30 @@ class Post extends React.Component {
     super(props);
   }
 
+  showMalaiseButton() {
+    if (this.props.userName == this.props.post.name) {
+      return;
+    } else {
+      return (
+        <Button bsStyle="danger" onClick={this.malaiseClick.bind(this)}>
+        <i className="fa fa-bomb" aria-hidden="true"></i> Malaise
+        </Button>
+      );
+    }
+  }
+
+  showPraiseButton() {
+    if (this.props.userName == this.props.post.name) {
+      return;
+    } else {
+      return (
+        <Button bsStyle="danger" onClick={this.praiseClick.bind(this)}>
+        <i className="fa fa-star" aria-hidden="true"></i> Praise
+        </Button>
+      );
+    }
+  }
+
   malaiseClick() {
     let health = this.props.post.health - 1;
     this.props.updateHealthOnClick(health, this.props.post.id);
@@ -26,7 +50,7 @@ class Post extends React.Component {
               <div style={{width: 300 * percentageLost, backgroundColor: 'tomato', height: 10}}></div>
             </div>
             <p className="post-content">{this.props.post.post}</p>
-            <Button bsStyle="danger" onClick={this.malaiseClick.bind(this)}><i className="fa fa-bomb" aria-hidden="true"></i> Malaise</Button>
+            {this.showMalaiseButton()}
           </article>
       );
 
@@ -38,8 +62,8 @@ class Post extends React.Component {
               <div style={{width: 300 * percentageLost, backgroundColor: 'tomato', height: 10}}></div>
             </div>
             <p className="post-content">{this.props.post.post}</p>
-            <Button bsStyle="danger" onClick={this.malaiseClick.bind(this)}><i className="fa fa-bomb" aria-hidden="true"></i> Malaise</Button>
-            <Button bsStyle="danger" onClick={this.praiseClick.bind(this)}><i className="fa fa-star" aria-hidden="true"></i> Praise</Button>
+            {this.showMalaiseButton()}
+            {this.showPraiseButton()}
           </article>
        );
     } else {
