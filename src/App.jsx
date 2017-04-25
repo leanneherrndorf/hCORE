@@ -157,6 +157,7 @@ class App extends Component {
           <Postlist posts={this.state.posts}
             updateHealthOnClick={this.updateHealthOnClick}
             currentUserMalaise={this.state.currentUserMalaise}
+            userName={this.state.userName}
           />
           <RoundTimer checkRoundTimer={this.checkRoundTimer}/>
         </div>
