@@ -13,6 +13,7 @@ class Postform extends React.Component {
       time: 5000,
       transition: 'scale'
     };
+    this.click = false
   }
 
   showAlert(){
@@ -37,6 +38,7 @@ class Postform extends React.Component {
     if (input.length <= 200 && input.length > 0) {
       this.props.updateMessageOnClick(input);
       this.textInput.value = null;
+      this.click = true;
     } else if (input.length === 0) {
       this.showAlert2();
     } else {
@@ -45,13 +47,25 @@ class Postform extends React.Component {
   }
 
   render() {
-    return (
-      <header className="postform">
-        <AlertContainer ref={(a) => global.msg = a} {...this.alertOptions} />
-        <textarea type='text' ref={(thisInput) => {this.textInput = thisInput;}} placeholder="What do you have to say?" />
-        <Button type='submit' bsStyle="success" onClick={this.handleClick.bind(this)}><i className="fa fa-envelope-o" aria-hidden="true"></i> Submit to me</Button>
-      </header>
-    );
+    if(!this.click){
+      return (
+        <header className="postform">
+          <AlertContainer ref={(a) => global.msg = a} {...this.alertOptions} />
+          <textarea type='text' ref={(thisInput) => {this.textInput = thisInput;}} placeholder="What do you have to say?" />
+          <Button type='submit' bsStyle="success" onClick={this.handleClick.bind(this)}><i className="fa fa-envelope-o" aria-hidden="true"></i> Submit to me</Button>
+        </header>
+      );
+    } else {
+      return (
+        <div className="waiting-for-posts">
+          <div className="form-group">
+            <div className="col-md-12 text-center">
+              <span className="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 }
 

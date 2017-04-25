@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button} from 'react-bootstrap';
-import {Fade} from 'react-bootstrap';
+// import {Fade} from 'react-bootstrap';
 
 class Post extends React.Component {
   constructor(props) {
@@ -45,14 +45,14 @@ class Post extends React.Component {
     const percentageLost = this.props.post.health/this.props.post.maxHealth
     if (this.props.post.health === this.props.post.maxHealth){
       return (
-          <article className="post">
-            <span className="health">{this.props.post.health}</span>
-            <div style={{width: 302}}>
-              <div className="health-bar" style={{width: 300 * percentageLost, height: 10, borderRadius: 4}}></div>
-            </div>
-            <p className="post-content">{this.props.post.post}</p>
-            {this.showMalaiseButton()}
-          </article>
+        <article className="post">
+          <span className="health">{this.props.post.health}</span>
+          <div style={{width: 302}}>
+            <div className="health-bar" style={{width: 300 * percentageLost, height: 10, borderRadius: 4}}></div>
+          </div>
+          <p className="post-content">{this.props.post.post}</p>
+          {this.showMalaiseButton()}
+        </article>
       );
     } else if (this.props.post.health !== this.props.post.maxHealth && this.props.post.health > 0) {
        return (

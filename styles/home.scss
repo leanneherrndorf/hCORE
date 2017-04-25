@@ -5,6 +5,9 @@ body {
 .welcome {
   padding-top: 150px;
   display: flex;
+  @media screen and (max-width: 500px) {
+    padding-top: 50px;
+  }
 }
 
 .jumbo-text {
@@ -104,4 +107,16 @@ body {
   }
 }
 
+.glyphicon-refresh-animate {
+  animation: spin 1.5s infinite linear;
+  font-size: 50px;
+  @keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+  }
+}
+
+.waiting-for-posts {
+  margin-top: 200px;
+}
 
