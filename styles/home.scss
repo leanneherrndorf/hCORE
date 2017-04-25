@@ -4,10 +4,21 @@ body {
 
 .welcome {
   padding-top: 150px;
+  display: flex;
 }
 
 .jumbo-text {
+  justify-content: center;
   text-align: center;
+  padding: 20px;
+  min-width: 70%;
+  background: #e3ecf9;
+  box-shadow:
+    1px 1px #9da7b7,
+    2px 2px #9da7b7,
+    3px 3px #9da7b7;
+  border-radius: 6px;
+  flex-grow: 1;
 }
 .postform {
   display: flex;
@@ -26,7 +37,12 @@ body {
     width: 70%;
     min-width: 200px;
     margin-right: 15px;
+    border: 0;
     border-radius: 4px;
+    box-shadow:
+    1px 1px #9da7b7,
+    2px 2px #9da7b7,
+    3px 3px #9da7b7;
   }
 }
 
@@ -34,6 +50,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   padding-top: 150px;
+
   .post {
     padding: 20px;
     margin: 20px;
@@ -47,12 +64,14 @@ body {
     background: #e3ecf9;
     width: 33%;
     min-width: 350px;
+    transition: 0.3s;
 
-    &:hover{
+    &:hover {
       transform: scale(0.99);
+      transition: 0.3s;
     }
-
   }
+
   .post-content {
     word-wrap: break-word;
     margin: 5px;
@@ -63,6 +82,25 @@ body {
     position: relative;
     left: 17px;
     bottom: 80px;
+  }
+
+  .health-bar {
+    background: linear-gradient(274deg, #e11212, #ff8080, #e11212);
+    background-size: 600% 600%;
+
+    -webkit-animation: AnimationName 5s ease infinite;
+    animation: AnimationName 5s ease infinite;
+
+    @-webkit-keyframes AnimationName {
+      0%{background-position:0% 55%}
+      50%{background-position:100% 46%}
+      100%{background-position:0% 55%}
+    }
+    @keyframes AnimationName { 
+      0%{background-position:0% 55%}
+      50%{background-position:100% 46%}
+      100%{background-position:0% 55%}
+    }
   }
 }
 
