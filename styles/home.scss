@@ -81,7 +81,17 @@ body {
   .grave-name {
     position: relative;
     left: 17px;
-    bottom: 80px;
+    bottom: 100px;
+  }
+
+  .dead-avatar {
+    position: relative;
+    top: 10px;
+    right: 100px;
+  }
+
+  .grave-stone {
+    position: relative;
   }
 
   .health-bar {

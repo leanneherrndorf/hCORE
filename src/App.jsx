@@ -113,6 +113,7 @@ class App extends Component {
             maxHealth: data.content.maxHealth,
             malaiseID: data.content.malaiseID,
             malaise: data.content.malaise,
+            pic: data.content.pic
           }
           //console.log(this.state.currentUser);
           
