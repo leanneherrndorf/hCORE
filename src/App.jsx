@@ -26,6 +26,7 @@ class App extends Component {
       timeUp: false,
       roundTimeUp: false,
       userName: '',
+      pic: '',
       currentWinner: "",
       currentLoser: ""
     }
@@ -111,23 +112,24 @@ class App extends Component {
             name: data.content.name,
             maxHealth: data.content.maxHealth,
             malaiseID: data.content.malaiseID,
-            malaise: data.content.malaise
+            malaise: data.content.malaise,
           }
-          console.log(this.state.currentUser);
-
+          //console.log(this.state.currentUser);
+          
           this.setState({currentUser: data.content.name})
           this.setState({currentUserMalaise: {
             id: data.content.malaiseID,
-            malaise: data.content.malaise
+            malaise: data.content.malaise,
           }});
           const posts = this.state.posts.concat(postObj);
-          console.log('posts: ', posts);
+          //console.log('posts: ', posts);
           this.setState({posts: posts});
         break;
         case 'outgoingUser':
           if (this.state.firstTimeUser) {
-            this.setState({firstTimeUser: false, userName: data.content.userName});
+            this.setState({firstTimeUser: false, userName: data.content.userName, pic: data.content.pic});
           }
+          console.log("pic:", this.state.pic);
           break;
         case 'clientCount':
           this.setState({count: data.count});
@@ -168,7 +170,7 @@ class App extends Component {
     if(this.state.count >= 3 && !this.state.timeUp){
       return (
         <div>
-          <Nav topic={this.state.topic} count={this.state.count} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
+          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
           <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.userName}/>
           <Timer checkTimer={this.checkTimer}/>
         </div>
@@ -178,7 +180,7 @@ class App extends Component {
   } else if (this.state.count >= 3 && this.state.timeUp && this.state.roundTimeUp) {
       return (
         <div>
-          <Nav topic={this.state.topic} count={this.state.count} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
+          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
           <Results clearPosts={this.clearPosts} newRoundStart={this.newRoundStart} currentWinner={this.state.currentWinner} currentLoser={this.state.currentLoser}/>
         </div>
       );
@@ -186,7 +188,7 @@ class App extends Component {
     } else if (this.state.count >= 3 && this.state.timeUp){
       return (
         <div>
-          <Nav topic={this.state.topic} count={this.state.count} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
+          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
 
           <Postlist posts={this.state.posts}
             updateHealthOnClick={this.updateHealthOnClick}
@@ -200,7 +202,7 @@ class App extends Component {
     }else {
     return (
       <div>
-        <Welcome count={this.state.count} username= {this.state.userName}/>
+        <Welcome pic={this.state.pic} count={this.state.count} username={this.state.userName}/>
         </div>
       );
     }
