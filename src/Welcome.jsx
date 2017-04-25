@@ -15,7 +15,7 @@ class Welcome extends React.Component {
         <h1 className="nav-brand">hCORE</h1>
         <h4 className="topic">In queue...</h4>
         <p className="nav-count">{this.props.count} User(s) online</p>
-        <p className="nav-username">{this.props.username}<img src="../images/user_icons/010-zebra.png"  style={{width: 60, height: 60}}/></p>
+        <p className="nav-username">{this.props.username}<img src={this.props.pic} style={{width: 60, height: 60}}/></p>
         <p className="nav-github"><a href ="https://github.com/leanneherrndorf/hCORE"><i className="fa fa-github" aria-hidden="true"></i></a></p>
       </nav>
         <DropdownButton title="Dropdown" id="bg-nested-dropdown" className="the-dropdown">
