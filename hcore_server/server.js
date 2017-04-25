@@ -28,6 +28,11 @@ function generateUserName() {
   return newUser;
 }
 
+function randPic() {
+  let randNum = Math.floor(Math.random() * (10));
+  return ("../images/user_icons/" + randNum + ".png");
+}
+
 function checkUniqueName(newName) {
   for(let name of listOfUsers) {
     if (name === newName) {
@@ -47,6 +52,8 @@ wss.broadcast = function broadcast(data) {
 };
 
 
+
+
 let clientCount = {
   count: 0,
   type: "clientCount"
@@ -61,12 +68,12 @@ let topicMessage = {
 // the ws parameter in the callback.
 wss.on('connection', (ws) => {
   let newName = generateUserName();
+  let picRoute = randPic();
   listOfUsers.push(newName);
   console.log(listOfUsers);
   let clientName = checkUniqueName(newName);
   clientCount.count = wss.clients.size;
-  
-  //wss.broadcast(JSON.stringify(clientName));
+
   wss.broadcast(JSON.stringify(clientCount));
   wss.broadcast(JSON.stringify(topicMessage));
 
@@ -80,8 +87,10 @@ wss.on('connection', (ws) => {
           type: 'outgoingUser',
           content: {
             userName: clientName,
+            pic: picRoute
           }
         }
+        console.log('outgoingUsre: ', outputUser);
         wss.broadcast(JSON.stringify(outputUser));
         break;
       case 'postMessage':
@@ -94,10 +103,11 @@ wss.on('connection', (ws) => {
             maxHealth: wss.clients.size - 1,
             name: clientName,
             malaiseID: id,
-            malaise: 1
+            malaise: 1,
           }
         }
         wss.broadcast(JSON.stringify(outputPost));
+        console.log(outputPost);
       break;
 
       case 'postHealth':
