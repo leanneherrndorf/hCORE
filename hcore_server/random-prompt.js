@@ -7,7 +7,7 @@ module.exports = function randomPrompt() {
     "Your boss is now " + a(noun()) + ", how would they fire someone?",
     "Complete the rhyme - I like big " + s(noun()) + " and I cannot lie",
     "You're being attacked by an army of " + s(noun()) + ", how do you defend yourself?",
-    "If I was a " + noun() + " where would I hide?",
+    "If I was " + a(noun()) + " where would I hide?",
     "What do Donald Trump and " + a(noun()) + " have in common?"];
 
   let strucRandom = Math.floor(Math.random() * (struc.length));

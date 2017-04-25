@@ -70,12 +70,12 @@ class Post extends React.Component {
       return (
         <article className="post">
           <img src="../images/gravestone.png" className="grave-stone" style={{width: 120, height: 120}}/>
+          <img src={this.props.post.pic} className="dead-avatar" style={{width: 60, height: 60}}/>
           <p className="grave-name">{this.props.post.name}</p>
         </article>
       );
     }
   }
 }
-
 
 export default Post;

@@ -102,6 +102,7 @@ wss.on('connection', (ws) => {
             name: clientName,
             malaiseID: id,
             malaise: 1,
+            pic: picRoute
           }
         }
         wss.broadcast(JSON.stringify(outputPost));
