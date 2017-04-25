@@ -201,7 +201,7 @@ class App extends Component {
     return (
       <div>
         <Welcome count={this.state.count} username= {this.state.userName}/>
-        </div>
+      </div>
       );
     }
 
