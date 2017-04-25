@@ -19,24 +19,27 @@ const server = express()
 // Create the WebSockets server
 const wss = new SocketServer({ server });
 
+
 function generateUserName() {
   let first = ['Gli', 'Shla', 'Gla', 'Blo', 'La', 'Flo', 'Ju', 'Plu'];
   let last = ['nkus', 'mbus', 'rbonzo', 'mbo', 'nkey', 'ngus', 'ster'];
   let firstRandom = Math.floor(Math.random() * (7));
   let lastRandom = Math.floor(Math.random() * (6));
   let newUser = first[firstRandom] + last[lastRandom];
-  return newUser;
+  return setUserName(newUser);
 }
 
-function checkUniqueName(newName) {
-  for(let name of listOfUsers) {
-    if (name === newName) {
-      return generateUserName();
-    } else {
-      return newName;
-    }
+function setUserName(newUser) {
+  if (listOfUsers.length == 0) {
+    return newUser;
+  }
+  if (listOfUsers.includes(newUser)) {
+    return generateUserName();
+  } else {
+    return newUser;
   }
 }
+
 
 wss.broadcast = function broadcast(data) {
   wss.clients.forEach((client) => {
@@ -59,10 +62,8 @@ let topicMessage = {
 // When a client connects they are assigned a socket, represented by
 // the ws parameter in the callback.
 wss.on('connection', (ws) => {
-  let newName = generateUserName();
-  listOfUsers.push(newName);
-  console.log(listOfUsers);
-  let clientName = checkUniqueName(newName);
+  let clientName = generateUserName();
+  listOfUsers.push(clientName);
   clientCount.count = wss.clients.size;
 
   //wss.broadcast(JSON.stringify(clientName));
@@ -116,6 +117,9 @@ wss.on('connection', (ws) => {
     ws.on('close', () => {
     clientCount.count = wss.clients.size;
     wss.broadcast(JSON.stringify(clientCount));
+    if (clientCount.count === 0) {
+      listOfUsers = [];
+    }
   });
 
 });
