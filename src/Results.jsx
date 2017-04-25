@@ -10,6 +10,7 @@ class Results extends React.Component {
 
   newRoundClick(){
     this.props.newRoundStart();
+    this.props.clearPosts();
   }
 
   render() {

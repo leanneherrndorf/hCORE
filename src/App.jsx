@@ -87,13 +87,17 @@ class App extends Component {
     this.setState({topic: sentence});
   }
 
+  clearPosts = () => {
+    this.setState({posts: []});
+  }
+
   componentDidMount = () => {
     console.log('componentDidMount <App />');
     this.socket = new WebSocket('ws://0.0.0.0:3001');
     this.socket.onopen = () => {
       console.log('is connected');
       this.socket.send(JSON.stringify({type: 'incomingUser'}))
-  }
+    }
 
     this.socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
@@ -171,11 +175,11 @@ class App extends Component {
       );
 
     //Results state: results of the round
-    } else if (this.state.count >= 3 && this.state.timeUp && this.state.roundTimeUp) {
+  } else if (this.state.count >= 3 && this.state.timeUp && this.state.roundTimeUp) {
       return (
         <div>
           <Nav topic={this.state.topic} count={this.state.count} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
-          <Results newRoundStart={this.newRoundStart} currentWinner={this.state.currentWinner} currentLoser={this.state.currentLoser}/>
+          <Results clearPosts={this.clearPosts} newRoundStart={this.newRoundStart} currentWinner={this.state.currentWinner} currentLoser={this.state.currentLoser}/>
         </div>
       );
     //Voting state: post entering time is up, all posts in view, users can vote on posts
