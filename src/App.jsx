@@ -203,7 +203,7 @@ class App extends Component {
     return (
       <div>
         <Welcome pic={this.state.pic} count={this.state.count} username={this.state.userName}/>
-        </div>
+      </div>
       );
     }
 
