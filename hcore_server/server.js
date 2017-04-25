@@ -64,7 +64,6 @@ wss.on('connection', (ws) => {
   listOfUsers.push(newName);
   console.log(listOfUsers);
   let clientName = checkUniqueName(newName);
-  let healthCount = wss.clients.size + 2;
   clientCount.count = wss.clients.size;
   
   //wss.broadcast(JSON.stringify(clientName));
@@ -91,8 +90,8 @@ wss.on('connection', (ws) => {
           content: {
             id: id,
             post: post.content,
-            health: healthCount,
-            maxHealth: healthCount,
+            health: wss.clients.size - 1,
+            maxHealth: wss.clients.size - 1,
             name: clientName,
             malaiseID: id,
             malaise: 1
