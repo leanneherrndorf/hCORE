@@ -12,6 +12,7 @@ class Postlist extends React.Component {
         <Post post={post} key={post.id}
           updateHealthOnClick={this.props.updateHealthOnClick}
           currentUserMalaise={this.props.currentUserMalaise}
+          userName={this.props.userName}
         />
       )}
       </main>

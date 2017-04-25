@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class RoundTimer extends Component {
   constructor(props){
     super(props);
-    this.state = {currentCount: 5}
+    this.state = {currentCount: 20}
   }
   timer() {
     this.setState({
@@ -11,6 +11,7 @@ class RoundTimer extends Component {
     })
     if(this.state.currentCount < 1) {
       this.props.checkRoundTimer();
+      this.props.determineScore();
       clearInterval(this.intervalId);
     }
   }

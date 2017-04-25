@@ -7,6 +7,8 @@ import Timer from './Timer.jsx';
 import RoundTimer from './RoundTimer.jsx';
 import Results from './Results.jsx';
 
+const randomPrompt = require('../hcore_server/random-prompt.js');
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -24,7 +26,9 @@ class App extends Component {
       timeUp: false,
       roundTimeUp: false,
       userName: '',
-      pic: ''
+      pic: '',
+      currentWinner: "",
+      currentLoser: ""
     }
   }
 
@@ -53,9 +57,39 @@ class App extends Component {
     this.setState({roundTimeUp: true});
   }
 
+  compareNumbers = (a, b) => {
+    return a - b;
+  }
+
+  determineScore = () => {
+      let sortedposts = this.state.posts;
+      sortedposts.sort((a, b) => {
+
+        var diff = this.compareNumbers(a.health, b.health);
+        console.log(diff);
+        if (diff > 0){
+          return -1;
+        }else if (diff < 0){
+          return 1;
+        }else {
+          return 0;
+        }
+      });
+      console.log(sortedposts);
+      console.log(sortedposts[0]);
+      this.setState({currentWinner: sortedposts[0].name});
+      this.setState({currentLoser: sortedposts[sortedposts.length-1].name});
+  }
+
   newRoundStart = () => {
     this.setState({timeUp: false});
     this.setState({roundTimeUp: false});
+    let sentence = randomPrompt();
+    this.setState({topic: sentence});
+  }
+
+  clearPosts = () => {
+    this.setState({posts: []});
   }
 
   componentDidMount = () => {
@@ -143,11 +177,11 @@ class App extends Component {
       );
 
     //Results state: results of the round
-    } else if (this.state.count >= 3 && this.state.timeUp && this.state.roundTimeUp) {
+  } else if (this.state.count >= 3 && this.state.timeUp && this.state.roundTimeUp) {
       return (
         <div>
           <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
-          <Results newRoundStart={this.newRoundStart}/>
+          <Results clearPosts={this.clearPosts} newRoundStart={this.newRoundStart} currentWinner={this.state.currentWinner} currentLoser={this.state.currentLoser}/>
         </div>
       );
     //Voting state: post entering time is up, all posts in view, users can vote on posts
@@ -159,8 +193,9 @@ class App extends Component {
           <Postlist posts={this.state.posts}
             updateHealthOnClick={this.updateHealthOnClick}
             currentUserMalaise={this.state.currentUserMalaise}
+            userName={this.state.userName}
           />
-          <RoundTimer checkRoundTimer={this.checkRoundTimer}/>
+          <RoundTimer checkRoundTimer={this.checkRoundTimer} determineScore={this.determineScore}/>
         </div>
       );
     //Inqueue state: not enough users yet online
