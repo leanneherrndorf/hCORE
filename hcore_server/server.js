@@ -46,7 +46,6 @@ wss.broadcast = function broadcast(data) {
   });
 };
 
-
 let clientCount = {
   count: 0,
   type: "clientCount"
@@ -65,7 +64,7 @@ wss.on('connection', (ws) => {
   console.log(listOfUsers);
   let clientName = checkUniqueName(newName);
   clientCount.count = wss.clients.size;
-  
+
   //wss.broadcast(JSON.stringify(clientName));
   wss.broadcast(JSON.stringify(clientCount));
   wss.broadcast(JSON.stringify(topicMessage));
