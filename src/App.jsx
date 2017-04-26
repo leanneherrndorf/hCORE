@@ -22,7 +22,7 @@ class App extends Component {
         id: 0,
         malaise: 0
       },
-      currentUser: 'Anonymous',
+     // currentUser: 'Anonymous',
       timeUp: false,
       roundTimeUp: false,
       userName: '',
@@ -52,6 +52,18 @@ class App extends Component {
   }
 
   checkTimer = () => {
+    let users = [];
+    const arrayOfNewObjects = this.state.posts.map((post) => {
+      users.push(post.name);
+    });
+    if(users.includes(this.state.userName)){
+      console.log("here");
+    }else{
+        //send request to server to generate empty post
+      const emptyPost = {type: 'postEmptyPost'}
+      this.socket.send(JSON.stringify(emptyPost));
+    }
+
     this.setState({timeUp: true});
     this.setState({roundReady: false});
   }
@@ -69,18 +81,21 @@ class App extends Component {
     sortedposts.sort((a, b) => {
       var diff = this.compareNumbers(a.health, b.health);
       console.log(diff);
+
       if (diff > 0) {
         return -1;
+        this.setState({currentWinner: sortedposts[0].name});
+        this.setState({currentLoser: sortedposts[sortedposts.length-1].name});
       } else if (diff < 0) {
         return 1;
+        this.setState({currentWinner: sortedposts[0].name});
+        this.setState({currentLoser: sortedposts[sortedposts.length-1].name});
       } else {
-        return 0;
+        //return 0;
+        this.setState({currentWinner: "It's a tie!"});
+        this.setState({currentLoser: "It's a tie!"});
       }
     });
-    // console.log(sortedposts);
-    // console.log(sortedposts[0]);
-    this.setState({currentWinner: sortedposts[0].name});
-    this.setState({currentLoser: sortedposts[sortedposts.length-1].name});
   }
 
   newRoundStart = () => {
@@ -165,7 +180,6 @@ class App extends Component {
           let sentence = randomPrompt();
           this.setState({timeUp: false});
           this.setState({roundTimeUp: false});
-          //this.setState({topic: sentence});
           this.setState({roundReady: data.ready});
           this.setState({newRoundCounter: 0});
         break;
