@@ -145,11 +145,7 @@ class App extends Component {
             if (post.id === data.id) {
               post.health = data.health;
             }
-            // if (post.id === data.id && post.id === this.state.currentUserMalaise.malaise) {
-            //   let newMalaise = this.state.currentUserMalaise.malaise + 1;
-            //   console.log('this.state.currentUserMalaise.id: ', this.state.currentUserMalaise.id);
-            //   this.setState({currentUserMalaise: {malaise: newMalaise}});
-            // }
+          
             return post;
           })
           // console.log('newMalaisePoints', newMalaisePoints);
