@@ -79,7 +79,6 @@ class App extends Component {
   determineScore = () => {
     let sortedposts = this.state.posts;
     sortedposts.sort((a, b) => {
-
       var diff = this.compareNumbers(a.health, b.health);
       console.log(diff);
 
@@ -97,9 +96,6 @@ class App extends Component {
         this.setState({currentLoser: "It's a tie!"});
       }
     });
-    //console.log(sortedposts);
-    //console.log(sortedposts[0]);
-
   }
 
   newRoundStart = () => {
@@ -143,16 +139,12 @@ class App extends Component {
             malaise: data.content.malaise,
             pic: data.content.pic
           }
-          //console.log(this.state.currentUser);
-          const addToRound = this.state.newRoundCounter + data.content.newRoundClick;
-          this.setState({newRoundCounter: addToRound});
           this.setState({currentUser: data.content.name})
           this.setState({currentUserMalaise: {
             id: data.content.malaiseID,
             malaise: data.content.malaise,
           }});
           const posts = this.state.posts.concat(postObj);
-          //console.log('posts: ', posts);
           this.setState({posts: posts});
         break;
         case 'outgoingUser':
@@ -163,6 +155,7 @@ class App extends Component {
           break;
         case 'clientCount':
           this.setState({count: data.count});
+          this.setState({newRoundCounter: data.count});
         break;
 
         case 'incomingTopic':
@@ -174,17 +167,13 @@ class App extends Component {
             if (post.id === data.id) {
               post.health = data.health;
             }
-
             return post;
           })
-          // console.log('newMalaisePoints', newMalaisePoints);
           this.setState({posts: arrayOfNewObjects});
-          // this.setState({currentUserMalaise: newMalaisePoints});
         break;
 
         case 'incomingRoundCount':
           this.setState({newRoundCounter: data.value});
-          console.log('round counter: ', this.state.newRoundCounter);
         break;
 
         case 'incomingRoundReady':
@@ -197,6 +186,7 @@ class App extends Component {
 
         case 'incomingResetGame':
           this.setState({posts: data.posts});
+          this.setState({newRoundCounter: data.newRoundCount});
         break;
 
         case 'incomingNewTopic':
@@ -212,21 +202,21 @@ class App extends Component {
 
   render() {
     console.log("your username is: ", this.state.userName);
-    //Start state: enough users online, stage for users to enter their post, and the time is not yet up
+    // Start state: enough users online, stage for users to enter their post, and the time is not yet up
     if(this.state.count >= 3 && !this.state.timeUp && this.state.roundReady){
       return (
         <div>
-          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
+          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
           <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.userName}/>
           <Timer checkTimer={this.checkTimer}/>
         </div>
       );
 
-    //Results state: results of the round
+    // Results state: results of the round
     } else if (this.state.count >= 3 && this.state.timeUp && this.state.roundTimeUp) {
       return (
         <div>
-          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
+          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
           <Results
           clearPosts={this.clearPosts}
           newRoundStart={this.newRoundStart}
@@ -236,7 +226,7 @@ class App extends Component {
           updateNewRoundCount={this.updateNewRoundCount}/>
         </div>
       );
-    //Voting state: post entering time is up, all posts in view, users can vote on posts
+    // Voting state: post entering time is up, all posts in view, users can vote on posts
     } else if (this.state.count >= 3 && this.state.timeUp){
       return (
         <div>
@@ -250,7 +240,7 @@ class App extends Component {
           <RoundTimer checkRoundTimer={this.checkRoundTimer} determineScore={this.determineScore}/>
         </div>
       );
-    //Inqueue state: not enough users yet online
+    // In queue state: not enough users yet online
     }else {
     return (
       <div>

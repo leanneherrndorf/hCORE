@@ -20,7 +20,7 @@ class Results extends React.Component {
   }
 
   checkingRoundCount() {
-    if (this.props.newRoundCounter === 1) {
+    if (this.props.newRoundCounter <= 1) {
       this.newRoundClick();
     } else {
       return;
@@ -46,6 +46,7 @@ class Results extends React.Component {
       <div className="waiting-for-posts">
           <div className="form-group">
             <div className="col-md-12 text-center">
+              <p>waiting on {this.props.newRoundCounter} user(s)</p>
               <span className="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
             </div>
           </div>
