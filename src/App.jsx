@@ -57,7 +57,7 @@ class App extends Component {
       users.push(post.name);
     });
     if(users.includes(this.state.userName)){
-      console.log("here");
+      //cconsole.log("here");
     }else{
         //send request to server to generate empty post
       const emptyPost = {type: 'postEmptyPost'}
@@ -80,7 +80,8 @@ class App extends Component {
     let sortedposts = this.state.posts;
     sortedposts.sort((a, b) => {
       var diff = this.compareNumbers(a.health, b.health);
-      console.log(diff);
+      console.log("sortedposts:", sortedposts);
+      console.log("diff", diff);
 
       if (diff > 0) {
         return -1;
@@ -151,7 +152,7 @@ class App extends Component {
           if (this.state.firstTimeUser) {
             this.setState({firstTimeUser: false, userName: data.content.userName, pic: data.content.pic});
           }
-          console.log("pic:", this.state.pic);
+         // console.log("pic:", this.state.pic);
           break;
         case 'clientCount':
           this.setState({count: data.count});
@@ -201,7 +202,7 @@ class App extends Component {
   }
 
   render() {
-    console.log("your username is: ", this.state.userName);
+   // console.log("your username is: ", this.state.userName);
     // Start state: enough users online, stage for users to enter their post, and the time is not yet up
     if(this.state.count >= 3 && !this.state.timeUp && this.state.roundReady){
       return (

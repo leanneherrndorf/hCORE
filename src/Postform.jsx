@@ -33,7 +33,7 @@ class Postform extends React.Component {
   }
 
   handleClick() {
-    console.log(this.textInput.value);
+    //console.log(this.textInput.value);
     let input = this.textInput.value;
     if (input.length <= 200 && input.length > 0) {
       this.props.updateMessageOnClick(input);
