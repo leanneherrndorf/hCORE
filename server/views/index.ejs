@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Indie+Flower" />
+
+    <!-- React Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <title>hCORE</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+
+    <!--Link to Font Awesome-->
+    <script src="https://use.fontawesome.com/e652c986a6.js"></script>
+
+</head>
+<body>
+  <div id="react-root"></div>
+  <% if (development) { %>
+  <script src="http://localhost:3000/bundle.js"></script>
+  <% } else { %>
+  <script src="/bundle.min.js"></script>
+  <% } %>
+</body>
+</html>

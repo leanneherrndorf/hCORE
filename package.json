@@ -1,0 +1,23 @@
+{
+  "name": "hcore",
+  "version": "1.0.0",
+  "description": "React Boilerplate =====================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./start.sh",
+    "install": "./install.sh",
+    "postinstall": "./postinstall.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leanneherrndorf/hCORE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leanneherrndorf/hCORE/issues"
+  },
+  "homepage": "https://github.com/leanneherrndorf/hCORE#readme"
+}
