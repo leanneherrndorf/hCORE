@@ -28,7 +28,9 @@ class App extends Component {
       userName: '',
       pic: '',
       currentWinner: "",
-      currentLoser: ""
+      currentLoser: "",
+      newRoundCounter: 0,
+      roundReady: true
     }
   }
 
@@ -51,6 +53,7 @@ class App extends Component {
 
   checkTimer = () => {
     this.setState({timeUp: true});
+    this.setState({roundReady: false});
   }
 
   checkRoundTimer = () => {
@@ -62,34 +65,40 @@ class App extends Component {
   }
 
   determineScore = () => {
-      let sortedposts = this.state.posts;
-      sortedposts.sort((a, b) => {
+    let sortedposts = this.state.posts;
+    sortedposts.sort((a, b) => {
 
-        var diff = this.compareNumbers(a.health, b.health);
-        console.log(diff);
-        if (diff > 0){
-          return -1;
-        }else if (diff < 0){
-          return 1;
-        }else {
-          return 0;
-        }
-      });
-      console.log(sortedposts);
-      console.log(sortedposts[0]);
-      this.setState({currentWinner: sortedposts[0].name});
-      this.setState({currentLoser: sortedposts[sortedposts.length-1].name});
+      var diff = this.compareNumbers(a.health, b.health);
+      console.log(diff);
+      if (diff > 0) {
+        return -1;
+      } else if (diff < 0) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    console.log(sortedposts);
+    console.log(sortedposts[0]);
+    this.setState({currentWinner: sortedposts[0].name});
+    this.setState({currentLoser: sortedposts[sortedposts.length-1].name});
   }
 
   newRoundStart = () => {
-    this.setState({timeUp: false});
-    this.setState({roundTimeUp: false});
-    let sentence = randomPrompt();
-    this.setState({topic: sentence});
+    this.socket.send(JSON.stringify({type: 'postRoundReady'}));
   }
 
   clearPosts = () => {
-    this.setState({posts: []});
+    this.socket.send(JSON.stringify({type: 'postResetGame'}));
+  }
+
+  updateNewRoundCount = () => {
+    let subtractOne = this.state.newRoundCounter - 1;
+    const newRoundCountValue = {
+      type: 'postRoundCount',
+      value: subtractOne
+    }
+    this.socket.send(JSON.stringify(newRoundCountValue)); // broadcast change
   }
 
   componentDidMount = () => {
@@ -116,7 +125,8 @@ class App extends Component {
             pic: data.content.pic
           }
           //console.log(this.state.currentUser);
-          
+          const addToRound = this.state.newRoundCounter + data.content.newRoundClick;
+          this.setState({newRoundCounter: addToRound});
           this.setState({currentUser: data.content.name})
           this.setState({currentUserMalaise: {
             id: data.content.malaiseID,
@@ -150,8 +160,25 @@ class App extends Component {
           })
           // console.log('newMalaisePoints', newMalaisePoints);
           this.setState({posts: arrayOfNewObjects});
-          console.log('current posts', this.state.posts);
           // this.setState({currentUserMalaise: newMalaisePoints});
+        break;
+
+        case 'incomingRoundCount':
+          this.setState({newRoundCounter: data.value});
+          console.log('round counter: ', this.state.newRoundCounter);
+        break;
+
+        case 'incomingRoundReady':
+          let sentence = randomPrompt();
+          this.setState({timeUp: false});
+          this.setState({roundTimeUp: false});
+          this.setState({topic: sentence});
+          this.setState({roundReady: data.ready});
+          this.setState({newRoundCounter: 0});
+        break; 
+
+        case 'incomingResetGame':
+          this.setState({posts: data.posts});
         break;
 
         default:
@@ -164,7 +191,7 @@ class App extends Component {
   render() {
     console.log("your username is: ", this.state.userName);
     //Start state: enough users online, stage for users to enter their post, and the time is not yet up
-    if(this.state.count >= 3 && !this.state.timeUp){
+    if(this.state.count >= 3 && !this.state.timeUp && this.state.roundReady){
       return (
         <div>
           <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
@@ -174,11 +201,17 @@ class App extends Component {
       );
 
     //Results state: results of the round
-  } else if (this.state.count >= 3 && this.state.timeUp && this.state.roundTimeUp) {
+    } else if (this.state.count >= 3 && this.state.timeUp && this.state.roundTimeUp) {
       return (
         <div>
           <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
-          <Results clearPosts={this.clearPosts} newRoundStart={this.newRoundStart} currentWinner={this.state.currentWinner} currentLoser={this.state.currentLoser}/>
+          <Results 
+          clearPosts={this.clearPosts} 
+          newRoundStart={this.newRoundStart} 
+          currentWinner={this.state.currentWinner} 
+          currentLoser={this.state.currentLoser} 
+          newRoundCounter={this.state.newRoundCounter}
+          updateNewRoundCount={this.updateNewRoundCount}/>
         </div>
       );
     //Voting state: post entering time is up, all posts in view, users can vote on posts

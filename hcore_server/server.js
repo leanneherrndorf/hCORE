@@ -97,7 +97,8 @@ wss.on('connection', (ws) => {
         }
         console.log('outputUser: ', outputUser);
         wss.broadcast(JSON.stringify(outputUser));
-        break;
+      break;
+
       case 'postMessage':
         let outputPost = {
           type: 'incomingMessage',
@@ -109,7 +110,8 @@ wss.on('connection', (ws) => {
             name: clientName,
             malaiseID: id,
             malaise: 1,
-            pic: picRoute
+            pic: picRoute,
+            newRoundClick: 1
           }
         }
         wss.broadcast(JSON.stringify(outputPost));
@@ -123,6 +125,30 @@ wss.on('connection', (ws) => {
           id: post.id
         }
         wss.broadcast(JSON.stringify(outputHealth));
+      break;
+
+      case 'postRoundCount':
+        let outputRoundCount = {
+          type: 'incomingRoundCount',
+          value: post.value
+        }
+        wss.broadcast(JSON.stringify(outputRoundCount));
+      break;    
+
+      case 'postRoundReady':
+        let outputRoundReady = {
+          type: 'incomingRoundReady',
+          ready: true
+        }
+        wss.broadcast(JSON.stringify(outputRoundReady));
+      break;
+
+      case 'postResetGame':
+        let outputResetGame = {
+          type: 'incomingResetGame',
+          posts: []
+        }
+        wss.broadcast(JSON.stringify(outputResetGame));
       break;
 
       default:
