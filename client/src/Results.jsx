@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router';
 import {Jumbotron} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 

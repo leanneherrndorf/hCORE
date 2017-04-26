@@ -19,6 +19,10 @@
 </head>
 <body>
   <div id="react-root"></div>
-  <script src="/build/bundle.js"></script>
+  <% if (development) { %>
+  <script src="http://localhost:3000/bundle.js"></script>
+  <% } else { %>
+  <script src="/bundle.min.js"></script>
+  <% } %>
 </body>
 </html>

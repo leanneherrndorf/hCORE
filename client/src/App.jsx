@@ -7,7 +7,7 @@ import Timer from './Timer.jsx';
 import RoundTimer from './RoundTimer.jsx';
 import Results from './Results.jsx';
 
-const randomPrompt = require('../hcore_server/random-prompt.js');
+const randomPrompt = require('../../server/random-prompt.js');
 
 class App extends Component {
   constructor(props){

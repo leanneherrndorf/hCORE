@@ -10,10 +10,15 @@ const PORT = 3001;
 const sentence = randomPrompt();
 
 // Create a new express server
-const server = express()
+const server = express();
    // Make the express server serve static assets (html, javascript, css) from the /public folder
-  .use(express.static('public'))
-  .listen(PORT, '0.0.0.0', 'localhost', () => console.log(`Listening on ${ PORT }`));
+server.set("view engine", "ejs");
+
+server.use(express.static('public'));
+server.get('/', function(req, res){
+  res.render("index", {development: process.env.NODE_ENV !== "production"});
+});
+server.listen(PORT, '0.0.0.0', 'localhost', () => console.log(`Listening on ${ PORT }`));
 
 // Create the WebSockets server
 const wss = new SocketServer({ server });
