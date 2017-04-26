@@ -15,6 +15,7 @@ class Results extends React.Component {
 
   broadCastRoundCount() {
     this.props.updateNewRoundCount();
+    this.click = true;
     return this.checkingRoundCount();
   }
 
@@ -28,6 +29,7 @@ class Results extends React.Component {
 
   render() {
     // console.log('current Malaise', this.props.currentMalaise);
+    if(!this.click){
     return (
       <div>
       <Jumbotron className= "results">
@@ -39,7 +41,18 @@ class Results extends React.Component {
       </div>
 
     );
+  } else {
+    return (
+      <div className="waiting-for-posts">
+          <div className="form-group">
+            <div className="col-md-12 text-center">
+              <span className="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+            </div>
+          </div>
+        </div>
+    );     
   }
+}
 }
 
 export default Results;
