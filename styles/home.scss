@@ -100,15 +100,8 @@ body {
   .health-bar {
     background: linear-gradient(274deg, #e11212, #ff8080, #e11212);
     background-size: 600% 600%;
-
-    -webkit-animation: AnimationName 5s ease infinite;
     animation: AnimationName 5s ease infinite;
 
-    @-webkit-keyframes AnimationName {
-      0%{background-position:0% 55%}
-      50%{background-position:100% 46%}
-      100%{background-position:0% 55%}
-    }
     @keyframes AnimationName { 
       0%{background-position:0% 55%}
       50%{background-position:100% 46%}
