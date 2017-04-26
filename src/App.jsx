@@ -56,19 +56,16 @@ class App extends Component {
     const arrayOfNewObjects = this.state.posts.map((post) => {
       users.push(post.name);
     });
-    console.log(users);
     if(users.includes(this.state.userName)){
-        return;
-      }else{
-        console.log("HI");
-        return;
-        //TODO: send request to server to generate empty post
-        // const emptyPost = {type: 'postEmptyPost'}
-        // this.socket.send(JSON.stringify(emptyPost));
-      }
+      console.log("here");
+    }else{
+        //send request to server to generate empty post
+      const emptyPost = {type: 'postEmptyPost'}
+      this.socket.send(JSON.stringify(emptyPost));
+    }
 
-      this.setState({timeUp: true});
-      this.setState({roundReady: false});
+    this.setState({timeUp: true});
+    this.setState({roundReady: false});
   }
 
   checkRoundTimer = () => {
@@ -85,18 +82,24 @@ class App extends Component {
 
       var diff = this.compareNumbers(a.health, b.health);
       console.log(diff);
+
       if (diff > 0) {
         return -1;
+        this.setState({currentWinner: sortedposts[0].name});
+        this.setState({currentLoser: sortedposts[sortedposts.length-1].name});
       } else if (diff < 0) {
         return 1;
+        this.setState({currentWinner: sortedposts[0].name});
+        this.setState({currentLoser: sortedposts[sortedposts.length-1].name});
       } else {
-        return 0;
+        //return 0;
+        this.setState({currentWinner: "It's a tie!"});
+        this.setState({currentLoser: "It's a tie!"});
       }
     });
-    console.log(sortedposts);
-    console.log(sortedposts[0]);
-    this.setState({currentWinner: sortedposts[0].name});
-    this.setState({currentLoser: sortedposts[sortedposts.length-1].name});
+    //console.log(sortedposts);
+    //console.log(sortedposts[0]);
+
   }
 
   newRoundStart = () => {

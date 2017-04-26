@@ -115,7 +115,6 @@ wss.on('connection', (ws) => {
           }
         }
         wss.broadcast(JSON.stringify(outputPost));
-
       break;
 
       case 'postHealth':
@@ -159,7 +158,23 @@ wss.on('connection', (ws) => {
         wss.broadcast(JSON.stringify(outputNewTopic));
       break;
 
-
+      case 'postEmptyPost':
+        let outputEmptyPost = {
+          type: 'incomingMessage',
+          content: {
+            id: id,
+            post: "",
+            health: 0,
+            maxHealth: wss.clients.size - 1,
+            name: clientName,
+            malaiseID: id,
+            malaise: 1,
+            pic: picRoute,
+            newRoundClick: 1
+          }
+        }
+        wss.broadcast(JSON.stringify(outputEmptyPost));
+      break;
 
       default:
         throw new Error("Unknown event type" + post.type);
