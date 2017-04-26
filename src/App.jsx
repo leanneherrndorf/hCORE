@@ -125,9 +125,9 @@ class App extends Component {
             malaise: data.content.malaise,
             pic: data.content.pic
           }
-          //console.log(this.state.currentUser);
-          const addToRound = this.state.newRoundCounter + data.content.newRoundClick;
-          this.setState({newRoundCounter: addToRound});
+          // console.log(this.state.currentUser);
+          // const addToRound = this.state.newRoundCounter + data.content.newRoundClick;
+          // this.setState({newRoundCounter: addToRound});
           this.setState({currentUser: data.content.name})
           this.setState({currentUserMalaise: {
             id: data.content.malaiseID,
@@ -145,6 +145,7 @@ class App extends Component {
           break;
         case 'clientCount':
           this.setState({count: data.count});
+          this.setState({newRoundCounter: data.count});
         break;
 
         case 'incomingTopic':
@@ -180,6 +181,7 @@ class App extends Component {
 
         case 'incomingResetGame':
           this.setState({posts: data.posts});
+          this.setState({newRoundCounter: data.newRoundCount});
         break;
 
         case 'incomingNewTopic':
