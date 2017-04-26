@@ -20,7 +20,7 @@ class Results extends React.Component {
   }
 
   checkingRoundCount() {
-    if (this.props.newRoundCounter === 1) {
+    if (this.props.newRoundCounter <= 1) {
       this.newRoundClick();
     } else {
       return;
