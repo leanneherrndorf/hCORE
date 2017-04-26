@@ -133,9 +133,16 @@ wss.on('connection', (ws) => {
           type: 'incomingRoundReady',
           ready: true
         }
-
         wss.broadcast(JSON.stringify(outputRoundReady));
-        break;
+      break;
+
+      case 'postResetGame':
+        let outputResetGame = {
+          type: 'incomingResetGame',
+          posts: []
+        }
+        wss.broadcast(JSON.stringify(outputResetGame));
+      break;
 
       default:
         throw new Error("Unknown event type" + post.type);

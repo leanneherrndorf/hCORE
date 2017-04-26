@@ -89,7 +89,7 @@ class App extends Component {
   }
 
   clearPosts = () => {
-    this.setState({posts: []});
+    this.socket.send(JSON.stringify({type: 'postResetGame'}));
   }
 
   updateNewRoundCount = () => {
@@ -173,13 +173,17 @@ class App extends Component {
         break;
 
         case 'incomingRoundReady':
+          let sentence = randomPrompt();
           this.setState({timeUp: false});
           this.setState({roundTimeUp: false});
-          let sentence = randomPrompt();
           this.setState({topic: sentence});
           this.setState({roundReady: data.ready});
           this.setState({newRoundCounter: 0});
         break; 
+
+        case 'incomingResetGame':
+          this.setState({posts: data.posts});
+        break;
 
         default:
         // show an error in the console if the message type is unknown
