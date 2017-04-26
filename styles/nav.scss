@@ -11,6 +11,7 @@
   top: 0;
   box-shadow: 0 5px 15px gray;
   border-radius: 0;
+  z-index: 2;
 
   .nav-brand{
     background: #adc5dd;
@@ -86,12 +87,18 @@
   top: 0;
   box-shadow: 0 5px 15px gray;
   border-radius: 0;
-  z-index: 0;
+  z-index: 1;
   width: 100%;
+  font-size: 18px;
+
+  &:hover {
+    background: #607b96;
+  }
 }
 
 .dropdown-menu {
-  min-width: 400px;
+  min-width: 345px;
+  margin-left: 15px;
   text-align: center;
 }
 
