@@ -22,7 +22,6 @@ class App extends Component {
         id: 0,
         malaise: 0
       },
-     // currentUser: 'Anonymous',
       timeUp: false,
       roundTimeUp: false,
       userName: '',
@@ -30,7 +29,7 @@ class App extends Component {
       currentWinner: "",
       currentLoser: "",
       newRoundCounter: 0,
-      roundReady: true
+      roundReady: false
     }
   }
 
@@ -59,7 +58,7 @@ class App extends Component {
     if(users.includes(this.state.userName)){
       console.log("here");
     }else{
-        //send request to server to generate empty post
+      //send request to server to generate empty post
       const emptyPost = {type: 'postEmptyPost'}
       this.socket.send(JSON.stringify(emptyPost));
     }
@@ -203,7 +202,7 @@ class App extends Component {
   render() {
     console.log("your username is: ", this.state.userName);
     // Start state: enough users online, stage for users to enter their post, and the time is not yet up
-    if(this.state.count >= 3 && !this.state.timeUp && this.state.roundReady){
+    if(!this.state.timeUp && this.state.roundReady){
       return (
         <div>
           <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
@@ -213,7 +212,7 @@ class App extends Component {
       );
 
     // Results state: results of the round
-    } else if (this.state.count >= 3 && this.state.timeUp && this.state.roundTimeUp) {
+    } else if (this.state.timeUp && this.state.roundTimeUp) {
       return (
         <div>
           <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
@@ -227,7 +226,7 @@ class App extends Component {
         </div>
       );
     // Voting state: post entering time is up, all posts in view, users can vote on posts
-    } else if (this.state.count >= 3 && this.state.timeUp){
+    } else if (this.state.timeUp){
       return (
         <div>
           <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
@@ -244,11 +243,17 @@ class App extends Component {
     }else {
     return (
       <div>
-        <Welcome pic={this.state.pic} count={this.state.count} username={this.state.userName}/>
+        <Welcome
+          pic={this.state.pic}
+          count={this.state.count}
+          username={this.state.userName}
+          clearPosts={this.clearPosts}
+          newRoundStart={this.newRoundStart}
+          newRoundCounter={this.state.newRoundCounter}
+          updateNewRoundCount={this.updateNewRoundCount}/>
       </div>
       );
     }
-
   }
 }
 
