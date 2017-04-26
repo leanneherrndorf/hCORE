@@ -86,6 +86,7 @@ class App extends Component {
 
   newRoundStart = () => {
     this.socket.send(JSON.stringify({type: 'postRoundReady'}));
+    this.socket.send(JSON.stringify({type: 'postNewTopic'}));
   }
 
   clearPosts = () => {
@@ -155,7 +156,7 @@ class App extends Component {
             if (post.id === data.id) {
               post.health = data.health;
             }
-          
+
             return post;
           })
           // console.log('newMalaisePoints', newMalaisePoints);
@@ -172,13 +173,17 @@ class App extends Component {
           let sentence = randomPrompt();
           this.setState({timeUp: false});
           this.setState({roundTimeUp: false});
-          this.setState({topic: sentence});
+          //this.setState({topic: sentence});
           this.setState({roundReady: data.ready});
           this.setState({newRoundCounter: 0});
-        break; 
+        break;
 
         case 'incomingResetGame':
           this.setState({posts: data.posts});
+        break;
+
+        case 'incomingNewTopic':
+          this.setState({topic: data.topic});
         break;
 
         default:
@@ -205,11 +210,11 @@ class App extends Component {
       return (
         <div>
           <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
-          <Results 
-          clearPosts={this.clearPosts} 
-          newRoundStart={this.newRoundStart} 
-          currentWinner={this.state.currentWinner} 
-          currentLoser={this.state.currentLoser} 
+          <Results
+          clearPosts={this.clearPosts}
+          newRoundStart={this.newRoundStart}
+          currentWinner={this.state.currentWinner}
+          currentLoser={this.state.currentLoser}
           newRoundCounter={this.state.newRoundCounter}
           updateNewRoundCount={this.updateNewRoundCount}/>
         </div>

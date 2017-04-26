@@ -42,7 +42,7 @@ function setUserName(newUser) {
 let num = 0;
 
 function randPic() {
-  
+
   let img = "../images/user_icons/" + num + ".png";
   if (num < 9){
   num++;
@@ -133,7 +133,7 @@ wss.on('connection', (ws) => {
           value: post.value
         }
         wss.broadcast(JSON.stringify(outputRoundCount));
-      break;    
+      break;
 
       case 'postRoundReady':
         let outputRoundReady = {
@@ -149,6 +149,14 @@ wss.on('connection', (ws) => {
           posts: []
         }
         wss.broadcast(JSON.stringify(outputResetGame));
+      break;
+
+      case 'postNewTopic':
+        let outputNewTopic = {
+          topic: randomPrompt(),
+          type: "incomingNewTopic"
+        }
+        wss.broadcast(JSON.stringify(outputNewTopic));
       break;
 
       default:
