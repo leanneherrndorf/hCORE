@@ -22,7 +22,7 @@ class App extends Component {
         id: 0,
         malaise: 0
       },
-      currentUser: 'Anonymous',
+     // currentUser: 'Anonymous',
       timeUp: false,
       roundTimeUp: false,
       userName: '',
@@ -52,8 +52,23 @@ class App extends Component {
   }
 
   checkTimer = () => {
-    this.setState({timeUp: true});
-    this.setState({roundReady: false});
+    let users = [];
+    const arrayOfNewObjects = this.state.posts.map((post) => {
+      users.push(post.name);
+    });
+    console.log(users);
+    if(users.includes(this.state.userName)){
+        return;
+      }else{
+        console.log("HI");
+        return;
+        //TODO: send request to server to generate empty post
+        // const emptyPost = {type: 'postEmptyPost'}
+        // this.socket.send(JSON.stringify(emptyPost));
+      }
+
+      this.setState({timeUp: true});
+      this.setState({roundReady: false});
   }
 
   checkRoundTimer = () => {
@@ -173,7 +188,6 @@ class App extends Component {
           let sentence = randomPrompt();
           this.setState({timeUp: false});
           this.setState({roundTimeUp: false});
-          //this.setState({topic: sentence});
           this.setState({roundReady: data.ready});
           this.setState({newRoundCounter: 0});
         break;

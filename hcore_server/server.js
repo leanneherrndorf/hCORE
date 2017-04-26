@@ -159,6 +159,8 @@ wss.on('connection', (ws) => {
         wss.broadcast(JSON.stringify(outputNewTopic));
       break;
 
+
+
       default:
         throw new Error("Unknown event type" + post.type);
       }
