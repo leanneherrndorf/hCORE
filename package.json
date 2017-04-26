@@ -29,34 +29,30 @@
     "node": ">=6.0.0"
   },
   "devDependencies": {
-    "babel-core": "6.23.1",
-    "babel-loader": "6.3.1",
-    "babel-preset-es2015": "6.22.0",
-    "babel-preset-react": "6.23.0",
-    "babel-preset-stage-0": "6.22.0",
-    "css-loader": "0.26.1",
-    "eslint": "3.15.0",
-    "eslint-plugin-react": "6.9.0",
-    "node-sass": "4.5.0",
-    "sass-loader": "6.0.0",
+    "babel-core": "6.24.1",
+    "babel-loader": "7.0.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-react": "6.24.1",
+    "babel-preset-stage-0": "6.24.1",
+    "css-loader": "0.28.0",
+    "eslint": "3.19.0",
+    "eslint-plugin-react": "6.10.3",
+    "node-sass": "4.5.2",
+    "sass-loader": "6.0.3",
     "sockjs-client": "^1.1.2",
-    "style-loader": "0.13.1",
-    "webpack": "2.2.1",
-    "webpack-dev-server": "2.3.0"
+    "style-loader": "0.16.1",
+    "webpack": "2.4.1",
+    "webpack-dev-server": "2.4.5"
   },
   "dependencies": {
     "dotenv": "^4.0.0",
     "express": "4.15.2",
-    "knex": "^0.12.9",
-    "knex-logger": "^0.1.0",
     "node-uuid": "1.4.8",
-    "pg": "^6.1.5",
     "react": "15.4.2",
     "react-addons-css-transition-group": "^15.5.2",
     "react-alert": "^1.0.14",
     "react-bootstrap": "^0.30.10",
     "react-dom": "15.4.2",
-    "react-router": "^2.0.1",
-    "ws": "2.2.3"
+    "ws": "2.3.1"
   }
 }
