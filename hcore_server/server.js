@@ -79,6 +79,7 @@ wss.on('connection', (ws) => {
   listOfUsers.push(clientName);
   clientCount.count = wss.clients.size;
 
+  // broadcasting client Count which also determines newRoundCounter
   wss.broadcast(JSON.stringify(clientCount));
   wss.broadcast(JSON.stringify(topicMessage));
 
@@ -111,7 +112,7 @@ wss.on('connection', (ws) => {
             malaiseID: id,
             malaise: 1,
             pic: picRoute,
-            newRoundClick: 1
+            // newRoundClick: 1
           }
         }
         wss.broadcast(JSON.stringify(outputPost));
@@ -144,9 +145,11 @@ wss.on('connection', (ws) => {
       break;
 
       case 'postResetGame':
+        console.log(clientCount.count);
         let outputResetGame = {
           type: 'incomingResetGame',
-          posts: []
+          posts: [],
+          newRoundCount: clientCount.count
         }
         wss.broadcast(JSON.stringify(outputResetGame));
       break;
