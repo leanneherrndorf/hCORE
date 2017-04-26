@@ -4,11 +4,10 @@ module.exports = function randomPrompt() {
     "Why did the " + s(noun()) + " cross the road?",
     "Write a tagline for a movie called Beauty And The " + cap(noun()),
     "On the menu tonight is " + s(noun()) + " with a side of " + noun() + ", what's for dessert?",
-    "Your boss is now " + a(noun()) + ", how would they fire someone?",
+    "Your boss is now " + a(noun()) + ", how would they fire you?",
     "Complete the rhyme - I like big " + s(noun()) + " and I cannot lie",
     "You're being attacked by an army of " + s(noun()) + ", how do you defend yourself?",
-    "If I was " + a(noun()) + " where would I hide?",
-    "What do Donald Trump and " + a(noun()) + " have in common?"];
+    "If I was " + a(noun()) + " where would I hide?"];
 
   let strucRandom = Math.floor(Math.random() * (struc.length));
   return (struc[strucRandom]);

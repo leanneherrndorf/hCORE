@@ -4,7 +4,6 @@ const SocketServer = require('ws').Server;
 const uuidV1 = require('node-uuid');
 const randomPrompt = require('./random-prompt.js');
 let listOfUsers = []; // A list of all the users
-
 // Set the port to 3001
 const PORT = 3001;
 
@@ -40,9 +39,18 @@ function setUserName(newUser) {
   }
 }
 
+let num = 0;
+
 function randPic() {
-  let randNum = Math.floor(Math.random() * (10));
-  return ("../images/user_icons/" + randNum + ".png");
+  
+  let img = "../images/user_icons/" + num + ".png";
+  if (num < 9){
+  num++;
+  return (img);
+ } else {
+  num = 0;
+  return (img);
+ }
 }
 
 wss.broadcast = function broadcast(data) {
@@ -52,7 +60,6 @@ wss.broadcast = function broadcast(data) {
     }
   });
 };
-
 
 let clientCount = {
   count: 0,
@@ -88,7 +95,7 @@ wss.on('connection', (ws) => {
             pic: picRoute
           }
         }
-        console.log('outgoingUsre: ', outputUser);
+        console.log('outputUser: ', outputUser);
         wss.broadcast(JSON.stringify(outputUser));
         break;
       case 'postMessage':
@@ -106,7 +113,7 @@ wss.on('connection', (ws) => {
           }
         }
         wss.broadcast(JSON.stringify(outputPost));
-        console.log(outputPost);
+
       break;
 
       case 'postHealth':
