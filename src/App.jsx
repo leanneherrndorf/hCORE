@@ -199,7 +199,7 @@ class App extends Component {
     if(this.state.count >= 3 && !this.state.timeUp && this.state.roundReady){
       return (
         <div>
-          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
+          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
           <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.userName}/>
           <Timer checkTimer={this.checkTimer}/>
         </div>
@@ -209,7 +209,7 @@ class App extends Component {
     } else if (this.state.count >= 3 && this.state.timeUp && this.state.roundTimeUp) {
       return (
         <div>
-          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username= {this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
+          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
           <Results
           clearPosts={this.clearPosts}
           newRoundStart={this.newRoundStart}
