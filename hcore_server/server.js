@@ -96,7 +96,6 @@ wss.on('connection', (ws) => {
             pic: picRoute
           }
         }
-        console.log('outputUser: ', outputUser);
         wss.broadcast(JSON.stringify(outputUser));
       break;
 
@@ -145,7 +144,6 @@ wss.on('connection', (ws) => {
       break;
 
       case 'postResetGame':
-        console.log(clientCount.count);
         let outputResetGame = {
           type: 'incomingResetGame',
           posts: [],
