@@ -5,7 +5,7 @@ const uuidV1 = require('node-uuid');
 const randomPrompt = require('./random-prompt.js');
 let listOfUsers = []; // A list of all the users
 // Set the port to 3001
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 const sentence = randomPrompt();
 
