@@ -29,13 +29,11 @@ class App extends Component {
   }
 
   updateUserName = (event) => {
-    if(event.key === 'Enter'){
       this.setState({firstTimeUser: true});
       let newName = event.target.value;
       //this.setState({userName: newName});
       this.socket.send(JSON.stringify({type: 'incomingNameChange', name: newName}));
       console.log(this.state.userName);
-    }
   }
   updateUserMalaiseOnClick = () => {
     const newMalaise = this.state.malaisePoints - 1;
