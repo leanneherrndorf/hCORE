@@ -42,10 +42,10 @@ function cap(noun){
 }
 
 function noun(){
-  var noun = 
-    ["aardvark", 
+  var noun =
+    ["aardvark",
     "anteater",
-    "asparagus",  
+    "asparagus",
     "baboon",
     "baby",
     "bean",
@@ -58,12 +58,12 @@ function noun(){
     "cactus",
     "cake",
     "camel",
-    "carp",  
+    "carp",
     "caterpillar",
-    "catsup",  
-    "cereal", 
+    "catsup",
+    "cereal",
     "cheese",
-    "chicken",  
+    "chicken",
     "daughter",
     "dentist",
     "disease",
@@ -118,7 +118,7 @@ function noun(){
     "vegetable",
     "yak",
     "yam",
-    "yogurt",
+    "yogurt"
   ];
 
   var nounRandom = Math.floor(Math.random() * (noun.length));
