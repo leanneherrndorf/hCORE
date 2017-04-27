@@ -3,6 +3,8 @@ const express = require('express');
 const uuidV1 = require('node-uuid');
 const randomPrompt = require('./random-prompt.js');
 const http = require('http');
+const url = require('url');
+//const io = require('socket.io')(server);
 
 
 const app = express();
@@ -81,11 +83,12 @@ let topicMessage = {
 // Set up a callback that will run when a client connects to the server
 // When a client connects they are assigned a socket, represented by
 // the ws parameter in the callback.
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
-server.on('upgrade', wss.handleUpgrade);
+//server.on('upgrade', wss.handleUpgrade);
 
 wss.on('connection', (ws) => {
+  const location = url.parse(ws.upgradeReq.url, true);
+
   let clientName = generateUserName();
   let picRoute = randPic();
   listOfUsers.push(clientName);
@@ -203,3 +206,6 @@ wss.on('connection', (ws) => {
   });
 
 });
+
+server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
