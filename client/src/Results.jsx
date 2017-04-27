@@ -37,7 +37,6 @@ class Results extends React.Component {
             <main className="leaderboard">
             {this.props.posts.map((post) =>
             <Leaderboard post={post}
-            malaisePoints={this.props.malaisePoints}
             />
             )}
             </main>

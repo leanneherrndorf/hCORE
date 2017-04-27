@@ -205,7 +205,6 @@ class App extends Component {
             clearPosts={this.clearPosts}
             newRoundStart={this.newRoundStart}
             posts={this.state.posts}
-            malaisePoints={this.state.malaisePoints}
             newRoundCounter={this.state.newRoundCounter}
             updateNewRoundCount={this.updateNewRoundCount}/>
         </div>
