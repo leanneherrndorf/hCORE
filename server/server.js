@@ -1,27 +1,30 @@
 const WebSocket = require('ws');
 const express = require('express');
-const SocketServer = require('ws').Server;
 const uuidV1 = require('node-uuid');
 const randomPrompt = require('./random-prompt.js');
-let listOfUsers = []; // A list of all the users
-// Set the port to 3001
-const PORT = process.env.PORT || 3001;
+const http = require('http');
 
-const sentence = randomPrompt();
 
-// Create a new express server
-const server = express();
-   // Make the express server serve static assets (html, javascript, css) from the /public folder
-server.set("view engine", "ejs");
+const app = express();
 
-server.use(express.static('public'));
-server.get('/', function(req, res){
+app.set("view engine", "ejs");
+
+app.use(express.static('public'));
+app.get('/home', function(req, res){
   res.render("index", {development: process.env.NODE_ENV !== "production"});
 });
-server.listen(PORT, '0.0.0.0', 'localhost', () => console.log(`Listening on ${ PORT }`));
 
-// Create the WebSockets server
-const wss = new SocketServer({ server });
+const server = http.createServer(app);
+
+const wss = new WebSocket.Server({ server });
+
+
+const sentence = randomPrompt();
+const PORT = process.env.PORT || 3001;
+
+
+// A list of all the users
+let listOfUsers = [];
 
 
 function generateUserName() {
@@ -78,6 +81,10 @@ let topicMessage = {
 // Set up a callback that will run when a client connects to the server
 // When a client connects they are assigned a socket, represented by
 // the ws parameter in the callback.
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
+server.on('upgrade', wss.handleUpgrade);
+
 wss.on('connection', (ws) => {
   let clientName = generateUserName();
   let picRoute = randPic();
@@ -196,4 +203,3 @@ wss.on('connection', (ws) => {
   });
 
 });
-
