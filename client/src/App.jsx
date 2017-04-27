@@ -118,7 +118,7 @@ class App extends Component {
 
   componentDidMount = () => {
     console.log('componentDidMount <App />');
-    this.socket = new WebSocket('ws://0.0.0.0:3001');
+    this.socket = new WebSocket('ws://'+ location.host);
     this.socket.onopen = () => {
       console.log('is connected');
       this.socket.send(JSON.stringify({type: 'incomingUser'}))

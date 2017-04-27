@@ -1,5 +1,6 @@
 module.exports = function randomPrompt() {
-  let struc = [  
+  // use string interpoloation `hello ${a.noun} me`
+  var struc = [
     "What does " + a(noun()) + " and " + a(noun()) + " have in common?",
     "Why did the " + noun() + " cross the road?",
     "Write a tagline for a movie called Beauty And The " + cap(noun()),
@@ -9,7 +10,7 @@ module.exports = function randomPrompt() {
     "You're being attacked by an army of " + s(noun()) + ", how do you defend yourself?",
     "If I was " + a(noun()) + " where would I hide?"];
 
-  let strucRandom = Math.floor(Math.random() * (struc.length));
+  var strucRandom = Math.floor(Math.random() * (struc.length));
   return (struc[strucRandom]);
 }
 
@@ -36,12 +37,12 @@ function s(noun){
 }
 
 function cap(noun){
-  let capChar = noun.charAt(0).toUpperCase();
+  var capChar = noun.charAt(0).toUpperCase();
   return noun.replaceAt(0, capChar);
 }
 
 function noun(){
-  let noun = 
+  var noun = 
     ["aardvark", 
     "anteater",
     "asparagus",  
@@ -120,6 +121,6 @@ function noun(){
     "yogurt",
   ];
 
-  let nounRandom = Math.floor(Math.random() * (noun.length));
+  var nounRandom = Math.floor(Math.random() * (noun.length));
     return (noun[nounRandom]);
   }
