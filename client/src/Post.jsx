@@ -10,7 +10,7 @@ class Post extends React.Component {
   showMalaiseButton() {
     if (this.props.userName == this.props.post.name) {
       return;
-    } else {
+    } else if (this.props.malaisePoints > 0) {
       return (
         <Button bsStyle="danger" onClick={this.malaiseClick.bind(this)}>
         <i className="fa fa-bomb" aria-hidden="true"></i> Malaise
@@ -39,11 +39,12 @@ class Post extends React.Component {
   praiseClick() {
     let health = this.props.post.health + 1;
     this.props.updateHealthOnClick(health, this.props.post.id);
+    this.props.updateUserMalaiseOnPraise();
   }
 
   render() {
     const percentageLost = this.props.post.health/this.props.post.maxHealth
-    if (this.props.post.health === this.props.post.maxHealth){
+    if (this.props.post.health === this.props.post.maxHealth) {
       return (
         <article className="post">
           <span className="health">{this.props.post.health}</span>

@@ -11,7 +11,8 @@ class Postlist extends React.Component {
       {this.props.posts.map((post) =>
         <Post post={post} key={post.id}
           updateHealthOnClick={this.props.updateHealthOnClick}
-          currentUserMalaise={this.props.currentUserMalaise}
+          updateUserMalaiseOnPraise={this.props.updateUserMalaiseOnPraise}
+          malaisePoints={this.props.malaisePoints}
           userName={this.props.userName}
         />
       )}
