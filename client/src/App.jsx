@@ -23,8 +23,8 @@ class App extends Component {
       roundTimeUp: false,
       userName: '',
       pic: '',
-      currentWinner: "",
-      currentLoser: "",
+      currentWinner: '',
+      currentLoser: '',
       newRoundCounter: 0,
       roundReady: false
     }
