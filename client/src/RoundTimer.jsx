@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class RoundTimer extends Component {
   constructor(props){
     super(props);
-    this.state = {currentCount: 40}
+    this.state = {currentCount: 60}
   }
   timer() {
     this.setState({
