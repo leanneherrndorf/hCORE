@@ -235,6 +235,7 @@ class App extends Component {
             newRoundStart={this.newRoundStart}
             currentWinner={this.state.currentWinner}
             currentLoser={this.state.currentLoser}
+            posts={this.state.posts}
             newRoundCounter={this.state.newRoundCounter}
             updateNewRoundCount={this.updateNewRoundCount}/>
         </div>

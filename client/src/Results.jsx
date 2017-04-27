@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Jumbotron} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
+import Leaderboard from './Leaderboard.jsx';
 
 class Results extends React.Component {
   constructor(props) {
@@ -32,8 +33,14 @@ class Results extends React.Component {
         <div>
           <Jumbotron className= "results">
             <h1 className="jumbo-text">Results</h1>
-            <p>Winner: {this.props.currentWinner}</p>
-            <p>Loser: {this.props.currentLoser}</p>
+            
+            <main className="leaderboard">
+            {this.props.posts.map((post) =>
+            <Leaderboard post={post}
+            />
+            )}
+            </main>
+
             <Button type='submit' bsStyle="success" onClick={this.broadCastRoundCount.bind(this)}> Start a new round! </Button>
           </Jumbotron>
         </div>
