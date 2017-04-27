@@ -11,7 +11,6 @@ class RoundTimer extends Component {
     })
     if(this.state.currentCount < 1) {
       this.props.checkRoundTimer();
-      this.props.determineScore();
       clearInterval(this.intervalId);
     }
   }

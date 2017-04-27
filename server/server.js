@@ -52,7 +52,7 @@ let num = 0;
 
 function randPic() {
   let img = "../images/user_icons/" + num + ".png";
-  if (num < 9) {
+  if (num < 10) {
     num++;
     return (img);
   } else {
