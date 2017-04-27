@@ -2,39 +2,30 @@ body {
   margin-bottom: 20px;
 }
 
-// .welcome {
-//   text-align: center;
-//   padding-top: 150px;
-  //display: flex;
-  // @media screen and (max-width: 500px) {
-  //   padding-top: 50px;
-  // }
-// }
 .welcome-text{
   text-align: center;
-  padding-top: 75px;
+  padding: 75px 25px 10px;
+  .btn-success {
+    font-size: 20px;
+  }
 }
-// .jumbo-text {
-//   justify-content: center;
-//   text-align: center;
-//   padding: 20px;
-//   min-width: 70%;
-//   background: #e3ecf9;
-//   box-shadow:
-//     1px 1px #9da7b7,
-//     2px 2px #9da7b7,
-//     3px 3px #9da7b7;
-//   border-radius: 6px;
-//   flex-grow: 1;
-//   margin-left: 25px;
-//   margin-right: 25px;
-// }
+
+@media screen and (max-width: 770px) {
+  .welcome-text {
+    padding-top: 40px;
+  }   
+}
+
+.jumbotron p {
+  margin: 15px 0;
+  font-size: 21px;
+}
+
 .postform {
   display: flex;
   justify-content: center;
   padding: 15px;
   min-width: 400px;
-  // max-width: 800px;
   background: #e3ecf9;
   box-shadow:
     1px 1px #9da7b7,
@@ -52,6 +43,16 @@ body {
     1px 1px #9da7b7,
     2px 2px #9da7b7,
     3px 3px #9da7b7;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .postform {
+    min-width: 350px;
+    margin: 115px 10px;
+    .btn-success {
+      font-size: 10px;
+    }
   }
 }
 
@@ -116,9 +117,26 @@ body {
   }
 }
 
+@media screen and (max-width: 770px) {
+  .postlist {
+    padding-top: 65px;
+    
+    .post {
+      margin: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .results.jumbotron {
+    padding-top: 85px;
+  }
+}
+
 .glyphicon-refresh-animate {
   animation: spin 1.5s infinite linear;
   font-size: 50px;
+
   @keyframes spin {
     from { transform: scale(1) rotate(0deg);}
     to { transform: scale(1) rotate(360deg);}
