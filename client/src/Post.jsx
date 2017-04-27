@@ -39,6 +39,7 @@ class Post extends React.Component {
   praiseClick() {
     let health = this.props.post.health + 1;
     this.props.updateHealthOnClick(health, this.props.post.id);
+    this.props.updateUserMalaiseOnPraise();
   }
 
   render() {
