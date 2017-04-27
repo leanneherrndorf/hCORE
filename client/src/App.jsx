@@ -10,7 +10,7 @@ import Results from './Results.jsx';
 const randomPrompt = require('../../server/random-prompt.js');
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       firstTimeUser: true,
@@ -18,25 +18,28 @@ class App extends Component {
       listOfUsers: [], // List for all active users for future feature
       count: 0,
       topic: '',
-      currentUserMalaise: {
-        id: 0,
-        malaise: 0
-      },
+      malaisePoints: 0,
       timeUp: false,
       roundTimeUp: false,
       userName: '',
       pic: '',
-      currentWinner: "",
-      currentLoser: "",
+      currentWinner: '',
+      currentLoser: '',
       newRoundCounter: 0,
       roundReady: false
     }
   }
 
   updateUserMalaiseOnClick = () => {
-    const newMalaise = this.state.currentUserMalaise.malaise - 1;
-    this.setState({currentUserMalaise: {malaise: newMalaise}});
-    console.log('current user malaise:', this.state.currentUserMalaise.malaise);
+    const newMalaise = this.state.malaisePoints - 1;
+    this.setState({malaisePoints: newMalaise});
+    console.log('current user malaise:', this.state.malaisePoints);
+  }
+
+  updateUserMalaiseOnPraise = () => {
+    const increaseMalaise = this.state.malaisePoints + 1;
+    this.setState({malaisePoints: increaseMalaise});
+    console.log('current user malaise:', this.state.malaisePoints);
   }
 
   updateHealthOnClick = (health, id) => {
@@ -48,6 +51,7 @@ class App extends Component {
   updateMessageOnClick = (input) => {
     const newMessage = {type: 'postMessage', content: input};
     this.socket.send(JSON.stringify(newMessage));
+    this.setState({malaisePoints: 1});
   }
 
   checkTimer = () => {
@@ -57,7 +61,7 @@ class App extends Component {
     });
     if(users.includes(this.state.userName)){
       //cconsole.log("here");
-    }else{
+    } else {
       //send request to server to generate empty post
       const emptyPost = {type: 'postEmptyPost'}
       this.socket.send(JSON.stringify(emptyPost));
@@ -135,16 +139,10 @@ class App extends Component {
             health: data.content.health,
             name: data.content.name,
             maxHealth: data.content.maxHealth,
-            malaiseID: data.content.malaiseID,
-            malaise: data.content.malaise,
             pic: data.content.pic
           }
-          this.setState({currentUser: data.content.name})
-          this.setState({currentUserMalaise: {
-            id: data.content.malaiseID,
-            malaise: data.content.malaise,
-          }});
           const posts = this.state.posts.concat(postObj);
+          this.setState({currentUser: data.content.name})
           this.setState({posts: posts});
         break;
         case 'outgoingUser':
@@ -203,10 +201,10 @@ class App extends Component {
   render() {
    // console.log("your username is: ", this.state.userName);
     // Start state: enough users online, stage for users to enter their post, and the time is not yet up
-    if(!this.state.timeUp && this.state.roundReady){
+    if(!this.state.timeUp && this.state.roundReady) {
       return (
         <div>
-          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
+          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
           <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.userName}/>
           <Timer checkTimer={this.checkTimer}/>
         </div>
@@ -216,25 +214,27 @@ class App extends Component {
     } else if (this.state.timeUp && this.state.roundTimeUp) {
       return (
         <div>
-          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
+          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
           <Results
-          clearPosts={this.clearPosts}
-          newRoundStart={this.newRoundStart}
-          currentWinner={this.state.currentWinner}
-          currentLoser={this.state.currentLoser}
-          newRoundCounter={this.state.newRoundCounter}
-          updateNewRoundCount={this.updateNewRoundCount}/>
+            clearPosts={this.clearPosts}
+            newRoundStart={this.newRoundStart}
+            currentWinner={this.state.currentWinner}
+            currentLoser={this.state.currentLoser}
+            newRoundCounter={this.state.newRoundCounter}
+            updateNewRoundCount={this.updateNewRoundCount}/>
         </div>
       );
     // Voting state: post entering time is up, all posts in view, users can vote on posts
     } else if (this.state.timeUp){
       return (
         <div>
-          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} currentUserMalaise={this.state.currentUserMalaise}/>
+          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
 
-          <Postlist posts={this.state.posts}
+          <Postlist 
+            posts={this.state.posts}
             updateHealthOnClick={this.updateHealthOnClick}
-            currentUserMalaise={this.state.currentUserMalaise}
+            updateUserMalaiseOnPraise={this.updateUserMalaiseOnPraise}
+            malaisePoints={this.state.malaisePoints}
             userName={this.state.userName}
           />
           <RoundTimer checkRoundTimer={this.checkRoundTimer} determineScore={this.determineScore}/>

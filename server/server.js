@@ -52,15 +52,14 @@ function setUserName(newUser) {
 let num = 0;
 
 function randPic() {
-
   let img = "../images/user_icons/" + num + ".png";
-  if (num < 9){
-  num++;
-  return (img);
- } else {
-  num = 0;
-  return (img);
- }
+  if (num < 9) {
+    num++;
+    return (img);
+  } else {
+    num = 0;
+    return (img);
+  }
 }
 
 wss.broadcast = function broadcast(data) {
@@ -123,10 +122,7 @@ wss.on('connection', (ws) => {
             health: wss.clients.size - 1,
             maxHealth: wss.clients.size - 1,
             name: clientName,
-            malaiseID: id,
-            malaise: 1,
             pic: picRoute,
-            // newRoundClick: 1
           }
         }
         wss.broadcast(JSON.stringify(outputPost));
@@ -183,8 +179,6 @@ wss.on('connection', (ws) => {
             health: 0,
             maxHealth: wss.clients.size - 1,
             name: clientName,
-            malaiseID: id,
-            malaise: 1,
             pic: picRoute,
             newRoundClick: 1
           }
