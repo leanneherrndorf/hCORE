@@ -12,7 +12,7 @@ const app = express();
 app.set("view engine", "ejs");
 
 app.use(express.static('public'));
-app.get('/home', function(req, res){
+app.get('/', function(req, res){
   res.render("index", {development: process.env.NODE_ENV !== "production"});
 });
 
