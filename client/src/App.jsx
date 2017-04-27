@@ -33,6 +33,15 @@ class App extends Component {
     }
   }
 
+  updateUserName = (event) => {
+    if(event.key === 'Enter'){
+      this.setState({firstTimeUser: true});
+      let newName = event.target.value;
+      //this.setState({userName: newName});
+      this.socket.send(JSON.stringify({type: 'incomingNameChange', name: newName}));
+      console.log(this.state.userName);
+    }
+  }
   updateUserMalaiseOnClick = () => {
     const newMalaise = this.state.currentUserMalaise.malaise - 1;
     this.setState({currentUserMalaise: {malaise: newMalaise}});
@@ -46,7 +55,7 @@ class App extends Component {
   }
 
   updateMessageOnClick = (input) => {
-    const newMessage = {type: 'postMessage', content: input};
+    const newMessage = {type: 'postMessage', userName:this.state.userName, content: input};
     this.socket.send(JSON.stringify(newMessage));
   }
 
@@ -59,7 +68,7 @@ class App extends Component {
       //cconsole.log("here");
     }else{
       //send request to server to generate empty post
-      const emptyPost = {type: 'postEmptyPost'}
+      const emptyPost = {type: 'postEmptyPost', userName: this.state.userName}
       this.socket.send(JSON.stringify(emptyPost));
     }
 
@@ -151,8 +160,14 @@ class App extends Component {
           if (this.state.firstTimeUser) {
             this.setState({firstTimeUser: false, userName: data.content.userName, pic: data.content.pic});
           }
-         // console.log("pic:", this.state.pic);
-          break;
+        break;
+
+        case 'outgoingNameChange':
+          if (this.state.firstTimeUser) {
+            this.setState({firstTimeUser: false, userName: data.content.userName});
+          }
+        break;
+
         case 'clientCount':
           this.setState({count: data.count});
           this.setState({newRoundCounter: data.count});
@@ -251,7 +266,8 @@ class App extends Component {
           clearPosts={this.clearPosts}
           newRoundStart={this.newRoundStart}
           newRoundCounter={this.state.newRoundCounter}
-          updateNewRoundCount={this.updateNewRoundCount}/>
+          updateNewRoundCount={this.updateNewRoundCount}
+          updateUserName={this.updateUserName}/>
       </div>
       );
     }

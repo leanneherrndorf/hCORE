@@ -24,7 +24,6 @@ const wss = new WebSocket.Server({ server });
 const sentence = randomPrompt();
 const PORT = process.env.PORT || 3001;
 
-
 // A list of all the users
 let listOfUsers = [];
 
@@ -114,6 +113,17 @@ wss.on('connection', (ws) => {
         wss.broadcast(JSON.stringify(outputUser));
       break;
 
+      case 'incomingNameChange':
+        let outputNameChange = {
+          type: 'outgoingNameChange',
+          content: {
+            userName: post.name,
+            pic: picRoute
+          }
+        }
+        wss.broadcast(JSON.stringify(outputNameChange));
+      break;
+
       case 'postMessage':
         let outputPost = {
           type: 'incomingMessage',
@@ -122,7 +132,7 @@ wss.on('connection', (ws) => {
             post: post.content,
             health: wss.clients.size - 1,
             maxHealth: wss.clients.size - 1,
-            name: clientName,
+            name: post.userName,
             malaiseID: id,
             malaise: 1,
             pic: picRoute,
@@ -182,11 +192,11 @@ wss.on('connection', (ws) => {
             post: "",
             health: 0,
             maxHealth: wss.clients.size - 1,
-            name: clientName,
+            name: post.userName,
             malaiseID: id,
             malaise: 1,
             pic: picRoute,
-            newRoundClick: 1
+            //newRoundClick: 1
           }
         }
         wss.broadcast(JSON.stringify(outputEmptyPost));
