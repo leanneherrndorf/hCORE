@@ -32,10 +32,17 @@ class App extends Component {
   updateUserName = (event) => {
       this.setState({firstTimeUser: true});
       let newName = event.target.value;
-      //this.setState({userName: newName});
-      this.socket.send(JSON.stringify({type: 'incomingNameChange', name: newName}));
-      console.log(this.state.userName);
+      if (newName.length > 12){
+        this.socket.send(JSON.stringify({type: 'incomingNameChange', name: 'Dingus'}));
+      } else if (newName.toLowerCase() === 'leanne' || newName.toLowerCase() === 'brendon'){
+        this.socket.send(JSON.stringify({type: 'incomingNameChange', name: 'Nerd'}));
+      } else if (newName === '') {
+        this.socket.send(JSON.stringify({type: 'incomingNameChange', name: this.state.userName}));
+      } else {
+        this.socket.send(JSON.stringify({type: 'incomingNameChange', name: newName}));
+      }
   }
+  
   updateUserMalaiseOnClick = () => {
     const newMalaise = this.state.malaisePoints - 1;
     this.setState({malaisePoints: newMalaise});
