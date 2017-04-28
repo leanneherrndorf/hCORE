@@ -78,11 +78,7 @@ let topicMessage = {
   topic: sentence,
   type: "incomingTopic"
 }
-// Set up a callback that will run when a client connects to the server
-// When a client connects they are assigned a socket, represented by
-// the ws parameter in the callback.
 
-//server.on('upgrade', wss.handleUpgrade);
 
 wss.on('connection', (ws) => {
   const location = url.parse(ws.upgradeReq.url, true);
@@ -201,14 +197,13 @@ wss.on('connection', (ws) => {
       }
     });
 
-    ws.on('close', () => {
+  ws.on('close', () => {
     clientCount.count = wss.clients.size;
     wss.broadcast(JSON.stringify(clientCount));
     if (clientCount.count === 0) {
       listOfUsers = [];
     }
   });
-
 });
 
 server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
