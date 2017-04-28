@@ -20,20 +20,19 @@ class Postform extends React.Component {
     msg.show(<h3>Post must be less than 200 characters.</h3>, {
       time: 3000,
       type: 'error',
-      icon: <img src="../images/patgar.jpg" style={{width: 60, height: 60, borderRadius: 6}} />
+      icon: <img src="../huManatee.png" style={{width: 60, height: 60, borderRadius: 6}} />
     });
   }
 
   showAlert2(){
-    msg.show(<h3>Write something you big dumb goof</h3>, {
+    msg.show(<h3>Write something you big dumb goof.</h3>, {
       time: 3000,
       type: 'error',
-      icon: <img src="../images/patgar.jpg" style={{width: 60, height: 60, borderRadius: 6}} />
+      icon: <img src="../huManatee.png" style={{width: 60, height: 60, borderRadius: 6}} />
     });
   }
 
   handleClick() {
-    //console.log(this.textInput.value);
     let input = this.textInput.value;
     if (input.length <= 200 && input.length > 0) {
       this.props.updateMessageOnClick(input);
@@ -57,17 +56,10 @@ class Postform extends React.Component {
       );
     } else {
       return (
-        <div className="waiting-for-posts">
-          {/*<div className="form-group">
-            <div className="col-md-12 text-center">
-              <span className="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
-            </div>
-          </div>*/}
-        </div>
+        <div className="waiting-for-posts"></div>
       );
     }
   }
 }
-
 
 export default Postform;
