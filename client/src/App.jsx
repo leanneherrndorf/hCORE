@@ -30,6 +30,7 @@ class App extends Component {
   }
 
   updateUserName = (event) => {
+
       this.setState({firstTimeUser: true});
       let newName = event.target.value;
       if (newName.length > 12){
@@ -196,10 +197,22 @@ class App extends Component {
     if(!this.state.timeUp && this.state.roundReady) {
       return (
         <div>
-          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
+          <Nav 
+            topic={this.state.topic} 
+            count={this.state.count} 
+            pic={this.state.pic} 
+            username={this.state.userName} 
+            malaisePoints={this.state.malaisePoints}
+          />
           <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.userName}/>
           <Timer checkTimer={this.checkTimer}/>
-          <Foot topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
+          <Foot 
+            topic={this.state.topic} 
+            count={this.state.count} 
+            pic={this.state.pic} 
+            username={this.state.userName} 
+            malaisePoints={this.state.malaisePoints}
+          />
         </div>
       );
 
@@ -207,16 +220,30 @@ class App extends Component {
     } else if (this.state.timeUp && this.state.roundTimeUp) {
       return (
         <div>
-          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
+          <Nav 
+            topic={this.state.topic} 
+            count={this.state.count} 
+            pic={this.state.pic} 
+            username={this.state.userName} 
+            malaisePoints={this.state.malaisePoints}
+          />
           <Results
             clearPosts={this.clearPosts}
             newRoundStart={this.newRoundStart}
             posts={this.state.posts}
             newRoundCounter={this.state.newRoundCounter}
-            updateNewRoundCount={this.updateNewRoundCount}/>
-            <Foot topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
+            updateNewRoundCount={this.updateNewRoundCount}
+          />
+          <Foot 
+            topic={this.state.topic} 
+            count={this.state.count} 
+            pic={this.state.pic} 
+            username={this.state.userName} 
+            malaisePoints={this.state.malaisePoints}
+          />
         </div>
       );
+
     // Voting state: post entering time is up, all posts in view, users can vote on posts
     } else if (this.state.timeUp){
       return (
@@ -229,14 +256,19 @@ class App extends Component {
             malaisePoints={this.state.malaisePoints}
             userName={this.state.userName}
           />
-
           <RoundTimer checkRoundTimer={this.checkRoundTimer} determineScore={this.determineScore}/>
-          <Foot topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
-
+          <Foot 
+            topic={this.state.topic} 
+            count={this.state.count} 
+            pic={this.state.pic} 
+            username={this.state.userName} 
+            malaisePoints={this.state.malaisePoints}
+          />
         </div>
       );
+      
     // In queue state: not enough users yet online
-    }else {
+    } else {
     return (
       <div>
         <Welcome
@@ -247,7 +279,8 @@ class App extends Component {
           newRoundStart={this.newRoundStart}
           newRoundCounter={this.state.newRoundCounter}
           updateNewRoundCount={this.updateNewRoundCount}
-          updateUserName={this.updateUserName}/>
+          updateUserName={this.updateUserName}
+        />
       </div>
       );
     }
