@@ -1,14 +1,20 @@
 module.exports = function randomPrompt() {
   // use string interpoloation `hello ${a.noun} me`
   var struc = [
-    "What does " + a(noun()) + " and " + a(noun()) + " have in common?",
-    "Why did the " + noun() + " cross the road?",
-    "Write a tagline for a movie called Beauty And The " + cap(noun()),
     "On the menu tonight is " + s(noun()) + " with a side of " + noun() + ", what's for dessert?",
     "Your boss is now " + a(noun()) + ", how would they fire you?",
-    "Complete the rhyme - I like big " + s(noun()) + " and I cannot lie",
     "You're being attacked by an army of " + s(noun()) + ", how do you defend yourself?",
-    "If I was " + a(noun()) + " where would I hide?"];
+    "Write the script for Star Wars Episode 9: Return Of The " + cap(noun()),
+    "Your house is now full of " + s(noun()) + ", how do you get them out?",
+    "Give an elevator pitch for a movie called Passion Of The " + cap(noun()),
+    "How would you use " + a(noun()) + " to smuggle " + s(noun()) + " across the border?",
+     A(noun()) + " and " + a(noun()) + " are on a dinner date, who pays the bill and why?",
+     "Who would win in a fight, " + a(noun()) + " or " + a(noun()) + " and why?",
+     "You're on a hunt for a rare " + noun() + ", how do lure and capture them?",
+     "What's the best way to impress " + a(noun()) + " on a date?",
+     A(noun()) + " and " + a(noun()) + " are having a lovers quarrel, what are they fighting about?",
+     "How does an omnipotent " + noun() + ", with an unquenchable hatred for humanity, torture it's prisoners for all of eternity?"
+     ];
 
   var strucRandom = Math.floor(Math.random() * (struc.length));
   return (struc[strucRandom]);
@@ -23,6 +29,14 @@ function a(noun){
     return ("an " + noun);
   } else {
     return ("a " + noun);
+  }
+}
+
+function A(noun){
+  if (noun.charAt(0) === "a" || noun.charAt(0) === "e" || noun.charAt(0) === "i" || noun.charAt(0) === "o" || noun.charAt(0) === "u"){
+    return ("An " + noun);
+  } else {
+    return ("A " + noun);
   }
 }
 
@@ -50,51 +64,42 @@ function noun(){
     "baby",
     "bean",
     "bladder",
-    "bottom",
     "boy",
-    "bra",
-    "butter",
+    "boy",
+    "boy",
+    "boy",
+    "boy",
+    "boy",
+    "boy",
+    "boy",
+    "boy",
+    "boy",
+    "boy",
+    "boy",
+    "boy",
+    "boy",
     "cabbage",
     "cactus",
     "cake",
     "camel",
     "carp",
     "caterpillar",
-    "catsup",
-    "cereal",
-    "cheese",
     "chicken",
-    "daughter",
     "dentist",
-    "disease",
     "donkey",
     "duckling",
     "eel",
     "ex-husband",
-    "father",
-    "father-in-law",
     "fish",
     "giraffe",
     "goldfish",
-    "granddaughter",
-    "grandfather",
     "hamburger",
     "hippopotamus",
-    "hoe",
-    "hole",
     "hyena",
-    "kamikaze",
-    "kangaroo",
-    "kitten",
-    "lasagna",
-    "lettuce",
     "llama",
     "lobster",
     "locust",
-    "lotion",
     "mayonnaise",
-    "milk",
-    "mother-in-law",
     "mustard",
     "octopus",
     "ostrich",
@@ -109,16 +114,12 @@ function noun(){
     "shrimp",
     "spaghetti",
     "squid",
-    "step-son",
     "sturgeon",
     "tongue",
-    "toothpaste",
-    "tuna",
     "turnip",
-    "vegetable",
     "yak",
     "yam",
-    "yogurt"
+    "spooky scary skeleton"
   ];
 
   var nounRandom = Math.floor(Math.random() * (noun.length));
