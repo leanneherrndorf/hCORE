@@ -40,3 +40,9 @@ font-size: 30px;
  text-align: center;
  padding-bottom: 100px;
 }
+
+@media (max-width: 450px){
+  .info{
+    padding-bottom: 10px;
+  }
+}

@@ -42,12 +42,13 @@ class Welcome extends React.Component {
           <div className = "welcome-text">
           <p>WELCOME to</p>
           <h1 className="logo-text">hC<img src="../huManatee.png" className="logo-img" style={{width: 60, height: 60}}/>RE</h1>
-          <p>Hi, {this.props.username}! <img src={this.props.pic} style={{width: 40, height: 40}}/> </p>
+          <h2>Hi, {this.props.username}! <img src={this.props.pic} style={{width: 40, height: 40}}/> </h2>
           <p>Not a big fan of your auto-generated name? I guess you can change it here (but if it's over 12 characters then you're a dingus) </p>
           <input placeholder='Enter a new name...' onBlur={this.props.updateUserName}/>
 
           <p>At the start of the round, a topic will appear at the bottom of your screen. You have 30 seconds to think of your best response. Once the timer runs out, it's time to check out the other users posts. You will have 1 malaise point to downvote your least favourite. Best of luck surviving the round!</p>
           <Button type='submit' bsStyle="success" onClick={this.broadCastRoundCount.bind(this)}> Play </Button>
+          <p> {this.props.count} Users online </p>
           </div>
         </Jumbotron>
         <div className= "info">
@@ -55,12 +56,8 @@ class Welcome extends React.Component {
           <p> Brendan Walker, Max Bergen, Leanne Herrndorf </p>
           <p className="github"><a href ="https://github.com/leanneherrndorf/hCORE"><i className="fa fa-github" aria-hidden="true"></i></a></p>
         </div>
-          <Welcomefoot
-            pic={this.props.pic}
-            count={this.props.count}
-            username={this.props.username}
-          />
-        </div>
+      </div>
+
       );
     }else{
       return (
@@ -74,11 +71,7 @@ class Welcome extends React.Component {
               </div>
             </div>
           </div>
-          <Welcomefoot
-            pic={this.props.pic}
-            count={this.props.count}
-            username={this.props.username}
-          />
+
         </div>
       );
     }
@@ -87,6 +80,19 @@ class Welcome extends React.Component {
 
 export default Welcome;
 
+
+        //<Welcomefoot
+          //  pic={this.props.pic}
+            //count={this.props.count}
+            //username={this.props.username}
+          ///>
+        //</div>
+
+ // <Welcomefoot
+ //            pic={this.props.pic}
+ //            count={this.props.count}
+ //            username={this.props.username}
+ //          />
 
 
         // </div>

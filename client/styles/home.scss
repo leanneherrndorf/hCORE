@@ -4,12 +4,6 @@
   padding: 15px;
   min-width: 350px;
   background: $color2;
-
-  box-shadow:
-    1px 1px #9da7b7,
-    2px 2px #9da7b7,
-    3px 3px #9da7b7;
-  border-radius: 6px;
   margin: 165px 50px 50px 50px;
   textarea {
     width: 70%;
@@ -17,10 +11,6 @@
     margin-right: 15px;
     border: 0;
     border-radius: 4px;
-    //box-shadow:
-    // 1px 1px #9da7b7,
-    // 2px 2px #9da7b7,
-    // 3px 3px #9da7b7;
   }
 }
 
@@ -43,11 +33,6 @@
     padding: 20px;
     margin: 20px;
     margin-bottom: 5px;
-    box-shadow:
-      1px 1px #9da7b7,
-      2px 2px #9da7b7,
-      3px 3px #9da7b7;
-    border-radius: 6px;
     flex-grow: 1;
     background: $color2;
     width: 33%;
@@ -102,12 +87,9 @@
     .post {
       margin: 10px;
     }
-  }
-}
-
-@media screen and (max-width: 770px) {
-  .results.jumbotron {
-    padding-top: 85px;
+    .results.jumbotron {
+      padding-top: 85px;
+    }
   }
 }
 
