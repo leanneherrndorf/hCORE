@@ -240,6 +240,7 @@ class App extends Component {
       return (
         <div>
           <Nav/>
+          <RoundTimer checkRoundTimer={this.checkRoundTimer} determineScore={this.determineScore}/>
           <Postlist
             posts={this.state.posts}
             updateHealthOnClick={this.updateHealthOnClick}
@@ -247,7 +248,6 @@ class App extends Component {
             malaisePoints={this.state.malaisePoints}
             userName={this.state.userName}
           />
-          <RoundTimer checkRoundTimer={this.checkRoundTimer} determineScore={this.determineScore}/>
           <Foot 
             topic={this.state.topic} 
             count={this.state.count} 

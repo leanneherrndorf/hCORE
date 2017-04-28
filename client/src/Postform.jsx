@@ -58,11 +58,11 @@ class Postform extends React.Component {
     } else {
       return (
         <div className="waiting-for-posts">
-          <div className="form-group">
+          {/*<div className="form-group">
             <div className="col-md-12 text-center">
               <span className="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
             </div>
-          </div>
+          </div>*/}
         </div>
       );
     }
