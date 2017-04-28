@@ -2,111 +2,111 @@
 .the-nav {
   z-index: 1;
   display: flex;
-  color: $color2;
-  background: $color1;
+  color: $color1;
+  background: $color2;
   min-height: 30px;
   padding: 0 10px;
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
-  box-shadow: 0 5px 15px gray;
-  border-radius: 0;
-  //z-index: 2;
+  //box-shadow: 0 5px 15px gray;
+  //border-radius: 0;
 
   .nav-brand{
-    //background: #adc5dd;
-    //border-radius: 6px;
-    //color: inherit;
     font-family: $logofont;
-    //padding: 20px 10px;
     margin: 5px;
   }
 
-  .topic{
-    background: #adc5dd;
-    border-radius: 6px;
-    text-align: center;
-    justify-content: center;
-    padding: 30px 10px;
-    margin: 15px;
-    flex-grow: 1;
-    word-wrap: break-word;
-  }
-
-  .nav-count {
-    background: #adc5dd;
-    border-radius: 6px;
-    color: inherit;
-    text-align: center;
-    font-size: 18px;
-    padding: 10px 10px;
-    margin: 15px;
-  }
-
-  .nav-username {
-    background: #adc5dd;
-    border-radius: 6px;
-    color: inherit;
-    text-align: center;
-    font-size: 18px;
-    padding: 10px 10px;
-    margin: 15px;
-  }
-
-  .nav-malaise {
-    background: #adc5dd;
-    border-radius: 6px;
-    color: inherit;
-    text-align: center;
-    font-size: 18px;
-    padding: 10px 10px;
-    margin: 15px;
-  }
-
-  .nav-github {
-    background: #adc5dd;
-    border-radius: 6px;
-    color: inherit;
-    text-align: center;
-    font-size: 50px;
-    padding: 10px 10px;
-    margin: 15px;
-
-    a:hover {
-      color: green;
-    }
+  .logo{
+    margin: 5px;
   }
 }
 
-#bg-nested-dropdown {
-  background: #7899ba;
-  min-height: 50px;
-  padding: 0 10px;
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  box-shadow: 0 5px 15px gray;
-  border-radius: 0;
-  z-index: 1;
-  width: 100%;
-  font-size: 18px;
+//   .topic{
+//     background: #adc5dd;
+//     border-radius: 6px;
+//     text-align: center;
+//     justify-content: center;
+//     padding: 30px 10px;
+//     margin: 15px;
+//     flex-grow: 1;
+//     word-wrap: break-word;
+//   }
 
-  &:hover {
-    background: #607b96;
-  }
-}
+//   .nav-count {
+//     background: #adc5dd;
+//     border-radius: 6px;
+//     color: inherit;
+//     text-align: center;
+//     font-size: 18px;
+//     padding: 10px 10px;
+//     margin: 15px;
+//   }
 
-.dropdown-menu {
-  min-width: 345px;
-  margin-left: 15px;
-  text-align: center;
-}
+//   .nav-username {
+//     background: #adc5dd;
+//     border-radius: 6px;
+//     color: inherit;
+//     text-align: center;
+//     font-size: 18px;
+//     padding: 10px 10px;
+//     margin: 15px;
+//   }
 
-.open>.dropdown-menu {
-  margin-top: 50px;
-}
+//   .nav-malaise {
+//     background: #adc5dd;
+//     border-radius: 6px;
+//     color: inherit;
+//     text-align: center;
+//     font-size: 18px;
+//     padding: 10px 10px;
+//     margin: 15px;
+//   }
+
+//   .nav-github {
+//     background: #adc5dd;
+//     border-radius: 6px;
+//     color: inherit;
+//     text-align: center;
+//     font-size: 50px;
+//     padding: 10px 10px;
+//     margin: 15px;
+
+//     a:hover {
+//       color: green;
+//     }
+//   }
+// }
+
+// #bg-nested-dropdown {
+//   background: #7899ba;
+//   min-height: 50px;
+//   padding: 0 10px;
+//   position: fixed;
+//   left: 0;
+//   right: 0;
+//   top: 0;
+//   box-shadow: 0 5px 15px gray;
+//   border-radius: 0;
+//   z-index: 1;
+//   width: 100%;
+//   font-size: 18px;
+
+//   &:hover {
+//     background: #607b96;
+//   }
+// }
+
+// .dropdown-menu {
+//   min-width: 345px;
+//   margin-left: 15px;
+//   text-align: center;
+// }
+
+// .open>.dropdown-menu {
+//   margin-top: 50px;
+// }
 
 
 // @media screen and (max-width: 650px) {

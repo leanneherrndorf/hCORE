@@ -1,93 +1,44 @@
 .footer {
   z-index: 1;
-  //display: flex;
+  display: flex;
   background: $color1;
   min-height: 100px;
-  //flex-direction: row;
   padding: 0 10px;
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
-  box-shadow: 0 5px 15px gray;
   border-radius: 0;
-  z-index: 2;
 
   .footer-username, .topic, .footer-count, .footer-malaise {
-    flex-direction: column;
     background: $color2;
     margin: 15px;
     text-align: center;
-    //flex-grow: 1;
+    font-size: 18px;
     display: inline-block;
-
   }
 
   .row1{
     width: 100%;
   }
   .footer-username {
-
-    //background: #adc5dd;
-    //border-radius: 6px;
-    //color: inherit;
     width: 20%;
-    font-size: 18px;
     padding: 10px 10px;
-
   }
 
   .topic{
-    // flex-direction: column;
-    // background: #adc5dd;
-    //border-radius: 6px;
-    //text-align: center;
-    //justify-content: center;
-    width: 40%;
+    width: 50%;
     padding: 30px 10px;
-    //margin: 15px;
     flex-grow: 1;
-
     word-wrap: break-word;
   }
 
   .footer-count {
-    // flex-direction: column;
-    // background: #adc5dd;
-    // border-radius: 6px;
-    //color: inherit;
-    //text-align: center;
-    //width: 20%;
-    font-size: 18px;
-    padding: 10px 10px;
-    //margin: 15px;
+    width: 20%;
+    padding: 30px 10px;
   }
 
   .footer-malaise {
-    // background: #adc5dd;
-    // border-radius: 6px;
-    // color: inherit;
-    text-align: center;
-    font-size: 18px;
     padding: 10px 10px;
-    margin: 15px;
-  }
-
-
-  .footer-github {
-    // justify-content: center;
-    // flex-direction: column;
-    // background: #adc5dd;
-    // border-radius: 6px;
-    color: $color1;
-    text-align: center;
-    font-size: 30px;
-    padding: 10px 10px;
-    width: 100%;
-    //margin: 15px;
-
-    a:hover {
-      color: $color3;
-    }
   }
 }
