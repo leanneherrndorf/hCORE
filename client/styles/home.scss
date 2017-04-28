@@ -1,9 +1,11 @@
 body {
   margin-bottom: 20px;
+  font-family: $mainfont;
 }
 
 .welcome-text{
   text-align: center;
+
   padding: 75px 25px 10px;
   .btn-success {
     font-size: 20px;
@@ -26,7 +28,10 @@ body {
   justify-content: center;
   padding: 15px;
   min-width: 400px;
-  background: #e3ecf9;
+
+  // max-width: 800px;
+  background: $color2;
+
   box-shadow:
     1px 1px #9da7b7,
     2px 2px #9da7b7,
@@ -71,7 +76,7 @@ body {
       3px 3px #9da7b7;
     border-radius: 6px;
     flex-grow: 1;
-    background: #e3ecf9;
+    background: $color2;
     width: 33%;
     min-width: 350px;
     transition: 0.3s;

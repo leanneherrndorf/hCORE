@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-
 import {Jumbotron} from 'react-bootstrap';
 import {DropdownButton} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import {Form} from 'react-bootstrap';
 import {FormControl} from 'react-bootstrap';
+import Nav from './Nav.jsx';
+//import Foot from './Foot.jsx';
+import Welcomefoot from './Welcomefoot.jsx';
 
 class Welcome extends React.Component {
   constructor(props) {
@@ -39,20 +41,7 @@ class Welcome extends React.Component {
     if(!this.click){
       return (
         <div>
-        <nav className="the-nav">
-          <h1 className="nav-brand">hCORE</h1>
-          <h4 className="topic">In queue...</h4>
-          <p className="nav-count">{this.props.count} User(s) online</p>
-          <p className="nav-username">{this.props.username}<img src={this.props.pic} style={{width: 60, height: 60}}/></p>
-          <p className="nav-github"><a href ="https://github.com/leanneherrndorf/hCORE"><i className="fa fa-github" aria-hidden="true"></i></a></p>
-        </nav>
-          <DropdownButton title="Dropdown" id="bg-nested-dropdown" className="the-dropdown">
-            <h1 className="nav-brand">hCORE</h1>
-            <h4>In queue...</h4>
-            <p>{this.props.count} User(s) online</p>
-            <p>{this.props.username}<img src={this.props.pic} style={{width: 60, height: 60}}/></p>
-            <p><a href ="https://github.com/leanneherrndorf/hCORE"><i className="fa fa-github" aria-hidden="true"></i></a></p>
-          </DropdownButton>
+        <Nav/>
         <Jumbotron className= "welcome">
           <div className = "welcome-text">
           <h1 className="jumbo-text">WELCOME to hCORE</h1>
@@ -69,18 +58,18 @@ class Welcome extends React.Component {
               <span className="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
             </div>
           </div>
+
+          <Welcomefoot
+          pic={this.props.pic}
+          count={this.props.count}
+          username={this.props.username}
+          />
         </div>
       );
     }else{
       return (
         <div>
-          <nav className="the-nav">
-            <h1 className="nav-brand">hCORE</h1>
-            <h4 className="topic">In queue...</h4>
-            <p className="nav-count">{this.props.count} User(s) online</p>
-            <p className="nav-username">{this.props.username}<img src={this.props.pic} style={{width: 60, height: 60}}/></p>
-            <p className="nav-github"><a href ="https://github.com/leanneherrndorf/hCORE"><i className="fa fa-github" aria-hidden="true"></i></a></p>
-          </nav>
+          <Nav/>
           <div className="waiting-for-posts">
             <div className="form-group">
               <div className="col-md-12 text-center">
@@ -89,6 +78,11 @@ class Welcome extends React.Component {
               </div>
             </div>
           </div>
+          <Welcomefoot
+          pic={this.props.pic}
+          count={this.props.count}
+          username={this.props.username}
+          />
         </div>
       );
     }
@@ -96,3 +90,14 @@ class Welcome extends React.Component {
 }
 
 export default Welcome;
+
+
+
+        // </div>
+        //   <footer className="footer">
+        //     <p className="footer-username">{this.props.username}<img src={this.props.pic} style={{width: 60, height: 60}}/></p>
+        //     <h4 className="topic">In queue...</h4>
+        //     <p className="footer-count">{this.props.count} User(s) online</p>
+
+        //     <p className="footer-github"><a href ="https://github.com/leanneherrndorf/hCORE"><i className="fa fa-github" aria-hidden="true"></i></a></p>
+        //   </footer>

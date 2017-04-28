@@ -6,6 +6,7 @@ import Postlist from './Postlist.jsx';
 import Timer from './Timer.jsx';
 import RoundTimer from './RoundTimer.jsx';
 import Results from './Results.jsx';
+import Foot from './Foot.jsx';
 
 const randomPrompt = require('../../server/random-prompt.js');
 
@@ -191,6 +192,7 @@ class App extends Component {
           <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
           <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.userName}/>
           <Timer checkTimer={this.checkTimer}/>
+          <Foot topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
         </div>
       );
 
@@ -205,22 +207,25 @@ class App extends Component {
             posts={this.state.posts}
             newRoundCounter={this.state.newRoundCounter}
             updateNewRoundCount={this.updateNewRoundCount}/>
+            <Foot topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
         </div>
       );
     // Voting state: post entering time is up, all posts in view, users can vote on posts
     } else if (this.state.timeUp){
       return (
         <div>
-          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
-
-          <Postlist 
+          <Nav/>
+          <Postlist
             posts={this.state.posts}
             updateHealthOnClick={this.updateHealthOnClick}
             updateUserMalaiseOnPraise={this.updateUserMalaiseOnPraise}
             malaisePoints={this.state.malaisePoints}
             userName={this.state.userName}
           />
-          <RoundTimer checkRoundTimer={this.checkRoundTimer}/>
+
+          <RoundTimer checkRoundTimer={this.checkRoundTimer} determineScore={this.determineScore}/>
+          <Foot topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
+
         </div>
       );
     // In queue state: not enough users yet online

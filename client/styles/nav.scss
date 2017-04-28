@@ -1,9 +1,10 @@
+
 .the-nav {
   z-index: 1;
   display: flex;
-  color: black;
-  background: #7899ba;
-  min-height: 100px;
+  color: $color2;
+  background: $color1;
+  min-height: 30px;
   padding: 0 10px;
   position: fixed;
   left: 0;
@@ -11,14 +12,15 @@
   top: 0;
   box-shadow: 0 5px 15px gray;
   border-radius: 0;
-  z-index: 2;
+  //z-index: 2;
 
   .nav-brand{
-    background: #adc5dd;
-    border-radius: 6px;
-    color: inherit;
-    padding: 20px 10px;
-    margin: 15px;
+    //background: #adc5dd;
+    //border-radius: 6px;
+    //color: inherit;
+    font-family: $logofont;
+    //padding: 20px 10px;
+    margin: 5px;
   }
 
   .topic{
@@ -107,11 +109,12 @@
 }
 
 
-@media screen and (max-width: 770px) {
-  .the-nav {
-    display: none;
-  }
-  .the-dropdown {
-    z-index: 10;
-  }
-}
+// @media screen and (max-width: 650px) {
+//   .the-nav {
+//     display: none;
+//   }
+//   .the-dropdown {
+//     z-index: 10;
+//   }
+// }
+
