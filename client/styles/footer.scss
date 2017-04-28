@@ -16,20 +16,16 @@
     text-align: center;
     font-size: 18px;
     display: inline-block;
+    flex-grow: 1;
   }
 
   .row1{
     width: 100%;
   }
-  .footer-username {
-    width: 20%;
-    padding: 10px 10px;
-  }
 
   .topic{
     width: 50%;
     padding: 30px 10px;
-    flex-grow: 1;
     word-wrap: break-word;
   }
 
@@ -37,8 +33,32 @@
     width: 20%;
     padding: 30px 10px;
   }
+  .footer-username {
+    width: 20%;
+    padding: 10px 10px;
+  }
 
   .footer-malaise {
     padding: 10px 10px;
+  }
+}
+
+@media (max-width: 450px){
+  .footer{
+    flex-wrap: wrap;
+
+    .topic, .footer-username, .footer-malaise {
+      margin: 6px;
+    }
+
+    .topic {
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    .footer-username, .footer-malaise {
+      width: 45%;
+      margin-bottom: 10px;
+    }
   }
 }
