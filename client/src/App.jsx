@@ -16,7 +16,7 @@ class App extends Component {
     this.state = {
       firstTimeUser: true,
       posts: [],
-      listOfUsers: [], // List for all active users for future feature
+      listOfUsers: [],
       count: 0,
       topic: '',
       malaisePoints: 0,
@@ -32,7 +32,6 @@ class App extends Component {
   updateUserName = (event) => {
       this.setState({firstTimeUser: true});
       let newName = event.target.value;
-      //this.setState({userName: newName});
       this.socket.send(JSON.stringify({type: 'incomingNameChange', name: newName}));
       console.log(this.state.userName);
   }
@@ -65,10 +64,11 @@ class App extends Component {
     const arrayOfNewObjects = this.state.posts.map((post) => {
       users.push(post.name);
     });
+    console.log(users);
+    console.log(users.includes(this.state.userName));
     if(users.includes(this.state.userName)){
-      //cconsole.log("here");
+      //console.log(here);
     } else {
-      //send request to server to generate empty post
       const emptyPost = {type: 'postEmptyPost', userName: this.state.userName}
       this.socket.send(JSON.stringify(emptyPost));
     }
@@ -189,7 +189,7 @@ class App extends Component {
     if(!this.state.timeUp && this.state.roundReady) {
       return (
         <div>
-          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
+          <Nav/>
           <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.userName}/>
           <Timer checkTimer={this.checkTimer}/>
           <Foot topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
@@ -200,7 +200,7 @@ class App extends Component {
     } else if (this.state.timeUp && this.state.roundTimeUp) {
       return (
         <div>
-          <Nav topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
+          <Nav/>
           <Results
             clearPosts={this.clearPosts}
             newRoundStart={this.newRoundStart}
@@ -222,7 +222,6 @@ class App extends Component {
             malaisePoints={this.state.malaisePoints}
             userName={this.state.userName}
           />
-
           <RoundTimer checkRoundTimer={this.checkRoundTimer} determineScore={this.determineScore}/>
           <Foot topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
 
