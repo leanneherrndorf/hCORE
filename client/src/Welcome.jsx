@@ -46,10 +46,10 @@ class Welcome extends React.Component {
           <div className = "welcome-text">
           <h1 className="jumbo-text">WELCOME to hCORE</h1>
           <p>Hi, {this.props.username}! <img src={this.props.pic} style={{width: 40, height: 40}}/> </p>
-          <p>Not a big fan of your auto generated name? I guesss you can change it here. </p>
-          <input placeholder='Enter a new name...' onKeyPress={this.props.updateUserName}/>
+          <p>Not a big fan of your auto-generated name? I guess you can change it here. </p>
+          <input placeholder='Enter a new name...' onBlur={this.props.updateUserName}/>
 
-          <p>At the start of the round, a topic will appear at the bottom of your screen. You have 10 seconds to think of your best response. Once the timer runs out, it's time to check out the other users posts. You will have 1 malaise point to downvote your least favourite. Best of luck surviving the round!</p>
+          <p>At the start of the round, a topic will appear at the bottom of your screen. You have 20 seconds to think of your best response. Once the timer runs out, it's time to check out the other users posts. You will have 1 malaise point to downvote your least favourite. Best of luck surviving the round!</p>
           <Button type='submit' bsStyle="success" onClick={this.broadCastRoundCount.bind(this)}> Play </Button>
           </div>
         </Jumbotron>

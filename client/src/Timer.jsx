@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class Timer extends Component {
   constructor(props){
     super(props);
-    this.state = {currentCount: 10}
+    this.state = {currentCount: 20}
   }
   timer() {
     this.setState({

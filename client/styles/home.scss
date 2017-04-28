@@ -5,8 +5,22 @@ body {
 
 .welcome-text{
   text-align: center;
-  padding-top: 50px;
-  //background: $color4;
+
+  padding: 75px 25px 10px;
+  .btn-success {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .welcome-text {
+    padding-top: 40px;
+  }   
+}
+
+.jumbotron p {
+  margin: 15px 0;
+  font-size: 21px;
 }
 
 .postform {
@@ -14,8 +28,10 @@ body {
   justify-content: center;
   padding: 15px;
   min-width: 400px;
+
   // max-width: 800px;
   background: $color2;
+
   box-shadow:
     1px 1px #9da7b7,
     2px 2px #9da7b7,
@@ -32,6 +48,16 @@ body {
     1px 1px #9da7b7,
     2px 2px #9da7b7,
     3px 3px #9da7b7;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .postform {
+    min-width: 350px;
+    margin: 115px 10px;
+    .btn-success {
+      font-size: 10px;
+    }
   }
 }
 
@@ -96,9 +122,26 @@ body {
   }
 }
 
+@media screen and (max-width: 770px) {
+  .postlist {
+    padding-top: 65px;
+    
+    .post {
+      margin: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .results.jumbotron {
+    padding-top: 85px;
+  }
+}
+
 .glyphicon-refresh-animate {
   animation: spin 1.5s infinite linear;
   font-size: 50px;
+
   @keyframes spin {
     from { transform: scale(1) rotate(0deg);}
     to { transform: scale(1) rotate(360deg);}

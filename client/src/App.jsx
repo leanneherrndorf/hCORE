@@ -24,21 +24,17 @@ class App extends Component {
       roundTimeUp: false,
       userName: '',
       pic: '',
-      currentWinner: '',
-      currentLoser: '',
       newRoundCounter: 0,
       roundReady: false
     }
   }
 
   updateUserName = (event) => {
-    if(event.key === 'Enter'){
       this.setState({firstTimeUser: true});
       let newName = event.target.value;
       //this.setState({userName: newName});
       this.socket.send(JSON.stringify({type: 'incomingNameChange', name: newName}));
       console.log(this.state.userName);
-    }
   }
   updateUserMalaiseOnClick = () => {
     const newMalaise = this.state.malaisePoints - 1;
@@ -83,33 +79,6 @@ class App extends Component {
 
   checkRoundTimer = () => {
     this.setState({roundTimeUp: true});
-  }
-
-  compareNumbers = (a, b) => {
-    return a - b;
-  }
-
-  determineScore = () => {
-    let sortedposts = this.state.posts;
-    sortedposts.sort((a, b) => {
-      var diff = this.compareNumbers(a.health, b.health);
-      console.log("sortedposts:", sortedposts);
-      console.log("diff", diff);
-
-      if (diff > 0) {
-        return -1;
-        this.setState({currentWinner: sortedposts[0].name});
-        this.setState({currentLoser: sortedposts[sortedposts.length-1].name});
-      } else if (diff < 0) {
-        return 1;
-        this.setState({currentWinner: sortedposts[0].name});
-        this.setState({currentLoser: sortedposts[sortedposts.length-1].name});
-      } else {
-        //return 0;
-        this.setState({currentWinner: "It's a tie!"});
-        this.setState({currentLoser: "It's a tie!"});
-      }
-    });
   }
 
   newRoundStart = () => {
@@ -235,8 +204,7 @@ class App extends Component {
           <Results
             clearPosts={this.clearPosts}
             newRoundStart={this.newRoundStart}
-            currentWinner={this.state.currentWinner}
-            currentLoser={this.state.currentLoser}
+            posts={this.state.posts}
             newRoundCounter={this.state.newRoundCounter}
             updateNewRoundCount={this.updateNewRoundCount}/>
             <Foot topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
@@ -254,8 +222,10 @@ class App extends Component {
             malaisePoints={this.state.malaisePoints}
             userName={this.state.userName}
           />
+
           <RoundTimer checkRoundTimer={this.checkRoundTimer} determineScore={this.determineScore}/>
           <Foot topic={this.state.topic} count={this.state.count} pic={this.state.pic} username={this.state.userName} malaisePoints={this.state.malaisePoints}/>
+
         </div>
       );
     // In queue state: not enough users yet online
