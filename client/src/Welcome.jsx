@@ -60,9 +60,9 @@ class Welcome extends React.Component {
           </div>
 
           <Welcomefoot
-          pic={this.props.pic}
-          count={this.props.count}
-          username={this.props.username}
+            pic={this.props.pic}
+            count={this.props.count}
+            username={this.props.username}
           />
         </div>
       );
@@ -79,9 +79,9 @@ class Welcome extends React.Component {
             </div>
           </div>
           <Welcomefoot
-          pic={this.props.pic}
-          count={this.props.count}
-          username={this.props.username}
+            pic={this.props.pic}
+            count={this.props.count}
+            username={this.props.username}
           />
         </div>
       );
