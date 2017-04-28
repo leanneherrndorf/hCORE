@@ -1,3 +1,5 @@
+var num = 0;
+
 module.exports = function randomPrompt() {
   // use string interpoloation `hello ${a.noun} me`
   var struc = [
@@ -16,8 +18,13 @@ module.exports = function randomPrompt() {
      "How does an omnipotent " + noun() + ", with an unquenchable hatred for humanity, torture it's prisoners for all of eternity?"
      ];
 
-  var strucRandom = Math.floor(Math.random() * (struc.length));
-  return (struc[strucRandom]);
+   if (num < struc.length-1) {
+    num++;
+    return (struc[num]);
+  } else {
+    num = 0;
+    return (struc[num]);
+  } 
 }
 
 String.prototype.replaceAt=function(index, replacement) {
@@ -43,40 +50,27 @@ function A(noun){
 function s(noun){
   if (noun.charAt(noun.length-1) === "s"){
     return (noun + "es");
-  } else if (noun.charAt(noun.length-1) === "y"){
-    return noun.replaceAt((noun.length-1), "ies");
   } else {
     return (noun + "s");
   }
 }
 
 function cap(noun){
-  var capChar = noun.charAt(0).toUpperCase();
-  return noun.replaceAt(0, capChar);
+  if (noun === "spooky scary skeleton") {
+    return "Spooky Scary Skeletons";
+  } else {
+    var capChar = noun.charAt(0).toUpperCase();
+    return noun.replaceAt(0, capChar);
+  }
 }
 
 function noun(){
   var noun =
-    ["aardvark",
-    "anteater",
+    ["anteater",
     "asparagus",
     "baboon",
-    "baby",
     "bean",
     "bladder",
-    "boy",
-    "boy",
-    "boy",
-    "boy",
-    "boy",
-    "boy",
-    "boy",
-    "boy",
-    "boy",
-    "boy",
-    "boy",
-    "boy",
-    "boy",
     "boy",
     "cabbage",
     "cactus",
@@ -88,7 +82,6 @@ function noun(){
     "dentist",
     "donkey",
     "duckling",
-    "eel",
     "ex-husband",
     "fish",
     "giraffe",
@@ -98,10 +91,8 @@ function noun(){
     "hyena",
     "llama",
     "lobster",
-    "locust",
     "mayonnaise",
     "mustard",
-    "octopus",
     "ostrich",
     "pancake",
     "parsnip",
@@ -119,7 +110,8 @@ function noun(){
     "turnip",
     "yak",
     "yam",
-    "spooky scary skeleton"
+    "spooky scary skeleton",
+    "egg"
   ];
 
   var nounRandom = Math.floor(Math.random() * (noun.length));
