@@ -6,10 +6,7 @@ const Circle = ProgressBar.Circle;
 class Timer extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      currentCount: 30,
-      text: ''
-    }
+    this.state = {currentCount: 30}
   }
 
   // annoyingPrompt() {

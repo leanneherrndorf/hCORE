@@ -11,6 +11,7 @@ class Nav extends React.Component {
     return (
       <div>
         <nav className="the-nav">
+          <img src="../huManatee.png" className="logo" style={{width: 50, height: 50}}/>
           <h1 className="nav-brand">hCORE</h1>
         </nav>
       </div>
