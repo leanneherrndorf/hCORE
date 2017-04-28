@@ -74,8 +74,6 @@ class App extends Component {
     const arrayOfNewObjects = this.state.posts.map((post) => {
       users.push(post.name);
     });
-    console.log(users);
-    console.log(users.includes(this.state.userName));
     if(users.includes(this.state.userName)){
       //console.log(here);
     } else {
@@ -110,10 +108,8 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    console.log('componentDidMount <App />');
     this.socket = new WebSocket('ws://'+ location.host);
     this.socket.onopen = () => {
-      console.log('is connected');
       this.socket.send(JSON.stringify({type: 'incomingUser'}))
     }
 
@@ -194,7 +190,7 @@ class App extends Component {
   }
 
   render() {
-   // console.log("your username is: ", this.state.userName);
+
     // Start state: enough users online, stage for users to enter their post, and the time is not yet up
     if(!this.state.timeUp && this.state.roundReady) {
       return (
