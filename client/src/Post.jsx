@@ -73,6 +73,7 @@ class Post extends React.Component {
           <img src="../images/gravestone.png" className="grave-stone" style={{width: 120, height: 120}}/>
           <img src={this.props.post.pic} className="dead-avatar" style={{width: 60, height: 60}}/>
           <p className="grave-name">{this.props.post.name}</p>
+          <p className="eulogy">{this.props.post.eulogy}</p>
         </article>
       );
     }

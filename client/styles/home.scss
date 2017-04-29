@@ -82,6 +82,14 @@
     position: relative;
   }
 
+  .eulogy {
+    position: relative;
+    left: 175px;
+    bottom: 90px;
+    font-family: $eulogyfont;
+    font-size: 150%;
+  }
+
   .health-bar {
     background: linear-gradient(274deg, #e11212, #ff8080, #e11212);
     background-size: 600% 600%;

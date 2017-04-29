@@ -7,17 +7,19 @@ module.exports = function randomPrompt() {
     "Your house is now full of " + s(noun()) + ", how do you get them out?",
     "Give an elevator pitch for a movie called Passion Of The " + cap(noun()),
     "How would you use " + a(noun()) + " to smuggle " + s(noun()) + " across the border?",
-     A(noun()) + " and " + a(noun()) + " are on a dinner date, who pays the bill?",
+     A(noun()) + " and " + a(noun()) + " are on a dinner date, who pays the bill, and why?",
      "Who would win in a fight, " + a(noun()) + " or " + a(noun()) + " and why?",
      "You're on a hunt for a rare " + noun() + ", how do lure and capture them?",
      "What's the best way to impress " + a(noun()) + " on a date?",
      A(noun()) + " and " + a(noun()) + " are having a lovers quarrel, what are they fighting about?",
      "How does an omnipotent " + noun() + ", with an unquenchable hatred for humanity, torture it's prisoners for all of eternity?",
-     "Your arm has been transformed into " + a(noun()) + ", what's the first thing you do with your new appendage?",
+     "Your left arm has been transformed into " + a(noun()) + ", what's the first thing you do with your new appendage?",
      "Everytime you sneeze " + a(noun()) + " comes out, how do you turn this into a business opportunity?",
      "You've been cursed to sweat liquified " + s(noun()) + ", how do you explain the strange aroma to a blind man?",
      "You're a mad scientist and you've just sewn " + a(noun()) + " to " + a(noun()) + ", what do you name your beautiful creation?",
-     "You've been commissioned to give " + a(noun()) + " a big ole spook, how do you do it?"
+     "You've been commissioned to give " + a(noun()) + " a big ole spook, how do you do it?",
+     "You're writing a sitcom where the main character is an anthropomorphic " + noun() + ", what's their catch phrase?",
+     "Your super hero name is " + cap(noun()) + " Man, what's your super power?"
      ];
 
    var strucRandom = Math.floor(Math.random() * (struc.length));
@@ -55,9 +57,7 @@ function s(noun){
 
 function cap(noun){
   if (noun === "spooky scary skeleton") {
-    return "Spooky Scary Skeletons";
-  } else if (noun === "spray cheese") {  
-    return "Spray Cheese";
+    return "Spooky Scary Skeleton";
   } else {
     var capChar = noun.charAt(0).toUpperCase();
     return noun.replaceAt(0, capChar);
@@ -73,16 +73,11 @@ function noun(){
     "bladder",
     "boy",
     "cabbage",
-    "cactus",
     "cake",
     "camel",
-    "carp",
-    "snake",
-    "doggo",
-    "pupper",    
+    "carp",  
     "caterpillar",
     "chicken",
-    "spray cheese",
     "dentist",
     "donkey",
     "duckling",
@@ -109,7 +104,6 @@ function noun(){
     "shrimp",
     "spaghetti",
     "squid",
-    "sturgeon",
     "tongue",
     "turnip",
     "yak",
@@ -117,7 +111,8 @@ function noun(){
     "spooky scary skeleton",
     "egg",
     "jellyroll",
-    "weenus"
+    "weenus",
+    "geezer"
   ];
 
   var nounRandom = Math.floor(Math.random() * (noun.length));
