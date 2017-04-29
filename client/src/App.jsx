@@ -36,7 +36,7 @@ class App extends Component {
 
       if (newName.length > 12){
         this.socket.send(JSON.stringify({type: 'incomingNameChange', name: 'Dingus'}));
-      } else if (newName.toLowerCase() === 'leanne' || newName.toLowerCase() === 'brendon'){
+      } else if (newName.toLowerCase() === 'leanne' || newName.toLowerCase() === 'brendan'){
         this.socket.send(JSON.stringify({type: 'incomingNameChange', name: 'Nerd'}));
       } else if (newName === '') {
         this.socket.send(JSON.stringify({type: 'incomingNameChange', name: this.state.userName}));
@@ -44,7 +44,7 @@ class App extends Component {
         this.socket.send(JSON.stringify({type: 'incomingNameChange', name: newName}));
       }
   }
-  
+
   updateUserMalaiseOnClick = () => {
     const newMalaise = this.state.malaisePoints - 1;
     this.setState({malaisePoints: newMalaise});
@@ -124,7 +124,8 @@ class App extends Component {
             health: data.content.health,
             name: data.content.name,
             maxHealth: data.content.maxHealth,
-            pic: data.content.pic
+            pic: data.content.pic,
+            eulogy: data.content.eulogy
           }
           const posts = this.state.posts.concat(postObj);
           this.setState({currentUser: data.content.name})

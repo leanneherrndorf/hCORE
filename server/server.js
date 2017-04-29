@@ -2,6 +2,7 @@ const WebSocket = require('ws');
 const express = require('express');
 const uuidV1 = require('node-uuid');
 const randomPrompt = require('./random-prompt.js');
+const randomEulogy = require('./random-eulogy.js');
 const http = require('http');
 const url = require('url');
 //const io = require('socket.io')(server);
@@ -129,6 +130,7 @@ wss.on('connection', (ws) => {
             maxHealth: wss.clients.size - 1,
             name: post.userName,
             pic: picRoute,
+            eulogy: randomEulogy()
           }
         }
         wss.broadcast(JSON.stringify(outputPost));
@@ -185,7 +187,7 @@ wss.on('connection', (ws) => {
             health: 0,
             maxHealth: wss.clients.size - 1,
             name: post.userName,
-            pic: picRoute,
+            pic: picRoute
             //newRoundClick: 1
           }
         }
