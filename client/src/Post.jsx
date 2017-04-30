@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Button} from 'react-bootstrap';
-// import {Fade} from 'react-bootstrap';
 
 class Post extends React.Component {
   constructor(props) {
@@ -55,6 +54,7 @@ class Post extends React.Component {
           {this.showMalaiseButton()}
         </article>
       );
+      
     } else if (this.props.post.health !== this.props.post.maxHealth && this.props.post.health > 0) {
        return (
           <article className="post">
@@ -67,6 +67,7 @@ class Post extends React.Component {
             {this.showPraiseButton()}
           </article>
        );
+
     } else {
       return (
         <article className="post">

@@ -9,23 +9,9 @@ class Timer extends Component {
     this.state = {currentCount: 30}
   }
 
-  // annoyingPrompt() {
-  //   let counter = this.state.currentCount;
-  //   if (counter <= 30) {
-  //     this.setState({text: 'Start'});
-  //   } else if (counter <= 20) {
-  //     this.setState({text: 'Almost there...'});
-  //   } else if (counter <= 10) {
-  //     this.setState({text: 'Just a little longer...'});
-  //   } else if (counter <= 5 && counter >= 2) {
-  //     this.setState({text: 'Ready?'});
-  //   } else {
-  //     this.setState({text: 'Go!'});
-  //   }
-  // }
-
   options = {
-    duration: 4400,
+    duration: 25000,
+    easing: 'easeOut',
     strokeWidth: 4,
     color: '#734B76',
     trailColor: '#E9EDF6',
@@ -57,7 +43,7 @@ class Timer extends Component {
   }
 
   render() {
-    return(
+    return (
       <div>
         <Circle
           progress={1}
