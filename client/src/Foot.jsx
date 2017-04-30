@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
 
-//import {DropdownButton} from 'react-bootstrap';
-
 class Foot extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
-
     return (
       <footer className="footer">
         <h4 className="topic">Topic of the round: {this.props.topic}</h4>

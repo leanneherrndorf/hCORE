@@ -54,6 +54,7 @@ class Postform extends React.Component {
           <Button type='submit' bsStyle="success" onClick={this.handleClick.bind(this)}><i className="fa fa-envelope-o" aria-hidden="true"></i> Submit to me</Button>
         </header>
       );
+      
     } else {
       return (
         <div className="waiting-for-posts"></div>
