@@ -72,9 +72,7 @@
   }
 
   .eulogy {
-    position: relative;
-    left: 175px;
-    bottom: 90px;
+    word-wrap: break-word;
     font-family: $eulogyfont;
     font-size: 150%;
   }
