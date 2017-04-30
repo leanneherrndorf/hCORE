@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 const ProgressBar = require('react-progressbar.js');
 const Circle = ProgressBar.Circle;
 
-
 class Timer extends Component {
   constructor(props){
     super(props);
@@ -29,12 +28,12 @@ class Timer extends Component {
     this.setState({
       currentCount: this.state.currentCount - 1
     })
-    if(this.state.currentCount < 1) {
+    if(this.state.currentCount < 1 || this.props.posts.length > this.props.posts[0].maxHealth) {
       this.props.checkTimer();
       clearInterval(this.intervalId);
-    }
+    } 
   }
-  
+
   componentDidMount() {
     this.intervalId = setInterval(this.timer.bind(this), 1000);
   }
