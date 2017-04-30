@@ -55,26 +55,25 @@
     padding: 10px;
   }
 
-  .grave-name {
-    position: relative;
-    left: 17px;
-    bottom: 100px;
-  }
-
   .dead-avatar {
     position: relative;
-    top: 10px;
-    right: 100px;
+    display: block;
+    margin: auto;
+    bottom: 85px;
+    right: 5px;
   }
 
   .grave-stone {
     position: relative;
+    display: block;
+    margin: auto;
   }
 
   .eulogy {
     word-wrap: break-word;
     font-family: $eulogyfont;
     font-size: 150%;
+    text-align: center;
   }
 
   .health-bar {
