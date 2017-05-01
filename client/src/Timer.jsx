@@ -28,7 +28,9 @@ class Timer extends Component {
     this.setState({
       currentCount: this.state.currentCount - 1
     })
-    if(this.state.currentCount < 1 || this.props.posts.length > this.props.posts[0].maxHealth) {
+    if (this.props.posts.length === 0 && this.state.currentCount > 1){
+      return;
+    } else if(this.state.currentCount < 1 || this.props.posts.length > this.props.posts[0].maxHealth) {
       this.props.checkTimer();
       clearInterval(this.intervalId);
     } 
