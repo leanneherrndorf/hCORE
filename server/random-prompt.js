@@ -96,7 +96,6 @@ function noun(){
     "pancake",
     "parsnip",
     "pickle",
-    "pig",
     "pigeon",
     "pimple",
     "pumpkin",
@@ -112,7 +111,10 @@ function noun(){
     "egg",
     "jellyroll",
     "weenus",
-    "geezer"
+    "geezer",
+    "ectoplasm",
+    "beluga",
+    "emu"
   ];
 
   var nounRandom = Math.floor(Math.random() * (noun.length));

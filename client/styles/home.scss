@@ -72,8 +72,9 @@
   .eulogy {
     word-wrap: break-word;
     font-family: $eulogyfont;
-    font-size: 150%;
     text-align: center;
+    font-size: 150%;
+    margin-top: -45px;
   }
 
   .health-bar {
