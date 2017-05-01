@@ -1,0 +1,39 @@
+h1 {
+  font-size: 45px;
+}
+
+.the-nav {
+  z-index: 1;
+  display: flex;
+  color: #9982B8;
+  background: #C8BBD6;
+  min-height: 30px;
+  padding: 0 10px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.nav-brand {
+  font-family: 'Raleway', sans-serif;
+  margin: 5px;
+
+}
+
+.logo {
+  margin: 5px;
+}
+
+.home-link {
+  float: right;
+  font-family: 'Josefin Sans', sans-serif;
+  border-radius: 5px;
+  margin: 5px;
+  padding-top: 13px;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 15px;
+  color: #fff;
+  background-color: #9982B8;
+}

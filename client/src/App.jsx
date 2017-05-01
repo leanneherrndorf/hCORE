@@ -30,7 +30,6 @@ class App extends Component {
   }
 
   updateUserName = (event) => {
-
       this.setState({firstTimeUser: true});
       let newName = event.target.value;
 
@@ -200,11 +199,11 @@ class App extends Component {
           <Nav/>
           <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.userName}/>
           <Timer checkTimer={this.checkTimer}/>
-          <Foot 
-            topic={this.state.topic} 
-            count={this.state.count} 
-            pic={this.state.pic} 
-            username={this.state.userName} 
+          <Foot
+            topic={this.state.topic}
+            count={this.state.count}
+            pic={this.state.pic}
+            username={this.state.userName}
             malaisePoints={this.state.malaisePoints}
           />
         </div>
@@ -222,11 +221,11 @@ class App extends Component {
             newRoundCounter={this.state.newRoundCounter}
             updateNewRoundCount={this.updateNewRoundCount}
           />
-          <Foot 
-            topic={this.state.topic} 
-            count={this.state.count} 
-            pic={this.state.pic} 
-            username={this.state.userName} 
+          <Foot
+            topic={this.state.topic}
+            count={this.state.count}
+            pic={this.state.pic}
+            username={this.state.userName}
             malaisePoints={this.state.malaisePoints}
           />
         </div>
@@ -245,16 +244,16 @@ class App extends Component {
             malaisePoints={this.state.malaisePoints}
             userName={this.state.userName}
           />
-          <Foot 
-            topic={this.state.topic} 
-            count={this.state.count} 
-            pic={this.state.pic} 
-            username={this.state.userName} 
+          <Foot
+            topic={this.state.topic}
+            count={this.state.count}
+            pic={this.state.pic}
+            username={this.state.userName}
             malaisePoints={this.state.malaisePoints}
           />
         </div>
       );
-      
+
     // In queue state: not enough users yet online
     } else {
     return (

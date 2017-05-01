@@ -18,5 +18,18 @@
   .logo{
     margin: 5px;
   }
+
+  .top-posts{
+    float: right;
+    font-family: $mainfont;
+    border-radius: 5px;
+    margin: 5px;
+    padding-top: 13px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 15px;
+    color: #fff;
+    background-color: $color1;
+  }
 }
 
