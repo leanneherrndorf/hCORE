@@ -7,6 +7,7 @@ import Timer from './Timer.jsx';
 import RoundTimer from './RoundTimer.jsx';
 import Results from './Results.jsx';
 import Foot from './Foot.jsx';
+import FormFoot from './FormFoot.jsx';
 
 const randomPrompt = require('../../server/random-prompt.js');
 
@@ -196,16 +197,11 @@ class App extends Component {
     if(!this.state.timeUp && this.state.roundReady) {
       return (
         <div>
-
           <Nav/>
           <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.userName}/>
           <Timer checkTimer={this.checkTimer} posts={this.state.posts}/>
-          <Foot 
+          <FormFoot 
             topic={this.state.topic} 
-            count={this.state.count} 
-            pic={this.state.pic} 
-            username={this.state.userName} 
-            malaisePoints={this.state.malaisePoints}
           />
         </div>
       );
