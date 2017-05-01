@@ -199,7 +199,7 @@ class App extends Component {
 
           <Nav/>
           <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.userName}/>
-          <Timer checkTimer={this.checkTimer}/>
+          <Timer checkTimer={this.checkTimer} posts={this.state.posts}/>
           <Foot 
             topic={this.state.topic} 
             count={this.state.count} 
@@ -209,7 +209,6 @@ class App extends Component {
           />
         </div>
       );
-
     // Results state: results of the round
     } else if (this.state.timeUp && this.state.roundTimeUp) {
       return (
@@ -231,7 +230,6 @@ class App extends Component {
           />
         </div>
       );
-
     // Voting state: post entering time is up, all posts in view, users can vote on posts
     } else if (this.state.timeUp){
       return (
@@ -254,7 +252,6 @@ class App extends Component {
           />
         </div>
       );
-      
     // In queue state: not enough users yet online
     } else {
     return (
@@ -271,7 +268,7 @@ class App extends Component {
         />
       </div>
       );
-    }
+    } console.log("post length:", this.state.posts.length);
   }
 }
 

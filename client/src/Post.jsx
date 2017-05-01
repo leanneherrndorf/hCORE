@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Button} from 'react-bootstrap';
+// import {Fade} from 'react-bootstrap';
 
 class Post extends React.Component {
   constructor(props) {
@@ -54,7 +55,6 @@ class Post extends React.Component {
           {this.showMalaiseButton()}
         </article>
       );
-      
     } else if (this.props.post.health !== this.props.post.maxHealth && this.props.post.health > 0) {
        return (
           <article className="post">
@@ -67,14 +67,12 @@ class Post extends React.Component {
             {this.showPraiseButton()}
           </article>
        );
-
     } else {
       return (
         <article className="post">
           <img src="../images/gravestone.png" className="grave-stone" style={{width: 120, height: 120}}/>
           <img src={this.props.post.pic} className="dead-avatar" style={{width: 60, height: 60}}/>
-          <p className="grave-name">{this.props.post.name}</p>
-          <p className="eulogy">{this.props.post.eulogy}</p>
+          <div className="eulogy">Here lies {this.props.post.name}{this.props.post.eulogy}</div>
         </article>
       );
     }
