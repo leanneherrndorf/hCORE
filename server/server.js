@@ -2,13 +2,8 @@
 
 require('dotenv').config();
 
-//mongo setup
-//const {MongoClient} = require("mongodb");
 const mongoose = require("mongoose");
 const MONGODB_URI = "mongodb://hcore:hcoremanatee@ds127531.mlab.com:27531/hcore";
-//process.env.MONGODB_URI;
-//"mongodb://localhost:27017/archive";
-
 //MongoClient.connect
 mongoose.connect(MONGODB_URI);
 
@@ -20,7 +15,6 @@ mongoose.connect(MONGODB_URI);
 
   //Express and websocket setup
   const PORT = process.env.PORT || 3001;
-  const WebSocket = require('ws');
   const express = require('express');
   const uuidV1 = require('node-uuid');
   const randomPrompt = require('./random-prompt.js');
@@ -29,10 +23,11 @@ mongoose.connect(MONGODB_URI);
   const url = require('url');
   const app = express();
   const server = http.createServer(app);
-  const wss = new WebSocket.Server({ server });
+  const io = require('socket.io')(server);
   const sentence = randomPrompt();
   const bodyParser = require("body-parser");
-
+  
+  io.attach(server);
 
   app.set("view engine", "ejs");
 
@@ -108,13 +103,13 @@ mongoose.connect(MONGODB_URI);
     }
   }
 
-  wss.broadcast = function broadcast(data) {
-    wss.clients.forEach((client) => {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(data);
-      }
-    });
-  };
+  // socket.broadcast.emit = function broadcast(data) {
+  //   io.sockets.clients().forEach((client) => {
+  //     if (client.readyState === WebSocket.OPEN) {
+  //       client.send(data);
+  //     }
+  //   });
+  // };
 
   let clientCount = {
     count: 0,
@@ -127,19 +122,18 @@ mongoose.connect(MONGODB_URI);
   }
 
 
-  wss.on('connection', (ws) => {
-    const location = url.parse(ws.upgradeReq.url, true);
-
+  io.on('connection', function(socket) {
+    //const location = url.parse(socket.upgradeReq.url, true);
     let clientName = generateUserName();
     let picRoute = randPic();
     listOfUsers.push(clientName);
-    clientCount.count = wss.clients.size;
+    clientCount.count = io.sockets.clients().length;
 
     // broadcasting client Count which also determines newRoundCounter
-    wss.broadcast(JSON.stringify(clientCount));
-    wss.broadcast(JSON.stringify(topicMessage));
+    socket.broadcast.emit(JSON.stringify(clientCount));
+    socket.broadcast.emit(JSON.stringify(topicMessage));
 
-    ws.on('message', (data) => {
+    socket.on('message', (data) => {
       let post = JSON.parse(data);
       let id = uuidV1();
 
@@ -152,7 +146,7 @@ mongoose.connect(MONGODB_URI);
               pic: picRoute
             }
           }
-          wss.broadcast(JSON.stringify(outputUser));
+          socket.broadcast.emit(JSON.stringify(outputUser));
         break;
 
         case 'incomingNameChange':
@@ -163,7 +157,7 @@ mongoose.connect(MONGODB_URI);
               pic: picRoute
             }
           }
-          wss.broadcast(JSON.stringify(outputNameChange));
+          socket.broadcast.emit(JSON.stringify(outputNameChange));
         break;
 
         case 'postMessage':
@@ -172,14 +166,14 @@ mongoose.connect(MONGODB_URI);
             content: {
               id: id,
               post: post.content,
-              health: wss.clients.size - 1,
-              maxHealth: wss.clients.size - 1,
+              health: io.sockets.clients().length - 1,
+              maxHealth: io.sockets.clients().length - 1,
               name: post.userName,
               pic: picRoute,
               eulogy: randomEulogy()
             }
           }
-          wss.broadcast(JSON.stringify(outputPost));
+          socket.broadcast.emit(JSON.stringify(outputPost));
         break;
 
         case 'postHealth':
@@ -188,7 +182,7 @@ mongoose.connect(MONGODB_URI);
             health: post.health,
             id: post.id
           }
-          wss.broadcast(JSON.stringify(outputHealth));
+          socket.broadcast.emit(JSON.stringify(outputHealth));
         break;
 
         case 'postRoundCount':
@@ -196,7 +190,7 @@ mongoose.connect(MONGODB_URI);
             type: 'incomingRoundCount',
             value: post.value
           }
-          wss.broadcast(JSON.stringify(outputRoundCount));
+          socket.broadcast.emit(JSON.stringify(outputRoundCount));
         break;
 
         case 'postRoundReady':
@@ -204,7 +198,7 @@ mongoose.connect(MONGODB_URI);
             type: 'incomingRoundReady',
             ready: true
           }
-          wss.broadcast(JSON.stringify(outputRoundReady));
+          socket.broadcast.emit(JSON.stringify(outputRoundReady));
         break;
 
         case 'postResetGame':
@@ -214,7 +208,7 @@ mongoose.connect(MONGODB_URI);
             currentWinner: {},
             newRoundCount: clientCount.count
           }
-          wss.broadcast(JSON.stringify(outputResetGame));
+          isocket.broadcast.emit(JSON.stringify(outputResetGame));
         break;
 
         case 'postNewTopic':
@@ -222,7 +216,7 @@ mongoose.connect(MONGODB_URI);
             topic: randomPrompt(),
             type: "incomingNewTopic"
           }
-          wss.broadcast(JSON.stringify(outputNewTopic));
+          isocket.broadcast.emit(JSON.stringify(outputNewTopic));
         break;
 
         case 'postEmptyPost':
@@ -232,13 +226,12 @@ mongoose.connect(MONGODB_URI);
               id: id,
               post: "",
               health: 0,
-              maxHealth: wss.clients.size - 1,
+              maxHealth: io.sockets.clients().length - 1,
               name: post.userName,
               pic: picRoute
-              //newRoundClick: 1
             }
           }
-          wss.broadcast(JSON.stringify(outputEmptyPost));
+          socket.broadcast.emit(JSON.stringify(outputEmptyPost));
         break;
 
         case 'postArchivePost':
@@ -264,15 +257,13 @@ mongoose.connect(MONGODB_URI);
         }
       });
 
-    ws.on('close', () => {
-      clientCount.count = wss.clients.size;
-      wss.broadcast(JSON.stringify(clientCount));
+    socket.on('disconnect', () => {
+      clientCount.count = io.sockets.clients().length;
+      socket.broadcast.emit(JSON.stringify(clientCount));
       if (clientCount.count === 0) {
         listOfUsers = [];
       }
     });
   });
-
-
 
 server.listen(PORT, () => console.log(`Listening on ${ PORT }`));

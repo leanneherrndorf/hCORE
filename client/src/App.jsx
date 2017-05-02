@@ -11,6 +11,8 @@ import FormFoot from './FormFoot.jsx';
 
 const randomPrompt = require('../../server/random-prompt.js');
 
+const socket = io();
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -140,12 +142,17 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    this.socket = new WebSocket('ws://'+ location.host);
-    this.socket.onopen = () => {
-    this.socket.send(JSON.stringify({type: 'incomingUser'}))
-  }
+    this.socket = new io.Socket('localhost', {
+      port: location.host
+    });
+     socket.on('connect', function(data){
+      socket.emit('message', JSON.stringify({type: 'incomingUser'}));
+   
+  //   this.socket.onopen = () => {
+  //   this.socket.send(JSON.stringify({type: 'incomingUser'}))
+  // }
 
-    this.socket.onmessage = (event) => {
+    socket.on('message', function(event) {
       const data = JSON.parse(event.data);
 
       switch(data.type) {
@@ -160,7 +167,7 @@ class App extends Component {
             eulogy: data.content.eulogy
           }
           const posts = this.state.posts.concat(postObj);
-          this.setState({currentUser: data.content.name})
+          this.setState({currentUser: data.content.name});
           this.setState({posts: posts});
         break;
         case 'outgoingUser':
@@ -220,9 +227,11 @@ class App extends Component {
         // show an error in the console if the message type is unknown
           throw new Error('Unknown event type ' + data.type);
       }
-    }
+    });
+  
+   }); 
+  
   }
-
   render() {
 
     // Start state: enough users online, stage for users to enter their post, and the time is not yet up
