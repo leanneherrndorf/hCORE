@@ -1,12 +1,14 @@
 module.exports = function randomEulogy() {
   
   var struc = [
-    "Here lies a dead post, father of many, son of none.",
-    "Rest in peace, dingus.",
-    "Boo hoo so sad, you're dead.",
-    "Do you ever feel all alone? Do you ever feel out of place?",
-    "This post has been deemed unworthy",
-    "Wow...you died, your post must have been quite the flop."
+    ", rest in peace you dang dingus.",
+    ", boo hoo so sad.",
+    ", they lived as they died, sad and alone.",
+    ", going out not with a bang, but with a wimper.",
+    ", neither a notch in a bed post nor a line in a song.",
+    ", as popular in death as they were in life, not very.",
+    ", if dissapointment was a currency, their parents would be loaded",
+    ", if the afterlife is anything like a nightclub then they probably won't get in"
      ];
 
    var strucRandom = Math.floor(Math.random() * (struc.length));

@@ -1,10 +1,12 @@
 .postform {
+  z-index: 10;
   display: flex;
   justify-content: center;
   padding: 15px;
   min-width: 350px;
   background: $color2;
   margin: 165px 50px 50px 50px;
+  
   textarea {
     width: 70%;
     min-width: 200px;
@@ -17,7 +19,9 @@
 @media screen and (max-width: 770px) {
   .postform {
     min-width: 350px;
-    margin: 115px 10px;
+    margin: 75px 10px;
+    margin-bottom: 15px;
+
     .btn-success {
       font-size: 10px;
     }
@@ -27,8 +31,8 @@
 .postlist {
   display: flex;
   flex-wrap: wrap;
-  padding-top: 50px;
-  padding-bottom: 150px;
+  // padding-top: 50px;
+  margin-bottom: 150px;
 
   .post {
     padding: 20px;
@@ -52,28 +56,26 @@
     padding: 10px;
   }
 
-  .grave-name {
-    position: relative;
-    left: 17px;
-    bottom: 100px;
-  }
-
   .dead-avatar {
     position: relative;
-    top: 10px;
-    right: 100px;
+    display: block;
+    margin: auto;
+    bottom: 85px;
+    right: 5px;
   }
 
   .grave-stone {
     position: relative;
+    display: block;
+    margin: auto;
   }
 
   .eulogy {
-    position: relative;
-    left: 175px;
-    bottom: 90px;
+    word-wrap: break-word;
     font-family: $eulogyfont;
+    text-align: center;
     font-size: 150%;
+    margin-top: -45px;
   }
 
   .health-bar {
@@ -91,11 +93,13 @@
 
 @media screen and (max-width: 770px) {
   .postlist {
-    padding-top: 65px;
+    padding-top: 30px;
+    margin-bottom: 250px;
 
     .post {
       margin: 10px;
     }
+
     .results.jumbotron {
       padding-top: 85px;
     }
@@ -114,4 +118,8 @@
 
 .waiting-for-posts {
   margin-top: 200px;
+}
+
+.glyphicon {
+  color: $color5;
 }

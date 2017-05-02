@@ -2,3 +2,10 @@
   padding-top: 150px;
   text-align: center;
 }
+
+@media (max-width: 450px){
+  .results{
+    flex-wrap: wrap;
+    padding-top: 116px;
+  }
+}

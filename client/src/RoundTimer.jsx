@@ -5,11 +5,12 @@ const Circle = ProgressBar.Circle;
 class RoundTimer extends Component {
   constructor(props){
     super(props);
-    this.state = {currentCount: 20}
+    this.state = {currentCount: 30}
   }
 
   options = {
-    duration: 3000,
+    duration: 25000,
+    easing: 'easeOut',
     strokeWidth: 4,
     color: '#734B76',
     trailColor: '#E9EDF6',
@@ -40,7 +41,7 @@ class RoundTimer extends Component {
     clearInterval(this.intervalId);
   }
   render() {
-    return(
+    return (
       <Circle
         progress={1}
         text={this.state.currentCount}

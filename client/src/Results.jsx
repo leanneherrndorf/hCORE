@@ -44,6 +44,7 @@ class Results extends React.Component {
           </Jumbotron>
         </div>
       );
+      
     } else {
       return (
         <div className="waiting-for-posts">

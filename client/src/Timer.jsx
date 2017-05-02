@@ -2,30 +2,15 @@ import React, {Component} from 'react';
 const ProgressBar = require('react-progressbar.js');
 const Circle = ProgressBar.Circle;
 
-
 class Timer extends Component {
   constructor(props){
     super(props);
     this.state = {currentCount: 30}
   }
 
-  // annoyingPrompt() {
-  //   let counter = this.state.currentCount;
-  //   if (counter <= 30) {
-  //     this.setState({text: 'Start'});
-  //   } else if (counter <= 20) {
-  //     this.setState({text: 'Almost there...'});
-  //   } else if (counter <= 10) {
-  //     this.setState({text: 'Just a little longer...'});
-  //   } else if (counter <= 5 && counter >= 2) {
-  //     this.setState({text: 'Ready?'});
-  //   } else {
-  //     this.setState({text: 'Go!'});
-  //   }
-  // }
-
   options = {
-    duration: 4400,
+    duration: 25000,
+    easing: 'easeOut',
     strokeWidth: 4,
     color: '#734B76',
     trailColor: '#E9EDF6',
@@ -43,12 +28,14 @@ class Timer extends Component {
     this.setState({
       currentCount: this.state.currentCount - 1
     })
-    if(this.state.currentCount < 1) {
+    if (this.props.posts.length === 0 && this.state.currentCount > 1){
+      return;
+    } else if(this.state.currentCount < 1 || this.props.posts.length > this.props.posts[0].maxHealth) {
       this.props.checkTimer();
       clearInterval(this.intervalId);
-    }
+    } 
   }
-  
+
   componentDidMount() {
     this.intervalId = setInterval(this.timer.bind(this), 1000);
   }
@@ -57,7 +44,7 @@ class Timer extends Component {
   }
 
   render() {
-    return(
+    return (
       <div>
         <Circle
           progress={1}

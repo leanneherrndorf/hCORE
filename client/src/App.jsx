@@ -7,6 +7,7 @@ import Timer from './Timer.jsx';
 import RoundTimer from './RoundTimer.jsx';
 import Results from './Results.jsx';
 import Foot from './Foot.jsx';
+import FormFoot from './FormFoot.jsx';
 
 const randomPrompt = require('../../server/random-prompt.js');
 
@@ -201,20 +202,15 @@ class App extends Component {
     if(!this.state.timeUp && this.state.roundReady) {
       return (
         <div>
-
           <Nav/>
           <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.userName}/>
-          <Timer checkTimer={this.checkTimer}/>
-          <Foot
-            topic={this.state.topic}
-            count={this.state.count}
-            pic={this.state.pic}
-            username={this.state.userName}
-            malaisePoints={this.state.malaisePoints}
+
+          <Timer checkTimer={this.checkTimer} posts={this.state.posts}/>
+          <FormFoot 
+            topic={this.state.topic} 
           />
         </div>
       );
-
     // Results state: results of the round
     } else if (this.state.timeUp && this.state.roundTimeUp) {
       return (
@@ -236,7 +232,6 @@ class App extends Component {
           />
         </div>
       );
-
     // Voting state: post entering time is up, all posts in view, users can vote on posts
     } else if (this.state.timeUp){
       return (
@@ -276,7 +271,7 @@ class App extends Component {
         />
       </div>
       );
-    }
+    } console.log("post length:", this.state.posts.length);
   }
 }
 

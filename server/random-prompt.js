@@ -3,11 +3,9 @@ module.exports = function randomPrompt() {
   var struc = [
     "Your boss is now " + a(noun()) + ", how would they fire you?",
     "You're being attacked by an army of " + s(noun()) + ", how do you defend yourself?",
-    "Write the script for Star Wars Episode 9: Return Of The " + cap(noun()),
     "Your house is now full of " + s(noun()) + ", how do you get them out?",
     "Give an elevator pitch for a movie called Passion Of The " + cap(noun()),
     "How would you use " + a(noun()) + " to smuggle " + s(noun()) + " across the border?",
-     A(noun()) + " and " + a(noun()) + " are on a dinner date, who pays the bill, and why?",
      "Who would win in a fight, " + a(noun()) + " or " + a(noun()) + " and why?",
      "You're on a hunt for a rare " + noun() + ", how do lure and capture them?",
      "What's the best way to impress " + a(noun()) + " on a date?",
@@ -96,7 +94,6 @@ function noun(){
     "pancake",
     "parsnip",
     "pickle",
-    "pig",
     "pigeon",
     "pimple",
     "pumpkin",
@@ -112,7 +109,10 @@ function noun(){
     "egg",
     "jellyroll",
     "weenus",
-    "geezer"
+    "geezer",
+    "ectoplasm",
+    "beluga",
+    "emu"
   ];
 
   var nounRandom = Math.floor(Math.random() * (noun.length));
