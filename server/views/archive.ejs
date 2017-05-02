@@ -1,6 +1,7 @@
 
 <!doctype html>
 <html lang="en">
+  <title>hCORE</title>
   <head>
   <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Raleway" rel="stylesheet">
 
@@ -17,7 +18,24 @@
       </nav>
     </div>
     <div class="archive-list">
-      <%= archivedPosts[0] %>
+      <table class= "table">
+        <thead class= "table-header">
+          <td>Topic</td>
+          <td>Response</td>
+          <td>Name</td>
+          </thead>
+          <tdata>
+          <% for(var prop in archivedPosts[0]){ %>
+          <tr>
+            <td><%= archivedPosts[0][prop].topic;%></td>
+            <td><%= archivedPosts[0][prop].content;%></td>
+            <td><%= archivedPosts[0][prop].name;%></td>
+            </tr>
+            </tdata>
+          <%}%>
+          </table>
+
+
     </div>
   </div>
 </html>
