@@ -32,6 +32,7 @@ class Results extends React.Component {
       return (
         <div>
           <Jumbotron className= "results">
+
             <h1 className="jumbo-text">Results</h1>
             
             <main className="leaderboard">
