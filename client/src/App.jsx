@@ -31,7 +31,6 @@ class App extends Component {
   }
 
   updateUserName = (event) => {
-
       this.setState({firstTimeUser: true});
       let newName = event.target.value;
 
@@ -88,6 +87,12 @@ class App extends Component {
 
   checkRoundTimer = () => {
     this.setState({roundTimeUp: true});
+    this.archivePost();
+  }
+
+  archivePost = () => {
+    const postArchive = {type: 'postArchivePost', archivePost: this.state.posts[0], topic: this.state.topic}
+    this.socket.send(JSON.stringify(postArchive));
   }
 
   newRoundStart = () => {
@@ -111,8 +116,8 @@ class App extends Component {
   componentDidMount = () => {
     this.socket = new WebSocket('ws://'+ location.host);
     this.socket.onopen = () => {
-      this.socket.send(JSON.stringify({type: 'incomingUser'}))
-    }
+    this.socket.send(JSON.stringify({type: 'incomingUser'}))
+  }
 
     this.socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
@@ -199,6 +204,7 @@ class App extends Component {
         <div>
           <Nav/>
           <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.userName}/>
+
           <Timer checkTimer={this.checkTimer} posts={this.state.posts}/>
           <FormFoot 
             topic={this.state.topic} 
@@ -217,11 +223,11 @@ class App extends Component {
             newRoundCounter={this.state.newRoundCounter}
             updateNewRoundCount={this.updateNewRoundCount}
           />
-          <Foot 
-            topic={this.state.topic} 
-            count={this.state.count} 
-            pic={this.state.pic} 
-            username={this.state.userName} 
+          <Foot
+            topic={this.state.topic}
+            count={this.state.count}
+            pic={this.state.pic}
+            username={this.state.userName}
             malaisePoints={this.state.malaisePoints}
           />
         </div>
@@ -239,15 +245,16 @@ class App extends Component {
             malaisePoints={this.state.malaisePoints}
             userName={this.state.userName}
           />
-          <Foot 
-            topic={this.state.topic} 
-            count={this.state.count} 
-            pic={this.state.pic} 
-            username={this.state.userName} 
+          <Foot
+            topic={this.state.topic}
+            count={this.state.count}
+            pic={this.state.pic}
+            username={this.state.userName}
             malaisePoints={this.state.malaisePoints}
           />
         </div>
       );
+
     // In queue state: not enough users yet online
     } else {
     return (
