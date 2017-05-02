@@ -1,5 +1,6 @@
 h1 {
   font-size: 45px;
+  font-weight: normal;
 }
 
 .the-nav {
@@ -10,15 +11,15 @@ h1 {
   min-height: 30px;
   padding: 0 10px;
   position: fixed;
-  left: 0;
-  right: 0;
+  width: 100%;
+  margin: 0;
   top: 0;
+  left: 0;
 }
 
 .nav-brand {
   font-family: 'Raleway', sans-serif;
   margin: 5px;
-
 }
 
 .logo {
@@ -26,14 +27,41 @@ h1 {
 }
 
 .home-link {
-  float: right;
+  margin-left: 50px;
+  text-decoration: none;
   font-family: 'Josefin Sans', sans-serif;
   border-radius: 5px;
   margin: 5px;
-  padding-top: 13px;
+  padding-top: 16px;
   padding-left: 5px;
   padding-right: 5px;
   font-size: 15px;
   color: #fff;
   background-color: #9982B8;
+}
+.home-link:hover {
+  background-color: #BFC9E1;
+}
+
+.archive-list {
+  font-family: 'Josefin Sans', sans-serif;
+  margin-top: 80px;
+  margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+}
+
+.table{
+  word-wrap: break-word;
+}
+.table-header {
+  font-size: 20px;
+  background: #9982B8;
+  color: #fff;
+}
+.table-header td:nth-of-type(1) {
+  width: 40%;
+}
+.table-header td:nth-of-type(2) {
+  width: 40%;
 }

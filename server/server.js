@@ -9,6 +9,8 @@ const MONGODB_URI = "mongodb://hcore:hcoremanatee@ds127531.mlab.com:27531/hcore"
 //process.env.MONGODB_URI;
 //"mongodb://localhost:27017/archive";
 
+
+mongoose.Promise = global.Promise;
 //MongoClient.connect
 mongoose.connect(MONGODB_URI);
 
@@ -68,7 +70,6 @@ mongoose.connect(MONGODB_URI);
 
   app.get('/archive', function(req, res){
     let templateVars = {archivedPosts: archiveArray};
-    
     res.render('archive', templateVars);
   });
 
@@ -248,7 +249,7 @@ mongoose.connect(MONGODB_URI);
             content: post.archivePost.post,
             created_at: Date.now()
           });
-          
+
           if (post.currentUser === post.archivePost.name && post.archivePost.post !== '' && post.archivePost.maxHealth !== 0) {
             newArchivedPost.save(function(err) {
               if(err) throw err;

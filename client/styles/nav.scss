@@ -21,6 +21,7 @@
 
   .top-posts{
     float: right;
+    text-decoration: none;
     font-family: $mainfont;
     border-radius: 5px;
     margin: 5px;
@@ -30,6 +31,9 @@
     font-size: 15px;
     color: #fff;
     background-color: $color1;
+  }
+  .top-posts:hover{
+    background-color: $color4;
   }
 }
 
