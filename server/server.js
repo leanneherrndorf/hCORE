@@ -39,17 +39,6 @@ mongoose.connect(MONGODB_URI);
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(express.static('public'));
 
-  //In memory database
-  //const db = require("./lib/in-memory-db");
-
-  //const DataHelpers = require("./lib/data-helpers.js")(db);
-
-  //TODO:What to set this as - need this?
-  //const archiveRoute = require("./views/archive")(DataHelpers);
-
-  // Mount the tweets routes at the "/tweets" path prefix:
-  //app.use("/archive", archiveRoute);
-
   //defining a schema
   let Schema = mongoose.Schema;
 
@@ -62,26 +51,25 @@ mongoose.connect(MONGODB_URI);
 
   let ArchiveModel = mongoose.model('ArchiveModel', ArchiveSchema);
 
+  let archiveArray = [];
 
-  let test = new ArchiveModel({
-    name: 'Dingus',
-    topic: 'Dinguses',
-    content: 'Dinguses are chill',
-    created_at: Date.now()
+  ArchiveModel.find().sort({created_at: -1}).exec(function(err, result) {
+    if (err) {
+      console.log(err);
+    } else if (result.length) {
+      archiveArray.push(result);
+    }
   });
 
-  test.save(function(err){
-    if(err) throw err;
-    console.log('Test saved successfully!');
-  });
-  //module.exports = ArchiveModel;
   //routes
   app.get('/', function(req, res){
     res.render("index", {development: process.env.NODE_ENV !== "production"});
   });
 
   app.get('/archive', function(req, res){
-    res.render("archive", {development: process.env.NODE_ENV !== "production"});
+    let templateVars = {archivedPosts: archiveArray};
+    
+    res.render('archive', templateVars);
   });
 
   // A list of all the users
@@ -262,7 +250,7 @@ mongoose.connect(MONGODB_URI);
           });
           
           if (post.currentUser === post.archivePost.name && post.archivePost.post !== '') {
-            newArchivedPost.save(function(err){
+            newArchivedPost.save(function(err) {
               if(err) throw err;
               console.log('Test saved successfully!');
             });
@@ -285,4 +273,6 @@ mongoose.connect(MONGODB_URI);
     });
   });
 
-  server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
+
+server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
