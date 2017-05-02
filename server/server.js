@@ -3,16 +3,18 @@
 require('dotenv').config();
 
 //mongo setup
-const {MongoClient} = require("mongodb");
+//const {MongoClient} = require("mongodb");
+const mongoose = require("mongoose");
 const MONGODB_URI = "mongodb://hcore:hcoremanatee@ds127531.mlab.com:27531/hcore";
 //process.env.MONGODB_URI;
 //"mongodb://localhost:27017/archive";
 
-MongoClient.connect(MONGODB_URI, (err, db) => {
-  if (err) {
-    console.error(`Failed to connect: ${MONGODB_URI}`);
-    throw err;
-  }
+//MongoClient.connect
+mongoose.connect(MONGODB_URI);
+
+  const db = mongoose.connection;
+
+  db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
   console.log(`Connected to mongodb: ${MONGODB_URI}`);
 
@@ -40,7 +42,7 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
   //In memory database
   //const db = require("./lib/in-memory-db");
 
-  const DataHelpers = require("./lib/data-helpers.js")(db);
+  //const DataHelpers = require("./lib/data-helpers.js")(db);
 
   //TODO:What to set this as - need this?
   //const archiveRoute = require("./views/archive")(DataHelpers);
@@ -48,6 +50,31 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
   // Mount the tweets routes at the "/tweets" path prefix:
   //app.use("/archive", archiveRoute);
 
+  //defining a schema
+  let Schema = mongoose.Schema;
+
+  let ArchiveSchema = new Schema({
+    name: String,
+    topic: String,
+    content: String,
+    created_at: Date
+  });
+
+  let ArchiveModel = mongoose.model('ArchiveModel', ArchiveSchema);
+
+
+  let test = new ArchiveModel({
+    name: 'Dingus',
+    topic: 'Dinguses',
+    content: 'Dinguses are chill',
+    created_at: Date.now()
+  });
+
+  test.save(function(err){
+    if(err) throw err;
+    console.log('Test saved successfully!');
+  });
+  //module.exports = ArchiveModel;
   //routes
   app.get('/', function(req, res){
     res.render("index", {development: process.env.NODE_ENV !== "production"});
@@ -225,6 +252,21 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
           wss.broadcast(JSON.stringify(outputEmptyPost));
         break;
 
+        case 'postArchivePost':
+          //console.log(post.archivePost);
+          let archivetest = new ArchiveModel({
+            name: post.archivePost.name,
+            topic: post.topic,
+            content: post.archivePost.post,
+            created_at: Date.now()
+          });
+
+          archivetest.save(function(err){
+            if(err) throw err;
+            console.log('Test saved successfully!');
+          });
+        break;
+
         default:
           throw new Error("Unknown event type" + post.type);
         }
@@ -240,4 +282,3 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
   });
 
   server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
-});

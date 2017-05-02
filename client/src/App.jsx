@@ -86,6 +86,12 @@ class App extends Component {
 
   checkRoundTimer = () => {
     this.setState({roundTimeUp: true});
+    this.archivePost();
+  }
+
+  archivePost = () => {
+    const postArchive = {type: 'postArchivePost', archivePost: this.state.posts[0], topic: this.state.topic}
+    this.socket.send(JSON.stringify(postArchive));
   }
 
   newRoundStart = () => {
@@ -109,8 +115,8 @@ class App extends Component {
   componentDidMount = () => {
     this.socket = new WebSocket('ws://'+ location.host);
     this.socket.onopen = () => {
-      this.socket.send(JSON.stringify({type: 'incomingUser'}))
-    }
+    this.socket.send(JSON.stringify({type: 'incomingUser'}))
+  }
 
     this.socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
