@@ -26,7 +26,8 @@ class App extends Component {
       userName: '',
       pic: '',
       newRoundCounter: 0,
-      roundReady: false
+      roundReady: false,
+      currentWinner: {}
     }
   }
 
@@ -87,11 +88,36 @@ class App extends Component {
 
   checkRoundTimer = () => {
     this.setState({roundTimeUp: true});
-    this.archivePost();
+    this.determineScore();
   }
 
+  compareNumbers = (a, b) => {
+   return a - b;
+ }
+
+ determineScore = () => {
+   let sortedposts = this.state.posts;
+   sortedposts.sort((a, b) => {
+     var diff = this.compareNumbers(a.health, b.health);
+
+     if (diff > 0) {
+       return -1;
+     } else if (diff < 0) {
+       return 1;     
+     } else {
+       return 0;     
+     }
+     
+   }); 
+
+   this.setState({currentWinner: sortedposts[0]});
+   console.log("currentwinner:", this.state.currentWinner);
+   console.log("sortedposts:", sortedposts);
+   this.archivePost();
+ }
+
   archivePost = () => {
-    const postArchive = {type: 'postArchivePost', archivePost: this.state.posts[0], topic: this.state.topic}
+    const postArchive = {type: 'postArchivePost', archivePost: this.state.currentWinner, topic: this.state.topic, currentUser: this.state.userName}
     this.socket.send(JSON.stringify(postArchive));
   }
 
@@ -182,6 +208,7 @@ class App extends Component {
 
         case 'incomingResetGame':
           this.setState({posts: data.posts});
+          this.setState({currentWinner: data.currentWinner});
           this.setState({newRoundCounter: data.newRoundCount});
         break;
 

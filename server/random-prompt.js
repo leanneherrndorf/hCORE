@@ -7,7 +7,7 @@ module.exports = function randomPrompt() {
     "Give an elevator pitch for a movie called Passion Of The " + cap(noun()),
     "How would you use " + a(noun()) + " to smuggle " + s(noun()) + " across the border?",
      "Who would win in a fight, " + a(noun()) + " or " + a(noun()) + " and why?",
-     "You're on a hunt for a rare " + noun() + ", how do lure and capture them?",
+     "You're on a hunt for a rare " + noun() + ", how do you lure and capture them?",
      "What's the best way to impress " + a(noun()) + " on a date?",
      A(noun()) + " and " + a(noun()) + " are having a lovers quarrel, what are they fighting about?",
      "How does an omnipotent " + noun() + ", with an unquenchable hatred for humanity, torture it's prisoners for all of eternity?",

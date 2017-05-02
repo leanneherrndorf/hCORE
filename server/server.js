@@ -223,6 +223,7 @@ mongoose.connect(MONGODB_URI);
           let outputResetGame = {
             type: 'incomingResetGame',
             posts: [],
+            currentWinner: {},
             newRoundCount: clientCount.count
           }
           wss.broadcast(JSON.stringify(outputResetGame));
@@ -253,18 +254,21 @@ mongoose.connect(MONGODB_URI);
         break;
 
         case 'postArchivePost':
-          //console.log(post.archivePost);
-          let archivetest = new ArchiveModel({
+          let newArchivedPost = new ArchiveModel({
             name: post.archivePost.name,
             topic: post.topic,
             content: post.archivePost.post,
             created_at: Date.now()
           });
-
-          archivetest.save(function(err){
-            if(err) throw err;
-            console.log('Test saved successfully!');
-          });
+          
+          if (post.currentUser === post.archivePost.name && post.archivePost.post !== '') {
+            newArchivedPost.save(function(err){
+              if(err) throw err;
+              console.log('Test saved successfully!');
+            });
+          } else {
+            return;
+          }
         break;
 
         default:
