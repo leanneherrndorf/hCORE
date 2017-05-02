@@ -102,6 +102,7 @@ function noun(){
     "spaghetti",
     "squid",
     "tongue",
+    "dad",
     "turnip",
     "yak",
     "yam",
