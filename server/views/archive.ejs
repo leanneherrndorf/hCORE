@@ -17,25 +17,25 @@
         <a class="home-link" href="/"><i class="fa fa-star" aria-hidden="true"></i>Game</a>
       </nav>
     </div>
-    <div class="archive-list">
-      <table class= "table">
+
+<!--       <table class= "table">
         <thead class= "table-header">
           <td>Topic</td>
           <td>Response</td>
           <td>Name</td>
           </thead>
-          <tdata>
-          <% for(var prop in archivedPosts[0]){ %>
-          <tr>
-            <td><%= archivedPosts[0][prop].topic;%></td>
-            <td><%= archivedPosts[0][prop].content;%></td>
-            <td><%= archivedPosts[0][prop].name;%></td>
-            </tr>
-            </tdata>
-          <%}%>
-          </table>
+          <tdata> -->
+      <div class="archive-table">
+      <% for(var prop in archivedPosts[0]){ %>
+        <div class="archive-post">
+          <p class= "topic"><%= archivedPosts[0][prop].topic;%></p>
+          <p class= "response">"<%= archivedPosts[0][prop].content;%>"</p>
+          <p class= "name">- <%= archivedPosts[0][prop].name;%></p>
+        </div>
+      <%}%>
+      </div>
 
 
-    </div>
+
   </div>
 </html>

@@ -3,12 +3,8 @@
 require('dotenv').config();
 
 //mongo setup
-//const {MongoClient} = require("mongodb");
 const mongoose = require("mongoose");
 const MONGODB_URI = "mongodb://hcore:hcoremanatee@ds127531.mlab.com:27531/hcore";
-//process.env.MONGODB_URI;
-//"mongodb://localhost:27017/archive";
-
 
 mongoose.Promise = global.Promise;
 //MongoClient.connect
