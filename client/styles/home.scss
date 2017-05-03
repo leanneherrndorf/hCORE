@@ -1,11 +1,13 @@
 .postform {
   z-index: 10;
   display: flex;
+  font-size: 20px;
   justify-content: center;
-  padding: 15px;
+  padding: 30px;
   min-width: 350px;
-  background: $color2;
-  margin: 165px 50px 50px 50px;
+  background: $color1;
+  margin: 100px 50px 50px 50px;
+  border-radius: 4px;
 
   textarea {
     width: 70%;
@@ -16,15 +18,16 @@
   }
 }
 
+.btn-success {
+  font-size: 20px;
+}
+
 @media screen and (max-width: 770px) {
   .postform {
     min-width: 350px;
     margin: 75px 10px;
     margin-bottom: 15px;
-
-    .btn-success {
-      font-size: 10px;
-    }
+    padding: 15px;
   }
 }
 
@@ -93,6 +96,10 @@
 }
 
 @media screen and (max-width: 770px) {
+
+  .postform {
+    margin-bottom: 80px;
+  }
   .postlist {
     padding-top: 30px;
     margin-bottom: 250px;
