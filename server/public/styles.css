@@ -3,6 +3,10 @@ h1 {
   font-weight: normal;
 }
 
+body {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
 .the-nav {
   z-index: 1;
   display: flex;
@@ -43,18 +47,49 @@ h1 {
   background-color: #BFC9E1;
 }
 
-.archive-list {
+/*.archive-list {
   font-family: 'Josefin Sans', sans-serif;
   margin-top: 80px;
   margin-left: 20px;
   margin-right: 20px;
   display: flex;
+}*/
+
+.archive-table {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.table{
+.archive-post {
   word-wrap: break-word;
+  width: 80%;
+  margin: 20px;
+  padding: 20px;
+  background-color: #9982B8;
+  font-size: 25px;
 }
-.table-header {
+
+.topic {
+  color: #fff;
+  padding-left: 50px;
+}
+
+.response {
+  text-align: center;
+  font-size: 40px;
+}
+
+.name {
+  float: right;
+  margin-right: 50px;
+}
+
+/*.table{
+  word-wrap: break-word;
+}*/
+/*.table-header {
   font-size: 20px;
   background: #9982B8;
   color: #fff;
@@ -65,3 +100,5 @@ h1 {
 .table-header td:nth-of-type(2) {
   width: 40%;
 }
+
+*/
