@@ -249,6 +249,7 @@ class App extends Component {
             posts={this.state.posts}
             newRoundCounter={this.state.newRoundCounter}
             updateNewRoundCount={this.updateNewRoundCount}
+            currentWinner={this.state.currentWinner}
           />
           <Foot
             topic={this.state.topic}

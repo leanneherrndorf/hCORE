@@ -236,7 +236,6 @@ mongoose.connect(MONGODB_URI);
               maxHealth: wss.clients.size - 1,
               name: post.userName,
               pic: picRoute
-              //newRoundClick: 1
             }
           }
           wss.broadcast(JSON.stringify(outputEmptyPost));
