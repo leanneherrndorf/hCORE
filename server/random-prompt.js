@@ -46,7 +46,7 @@ function A(noun){
 }
 
 function s(noun){
-  if (noun.charAt(noun.length-1) === "s"){
+  if (noun.charAt(noun.length-1) === "s" || noun.charAt(noun.length-1) === "h"){
     return (noun + "es");
   } else {
     return (noun + "s");
@@ -71,18 +71,12 @@ function noun(){
     "bladder",
     "boy",
     "cabbage",
-    "cake",
-    "camel",
-    "carp",  
-    "caterpillar",
     "chicken",
     "dentist",
     "donkey",
     "duckling",
     "ex-husband",
-    "fish",
     "giraffe",
-    "goldfish",
     "hamburger",
     "hippopotamus",
     "hyena",
@@ -102,7 +96,6 @@ function noun(){
     "spaghetti",
     "squid",
     "tongue",
-    "dad",
     "turnip",
     "yak",
     "yam",
@@ -113,7 +106,8 @@ function noun(){
     "geezer",
     "ectoplasm",
     "beluga",
-    "emu"
+    "emu",
+    "ghoul"
   ];
 
   var nounRandom = Math.floor(Math.random() * (noun.length));
