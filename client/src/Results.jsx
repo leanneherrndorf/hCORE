@@ -32,8 +32,8 @@ class Results extends React.Component {
       return (
         <div>
           <Jumbotron className= "results">
-
-            <h1 className="jumbo-text">Results</h1>
+            <h1>{this.props.currentWinner.name} wins!</h1>
+            <h2 className="jumbo-text" className="results-text">Results</h2>
             
             <main className="leaderboard">
             {this.props.posts.map((post) =>
