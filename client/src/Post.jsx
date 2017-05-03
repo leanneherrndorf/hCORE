@@ -47,7 +47,7 @@ class Post extends React.Component {
     if (this.props.post.health === this.props.post.maxHealth) {
       return (
         <article className="post">
-          <span className="health">{this.props.post.health}</span>
+          <span className="health">{this.props.post.health} HP</span>
           <div style={{width: 302}}>
             <div className="health-bar" style={{width: 300 * percentageLost, height: 10, borderRadius: 4}}></div>
           </div>
@@ -58,7 +58,7 @@ class Post extends React.Component {
     } else if (this.props.post.health !== this.props.post.maxHealth && this.props.post.health > 0) {
        return (
           <article className="post">
-            <span className="health">{this.props.post.health}</span>
+            <span className="health">{this.props.post.health} HP</span>
             <div style={{width: 302}}>
               <div className="health-bar" style={{width: 300 * percentageLost, height: 10, borderRadius: 4}}></div>
             </div>

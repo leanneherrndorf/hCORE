@@ -23,7 +23,13 @@
   padding: 20px 10px 10px;
   .btn-success {
     font-size: 20px;
+    margin: 15px 45% 0 45%
   }
+}
+
+img.how-to-gif {
+  width: 75%;
+  border-radius: 4px;
 }
 
 .github {
@@ -44,5 +50,12 @@ font-size: 30px;
 @media (max-width: 450px){
   .info{
     padding-bottom: 10px;
+  }
+
+  .welcome-text {
+    .btn-success {
+      margin-left: 42%;
+      margin-right: 41%;
+    }
   }
 }
