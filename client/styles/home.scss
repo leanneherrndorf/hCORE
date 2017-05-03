@@ -6,7 +6,7 @@
   min-width: 350px;
   background: $color2;
   margin: 165px 50px 50px 50px;
-  
+
   textarea {
     width: 70%;
     min-width: 200px;
@@ -31,7 +31,6 @@
 .postlist {
   display: flex;
   flex-wrap: wrap;
-  // padding-top: 50px;
   margin-bottom: 150px;
 
   .post {
@@ -39,7 +38,9 @@
     margin: 20px;
     margin-bottom: 5px;
     flex-grow: 1;
-    background: $color2;
+    background: $color1;
+    color: #fff;
+    font-size: 20px;
     width: 33%;
     min-width: 350px;
     transition: 0.3s;

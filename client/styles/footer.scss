@@ -1,7 +1,7 @@
 .footer {
   z-index: 1;
   display: flex;
-  background: $color1;
+  background: $color2;
   min-height: 100px;
   padding: 0 10px;
   position: fixed;
@@ -11,7 +11,8 @@
   border-radius: 0;
 
   .footer-username, .topic, .footer-count, .footer-malaise {
-    background: $color2;
+    background: $color1;
+    color: #fff;
     margin: 15px;
     text-align: center;
     font-size: 18px;
@@ -33,7 +34,7 @@
     width: 20%;
     padding: 30px 10px;
   }
-  
+
   .footer-username {
     width: 20%;
     padding: 10px 10px;
