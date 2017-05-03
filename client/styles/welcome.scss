@@ -28,8 +28,14 @@
 }
 
 img.how-to-gif {
-  width: 75%;
+  width: 60%;
   border-radius: 4px;
+}
+
+@media (max-width: 450px) {
+  img.how-to-gif {
+    width: 85%;
+  }
 }
 
 .github {
@@ -47,7 +53,7 @@ font-size: 30px;
  padding-bottom: 10px;
 }
 
-@media (max-width: 450px){
+@media (max-width: 450px) {
   .info{
     padding-bottom: 10px;
   }
