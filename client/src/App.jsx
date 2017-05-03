@@ -9,6 +9,8 @@ import Results from './Results.jsx';
 import Foot from './Foot.jsx';
 import FormFoot from './FormFoot.jsx';
 
+
+
 const randomPrompt = require('../../server/random-prompt.js');
 
 class App extends Component {
@@ -121,6 +123,8 @@ class App extends Component {
     this.socket.send(JSON.stringify(postArchive));
   }
 
+
+
   newRoundStart = () => {
     this.socket.send(JSON.stringify({type: 'postRoundReady'}));
     this.socket.send(JSON.stringify({type: 'postNewTopic'}));
@@ -223,6 +227,8 @@ class App extends Component {
     }
   }
 
+
+
   render() {
 
     // Start state: enough users online, stage for users to enter their post, and the time is not yet up
@@ -299,7 +305,7 @@ class App extends Component {
         />
       </div>
       );
-    } console.log("post length:", this.state.posts.length);
+    } 
   }
 }
 

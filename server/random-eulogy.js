@@ -2,7 +2,6 @@ module.exports = function randomEulogy() {
   
   var struc = [
     ", rest in peace you dang dingus.",
-    ", boo hoo so sad.",
     ", they lived as they died, sad and alone.",
     ", going out not with a bang, but with a wimper.",
     ", neither a notch in a bed post nor a line in a song.",
