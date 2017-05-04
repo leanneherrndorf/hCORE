@@ -5,7 +5,6 @@ import {Button} from 'react-bootstrap';
 import {Form} from 'react-bootstrap';
 import {FormControl} from 'react-bootstrap';
 import Nav from './Nav.jsx';
-//import Foot from './Foot.jsx';
 import Welcomefoot from './Welcomefoot.jsx';
 
 class Welcome extends React.Component {
