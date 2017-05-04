@@ -36,8 +36,6 @@ class App extends Component {
 
       if (newName.length > 12){
         this.socket.send(JSON.stringify({type: 'incomingNameChange', name: 'Dingus'}));
-      } else if (newName.toLowerCase() === 'leanne' || newName.toLowerCase() === 'brendan'){
-        this.socket.send(JSON.stringify({type: 'incomingNameChange', name: 'Nerd'}));
       } else if (newName === '') {
         this.socket.send(JSON.stringify({type: 'incomingNameChange', name: this.state.userName}));
       } else {

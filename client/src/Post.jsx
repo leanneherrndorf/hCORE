@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Button} from 'react-bootstrap';
-// import {Fade} from 'react-bootstrap';
 
 class Post extends React.Component {
   constructor(props) {
