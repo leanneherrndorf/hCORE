@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-//import {DropdownButton} from 'react-bootstrap';
-
 
 class Nav extends React.Component {
   constructor(props) {
