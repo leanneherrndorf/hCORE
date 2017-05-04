@@ -5,7 +5,6 @@ import {Button} from 'react-bootstrap';
 import {Form} from 'react-bootstrap';
 import {FormControl} from 'react-bootstrap';
 import Nav from './Nav.jsx';
-//import Foot from './Foot.jsx';
 import Welcomefoot from './Welcomefoot.jsx';
 
 class Welcome extends React.Component {
@@ -46,7 +45,7 @@ class Welcome extends React.Component {
             <p>Not a big fan of your auto-generated name? I guess you can change it here (but if it's over 12 characters then you're a dingus). </p>
             <input placeholder='Enter a new name...' onBlur={this.props.updateUserName}/>
 
-            <p>At the start of the round, a topic will appear at the bottom of your screen. You have 30 seconds to think of your best response. Once all the posts are in you will have 1 Malaise Point to attack your least favourite's health. You can Praise a damaged post to increase it's health and gain another Malaise Point. May your wits be with you!</p>
+            <p>At the start of the round, a topic will appear at the bottom of your screen. You have 30 seconds to think of your best response. Once all the posts are in you will have 1 Malaise Point to attack your least favourite and decrease their health. You can Praise a damaged post to increase it's health and gain another Malaise Point. Recommended game size: 3-5 players.</p>
             <img src="../how-to-play-hCORE!.gif" className="how-to-gif"/>
             <Button type="submit" bsStyle="success" onClick={this.broadCastRoundCount.bind(this)}> Play </Button>
             <p> {this.props.count} User(s) Online </p>
