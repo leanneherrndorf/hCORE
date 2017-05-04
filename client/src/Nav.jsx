@@ -10,7 +10,7 @@ class Nav extends React.Component {
         <nav className="the-nav">
           <img src="../huManatee.png" className="logo" style={{width: 50, height: 50}}/>
           <h1 className="nav-brand">hCORE</h1>
-          <a className="top-posts" href="/archive"><i className="fa fa-star" aria-hidden="true"></i>Top posts</a>
+          <a className="top-posts" href="/archive"><i className="fa fa-star" aria-hidden="true"></i>Hall Of Fame</a>
         </nav>
       </div>
     );

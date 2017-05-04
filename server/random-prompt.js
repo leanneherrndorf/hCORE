@@ -6,7 +6,6 @@ module.exports = function randomPrompt() {
     "Your house is now full of " + s(noun()) + ", how do you get them out?",
     "Give an elevator pitch for a movie called Passion Of The " + cap(noun()),
     "How would you use " + a(noun()) + " to smuggle " + s(noun()) + " across the border?",
-     "Who would win in a fight, " + a(noun()) + " or " + a(noun()) + " and why?",
      "You're on a hunt for a rare " + noun() + ", how do you lure and capture them?",
      "What's the best way to impress " + a(noun()) + " on a date?",
      A(noun()) + " and " + a(noun()) + " are having a lovers quarrel, what are they fighting about?",
@@ -58,6 +57,8 @@ function cap(noun){
     return "Spooky Scary Skeleton";
   } else if (noun === "spicy meatball") {
     return "Spicy Meatball";
+  } else if (noun === "wacky uncle") {
+    return "Wacky Uncle";
   } else {
     var capChar = noun.charAt(0).toUpperCase();
     return noun.replaceAt(0, capChar);
@@ -72,16 +73,13 @@ function noun(){
     "bean",
     "bladder",
     "boy",
-    "cabbage",
     "chicken",
     "dentist",
     "donkey",
     "duckling",
     "ex-husband",
-    "giraffe",
     "hamburger",
     "hippopotamus",
-    "hyena",
     "llama",
     "lobster",
     "mayonnaise",
@@ -90,11 +88,9 @@ function noun(){
     "pancake",
     "parsnip",
     "pickle",
-    "pigeon",
     "pimple",
     "pumpkin",
     "ravioli",
-    "shrimp",
     "spaghetti",
     "squid",
     "tongue",
@@ -104,13 +100,12 @@ function noun(){
     "spooky scary skeleton",
     "egg",
     "jellyroll",
-    "weenus",
     "geezer",
-    "ectoplasm",
     "beluga",
     "emu",
-    "ghoul",
-    "spicy meatball"
+    "spicy meatball",
+    "sausage",
+    "wacky uncle"
   ];
 
   var nounRandom = Math.floor(Math.random() * (noun.length));
