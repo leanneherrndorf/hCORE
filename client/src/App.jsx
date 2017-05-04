@@ -9,8 +9,6 @@ import Results from './Results.jsx';
 import Foot from './Foot.jsx';
 import FormFoot from './FormFoot.jsx';
 
-
-
 const randomPrompt = require('../../server/random-prompt.js');
 
 class App extends Component {
@@ -19,7 +17,6 @@ class App extends Component {
     this.state = {
       firstTimeUser: true,
       posts: [],
-      listOfUsers: [],
       count: 0,
       topic: '',
       malaisePoints: 0,
@@ -51,13 +48,11 @@ class App extends Component {
   updateUserMalaiseOnClick = () => {
     const newMalaise = this.state.malaisePoints - 1;
     this.setState({malaisePoints: newMalaise});
-    console.log('current user malaise:', this.state.malaisePoints);
   }
 
   updateUserMalaiseOnPraise = () => {
     const increaseMalaise = this.state.malaisePoints + 1;
     this.setState({malaisePoints: increaseMalaise});
-    console.log('current user malaise:', this.state.malaisePoints);
   }
 
   updateHealthOnClick = (health, id) => {
@@ -78,7 +73,7 @@ class App extends Component {
       users.push(post.name);
     });
     if(users.includes(this.state.userName)){
-      //console.log(here);
+
     } else {
       const emptyPost = {type: 'postEmptyPost', userName: this.state.userName}
       this.socket.send(JSON.stringify(emptyPost));
@@ -113,8 +108,6 @@ class App extends Component {
    }); 
 
    this.setState({currentWinner: sortedposts[0]});
-   console.log("currentwinner:", this.state.currentWinner);
-   console.log("sortedposts:", sortedposts);
    this.archivePost();
  }
 
@@ -122,8 +115,6 @@ class App extends Component {
     const postArchive = {type: 'postArchivePost', archivePost: this.state.currentWinner, topic: this.state.topic, currentUser: this.state.userName}
     this.socket.send(JSON.stringify(postArchive));
   }
-
-
 
   newRoundStart = () => {
     this.socket.send(JSON.stringify({type: 'postRoundReady'}));
@@ -140,7 +131,7 @@ class App extends Component {
       type: 'postRoundCount',
       value: subtractOne
     }
-    this.socket.send(JSON.stringify(newRoundCountValue)); // broadcast change
+    this.socket.send(JSON.stringify(newRoundCountValue)); 
   }
 
   componentDidMount = () => {
@@ -227,8 +218,6 @@ class App extends Component {
     }
   }
 
-
-
   render() {
 
     // Start state: enough users online, stage for users to enter their post, and the time is not yet up
@@ -237,7 +226,6 @@ class App extends Component {
         <div>
           <Nav/>
           <Postform updateMessageOnClick={this.updateMessageOnClick} currentUserName={this.state.userName}/>
-
           <Timer checkTimer={this.checkTimer} posts={this.state.posts}/>
           <FormFoot 
             topic={this.state.topic} 

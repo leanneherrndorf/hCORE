@@ -248,7 +248,6 @@ mongoose.connect(MONGODB_URI);
           if (post.currentUser === post.archivePost.name && post.archivePost.post !== '' && post.archivePost.maxHealth !== 0) {
             newArchivedPost.save(function(err) {
               if(err) throw err;
-              console.log('Test saved successfully!');
             });
           } else {
             return;
@@ -268,7 +267,5 @@ mongoose.connect(MONGODB_URI);
       }
     });
   });
-
-
 
 server.listen(PORT, () => console.log(`Listening on ${ PORT }`));

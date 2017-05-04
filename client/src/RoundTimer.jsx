@@ -5,11 +5,11 @@ const Circle = ProgressBar.Circle;
 class RoundTimer extends Component {
   constructor(props){
     super(props);
-    this.state = {currentCount: 30}
+    this.state = {currentCount: 20}
   }
 
   options = {
-    duration: 25000,
+    duration: 20000,
     easing: 'easeOut',
     strokeWidth: 4,
     color: '#734B76',

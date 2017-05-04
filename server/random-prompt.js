@@ -1,5 +1,5 @@
 module.exports = function randomPrompt() {
-  // use string interpoloation `hello ${a.noun} me`
+
   var struc = [
     "Your boss is now " + a(noun()) + ", how would they fire you?",
     "You're being attacked by an army of " + s(noun()) + ", how do you defend yourself?",
@@ -56,6 +56,8 @@ function s(noun){
 function cap(noun){
   if (noun === "spooky scary skeleton") {
     return "Spooky Scary Skeleton";
+  } else if (noun === "spicy meatball") {
+    return "Spicy Meatball";
   } else {
     var capChar = noun.charAt(0).toUpperCase();
     return noun.replaceAt(0, capChar);
@@ -107,7 +109,8 @@ function noun(){
     "ectoplasm",
     "beluga",
     "emu",
-    "ghoul"
+    "ghoul",
+    "spicy meatball"
   ];
 
   var nounRandom = Math.floor(Math.random() * (noun.length));
